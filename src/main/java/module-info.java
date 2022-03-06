@@ -9,6 +9,7 @@ module com.example.swapper {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
     requires postgresql;
+    requires dotenv.java;
 
     opens com.example.swapper to javafx.fxml;
     exports com.example.swapper;

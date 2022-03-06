@@ -3,13 +3,15 @@ package service;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class PostgresConnection {
-    private static String url = "localhost";
-    private static int port = 5432;
-    private static String databaseName = "vava";
-    private static String username = "postgres";
-    private static String password = "414272";
+    private static Dotenv dotenv = Dotenv.configure().ignoreIfMissing().ignoreIfMalformed().load();
+    private static String url = dotenv.get("DB_HOST");
+    private static int port = Integer.parseInt(dotenv.get("DB_PORT"));
+    private static String databaseName = dotenv.get("DB_NAME");
+    private static String username = dotenv.get("DB_USER");
+    private static String password = dotenv.get("DB_PASSWORD");
     public static Connection connection = null;
 
     public static Connection initializePostgresqlDatabase() {

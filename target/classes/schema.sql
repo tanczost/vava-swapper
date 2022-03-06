@@ -3,3 +3,5 @@ CREATE TABLE friends (
      name VARCHAR(200) NOT NULL,
      phone_number INTEGER NOT NULL
 );
+
+INSERT INTO friends  (name, phone_number) VALUES ('Tomi', 12321);
