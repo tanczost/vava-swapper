@@ -4,47 +4,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane stylesheets="@style/global.css"  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="285.0" layoutY="75.0" text="First name">
-<!--         <font>-->
-<!--            <Font size="25.0" />-->
-<!--         </font>-->
       </Label>
       <Label layoutX="285.0" layoutY="147.0" text="Last name">
-<!--         <font>-->
-<!--            <Font size="25.0" />-->
-<!--         </font>-->
       </Label>
       <Label layoutX="285.0" layoutY="218.0" text="Email">
-<!--         <font>-->
-<!--            <Font size="25.0" />-->
-<!--         </font>-->
       </Label>
       <Label layoutX="285.0" layoutY="290.0" text="Password">
-<!--         <font>-->
-<!--            <Font size="25.0" />-->
-<!--         </font>-->
       </Label>
       <Label layoutX="576.0" layoutY="75.0" text="Username">
-<!--         <font>-->
-<!--            <Font size="25.0" />-->
-<!--         </font>-->
       </Label>
       <Label layoutX="576.0" layoutY="147.0" text="Town">
-<!--         <font>-->
-<!--            <Font size="25.0" />-->
-<!--         </font>-->
       </Label>
       <Label layoutX="576.0" layoutY="217.0" text="Street">
-<!--         <font>-->
-<!--            <Font size="25.0" />-->
-<!--         </font>-->
       </Label>
       <Label layoutX="576.0" layoutY="290.0" text="House number">
-<!--         <font>-->
-<!--            <Font size="25.0" />-->
-<!--         </font>-->
       </Label>
       <TextField layoutX="285.0" layoutY="111.0" prefHeight="25.0" prefWidth="209.0" />
       <TextField layoutX="285.0" layoutY="183.0" prefHeight="25.0" prefWidth="209.0" />
@@ -55,8 +31,6 @@
       <TextField layoutX="576.0" layoutY="253.0" prefHeight="25.0" prefWidth="202.0" />
       <TextField layoutX="576.0" layoutY="326.0" prefHeight="25.0" prefWidth="202.0" />
       <Button layoutX="488.0" layoutY="397.0" mnemonicParsing="false" text="Register">
-         <font>
-            <Font size="20.0" />
-         </font></Button>
+        </Button>
    </children>
 </AnchorPane>
