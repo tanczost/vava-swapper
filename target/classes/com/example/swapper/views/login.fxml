@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="551.0" prefWidth="1122.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swapper.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <AnchorPane prefHeight="454.0" prefWidth="1082.0">
+      <children>
+         <AnchorPane layoutY="14.0" prefHeight="387.0" prefWidth="1094.0">
+            <children>
+               <TextField layoutX="412.0" layoutY="95.0" prefHeight="40.0" prefWidth="271.0" />
+               <Label layoutX="412.0" layoutY="52.0" prefHeight="36.0" prefWidth="177.0" text="USERNAME">
+                  <font>
+                     <Font size="25.0" />
+                  </font>
+               </Label>
+               <Label layoutX="412.0" layoutY="149.0" text="PASSWORD">
+                  <font>
+                     <Font size="25.0" />
+                  </font>
+               </Label>
+               <PasswordField layoutX="412.0" layoutY="185.0" prefHeight="40.0" prefWidth="271.0">
+                  <effect>
+                     <Bloom />
+                  </effect></PasswordField>
+               <Button layoutX="507.0" layoutY="261.0" mnemonicParsing="false" scaleShape="false" text="Log in" textAlignment="CENTER">
+                  <font>
+                     <Font size="20.0" />
+                  </font>
+               </Button>
+               <Button layoutX="480.0" layoutY="316.0" mnemonicParsing="false" text="Don't have an accout?">
+                  <cursor>
+                     <Cursor fx:constant="DEFAULT" />
+                  </cursor></Button>
+            </children>
+         </AnchorPane>
+      </children></AnchorPane>
+</VBox>
