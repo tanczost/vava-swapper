@@ -16,23 +16,14 @@
             <children>
                <TextField layoutX="412.0" layoutY="95.0" prefHeight="40.0" prefWidth="271.0" />
                <Label layoutX="412.0" layoutY="52.0" prefHeight="36.0" prefWidth="177.0" stylesheets="@style/global.css" text="USERNAME">
-<!--                  <font>-->
-<!--                     <Font name="Serif Regular" size="25.0" />-->
-<!--                  </font>-->
                </Label>
                <Label layoutX="412.0" layoutY="149.0" text="PASSWORD">
-<!--                  <font>-->
-<!--                     <Font size="25.0" />-->
-<!--                  </font>-->
                </Label>
                <PasswordField layoutX="412.0" layoutY="185.0" prefHeight="40.0" prefWidth="271.0">
                   <effect>
                      <Bloom />
                   </effect></PasswordField>
                <Button layoutX="507.0" layoutY="261.0" mnemonicParsing="false" scaleShape="false" text="Log in" textAlignment="CENTER">
-<!--                  <font>-->
-<!--                     <Font size="20.0" />-->
-<!--                  </font>-->
                </Button>
                <Button layoutX="480.0" layoutY="316.0" mnemonicParsing="false" text="Don't have an accout?">
                   <cursor>
