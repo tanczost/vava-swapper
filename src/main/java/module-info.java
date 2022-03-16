@@ -10,6 +10,7 @@ module com.example.swapper {
     requires java.sql;
     requires postgresql;
     requires dotenv.java;
+    requires java.desktop;
 
     opens com.example.swapper to javafx.fxml;
     exports com.example.swapper;
