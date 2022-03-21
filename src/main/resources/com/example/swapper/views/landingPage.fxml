@@ -4,11 +4,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="576.0" prefWidth="1024.0" stylesheets="@style/global.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swapper.LandingPageController">
    <children>
-      <AnchorPane prefHeight="88.0" prefWidth="1058.0" style="-fx-background-color: rgb(179,179,179);">
+      <AnchorPane prefHeight="94.0" prefWidth="1066.0" style="-fx-background-color: rgb(179,179,179);">
          <children>
             <ImageView fitHeight="75.0" fitWidth="206.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -41,9 +42,10 @@
                <image>
                   <Image url="@images/add.png" />
                </image></ImageView>
+            <Line endX="944.4000244140625" endY="-1.0" layoutX="116.0" layoutY="86.0" startX="-113.99999237060547" startY="-1.0" strokeWidth="5.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="88.0" prefHeight="526.0" prefWidth="1026.0" style="-fx-background-color: white;">
+      <AnchorPane layoutY="88.0" prefHeight="526.0" prefWidth="1066.0" style="-fx-background-color: white;">
          <children>
             <ImageView fitHeight="88.0" fitWidth="268.0" layoutX="33.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" style="-fx-border-color-fx-border-color: black;">
                <image>
