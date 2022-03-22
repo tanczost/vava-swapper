@@ -19,7 +19,7 @@
       <Label layoutX="302.0" layoutY="57.0" text="Product" />
       <Label layoutX="302.0" layoutY="265.0" text="Description" />
       <Label layoutX="664.0" layoutY="118.0" text="TOP" />
-      <ComboBox layoutX="452.0" layoutY="317.0" prefHeight="25.0" prefWidth="198.0" />
-      <Label layoutX="302.0" layoutY="312.0" text="Your product" />
+      <ComboBox layoutX="452.0" layoutY="325.0" prefHeight="25.0" prefWidth="210.0" />
+      <Label layoutX="302.0" layoutY="320.0" text="Your product" />
    </children>
 </AnchorPane>
