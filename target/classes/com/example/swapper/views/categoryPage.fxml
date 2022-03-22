@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<AnchorPane prefHeight="576.0" prefWidth="1052.0" stylesheets="@style/global.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swapper.CategoryPageController">
+<AnchorPane prefHeight="576.0" prefWidth="1024.0" stylesheets="@style/global.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swapper.CategoryPageController">
    <children>
-      <AnchorPane prefHeight="94.0" prefWidth="1066.0" style="-fx-background-color: rgb(179,179,179);">
+      <AnchorPane prefHeight="94.0" prefWidth="1024.0" style="-fx-background-color: rgb(179,179,179);">
          <children>
             <ImageView fitHeight="75.0" fitWidth="206.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -16,12 +16,12 @@
                </image>
             </ImageView>
             <TextField alignment="CENTER" layoutX="410.0" layoutY="32.0" prefHeight="29.0" prefWidth="206.0" promptText="Search for product" />
-            <Button layoutX="822.0" layoutY="22.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="143.0" style="-fx-background-color: rgb(179,179,179); -fx-border-color: rgb(0,0,200);" text="Add product" textAlignment="CENTER" textFill="#0000c8">
+            <Button layoutX="787.0" layoutY="22.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="143.0" style="-fx-background-color: rgb(179,179,179); -fx-border-color: rgb(0,0,200);" text="Add product" textAlignment="CENTER" textFill="#0000c8">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </Button>
-            <ImageView fitHeight="58.0" fitWidth="63.0" layoutX="972.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="58.0" fitWidth="63.0" layoutX="937.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/avatar.png" />
                </image>
@@ -34,7 +34,7 @@
                <image>
                   <Image url="@images/cancel.png" />
                </image></ImageView>
-            <ImageView fitHeight="46.0" fitWidth="44.0" layoutX="767.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="46.0" fitWidth="44.0" layoutX="732.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/add.png" />
                </image></ImageView>
