@@ -46,7 +46,10 @@ public class FileHandler {
         if(con == null)
             System.out.println("Failed to connect to the database.");
         try {
-            String name = "Test";
+            String name = "null";
+            if (fileName != "") {
+                name = fileName;
+            }
             int uploaderID = uploaderId;
 
             String sql = "INSERT INTO photos (name, uploaderid, data) VALUES (?, ?, ?)";
@@ -73,7 +76,7 @@ public class FileHandler {
      * @throws SQLException
      * @throws NullPointerException
      * */
-    public static byte[] getFile(int id) throws SQLException, NullPointerException {
+    public static byte[] getFile(int id, String name) throws SQLException, NullPointerException {
         Connection con = PostgresConnection.initializePostgresqlDatabase();
         PreparedStatement query = null;
         byte[] data = null;
@@ -81,10 +84,11 @@ public class FileHandler {
         if(con == null)
             System.out.println("Failed to connect to the database.");
         try {
-            String sql = "SELECT * FROM photos WHERE id=?";
+            String sql = "SELECT * FROM photos WHERE id=? OR name=? ORDER BY id ASC LIMIT 1";
 
             query = con.prepareStatement(sql);
             query.setInt(1, id);
+            query.setString(2, name);
             ResultSet res = query.executeQuery();
             res.next();
 

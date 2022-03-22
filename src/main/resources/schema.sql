@@ -6,7 +6,7 @@ CREATE TABLE friends (
 
 INSERT INTO friends  (name, phone_number) VALUES ('Tomi', 12321);
 
-CREATE TABLE photos (
+CREATE TABLE IF NOT EXISTS photos (
     id SERIAL PRIMARY KEY,
     name VARCHAR(200) NOT NULL,
     phone_number INTEGER NOT NULL,
