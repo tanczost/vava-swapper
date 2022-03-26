@@ -1,6 +1,6 @@
 docker-compose.yml
 
-target
+target/
 
 ### Java template
 *.class
