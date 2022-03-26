@@ -13,17 +13,23 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 public class FileHandler {
-    public static byte[] readImageToByteStream(String fileName) throws Exception{
-        if(fileName.length() == 0){
+    /**
+     * @param file (String) - Path and name of the file
+     * */
+    public static byte[] readImageToByteStream(String file) throws Exception{
+        if(file.length() == 0){
             throw new Exception("No name provided.");
         }
 
-        BufferedImage image = ImageIO.read(new File(fileName));
+        BufferedImage image = ImageIO.read(new File(file));
         ByteArrayOutputStream imageInBytes = new ByteArrayOutputStream();
         ImageIO.write(image, "jpg", imageInBytes);
         return imageInBytes.toByteArray();
     }
 
+    /**
+     * @param bStream (byte[]) - The byte stream, from which the actual file should be created
+     * */
     public static BufferedImage createImageFromByteStream(byte[] bStream) throws IOException {
         if(bStream == null)
             throw new NullPointerException("Empty input byte stream.");
