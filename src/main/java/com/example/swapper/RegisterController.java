@@ -6,10 +6,10 @@ import service.Auth;
 public class RegisterController {
     @FXML
 
-    private void registration(){
+    private void registration() throws Exception {
         //TODO: add input text from textfield and validate them (there should be package fx validator)
-        boolean result = Auth.registration("tanczi", "tomi","tanczos", "1@gmail.com",
-        "kosuty", "kosuty", "fiit stu", "password");
+        boolean result = Auth.registration("tanczi", "tomi","tanczos", "tanczost23gmail.com",
+        "kosuty", "kosuty", "fiit", "p@$$word");
 
         if(result){
             System.out.println("Successfully registered user");

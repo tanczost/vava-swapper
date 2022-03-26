@@ -14,7 +14,7 @@ public class LoginController {
 
         System.out.println(Account.checkLogin());
 
-        boolean success = Auth.login("tanczi", "password");
+        boolean success = Auth.login("tanczi", "p@$$word");
 
         System.out.println(Account.checkLogin());
 

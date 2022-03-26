@@ -1,28 +1,27 @@
 package service;
 
 import models.Account;
+import org.apache.commons.codec.digest.DigestUtils;
 import service.db.UserDbServices;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Auth {
-    public static boolean registration(String nick, String firstName, String lastName, String email, String town, String street, String school, String password){
+    public static boolean registration(String nick, String firstName, String lastName, String email, String town, String street, String school, String password) throws Exception {
+//        if (!Validator.validDbInputEmail(email) || !Validator.validDbInput(nick) || !Validator.validDbInput(firstName) ||
+//                !Validator.validDbInput(lastName) || !Validator.validDbInput(email) || !Validator.validDbInput(town) ||
+//                !Validator.validDbInput(street) || !Validator.validDbInput(school) || !Validator.validDbPassword(password)) {
+//            throw new Exception("Wrong input");
+//        }
 
-//        TODO: input validation, sql insertion, make password hash
-
-        String passwordHash = password;
-
-        int result = UserDbServices.insertUserDb(nick, firstName, lastName, email, town,street, school, passwordHash);
-
-        System.out.println(result);
-
+        String passwordHash = DigestUtils.sha256Hex(password);
+        int result = UserDbServices.insertUserDb(nick, firstName, lastName, email, town, street, school, passwordHash);
         return result != 0;
     }
 
 
     public static boolean login(String nick, String password) throws SQLException {
-        String passwordHash = password;
+        String passwordHash = DigestUtils.sha256Hex(password);
 
         ResultSet resultSet = UserDbServices.loginUserDb(nick, passwordHash);
 
