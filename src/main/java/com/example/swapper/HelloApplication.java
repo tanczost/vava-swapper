@@ -8,7 +8,15 @@ import javafx.stage.Stage;
 import models.Singleton;
 import service.PostgresConnection;
 
+import service.FileHandler;
+
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.sql.SQLException;
 
 public class HelloApplication extends Application {
     private static Stage stage;
