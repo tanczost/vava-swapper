@@ -3,9 +3,9 @@ package models;
 public class Account {
     public static User currentUser = null;
 
-    public static void createAccount(String userName, String firstName, String lastName, String email, String town, String street, String school){
+    public static void createAccount(String nick, String firstName, String lastName, String email, String town, String street, String school){
         if(currentUser == null){
-            currentUser = new User(userName, firstName, lastName, email, town, street, school);
+            currentUser = new User(nick, firstName, lastName, email, town, street, school);
         }
         else{
             System.out.println("User already logged in");

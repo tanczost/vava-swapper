@@ -2,7 +2,7 @@ package models;
 import java.util.ArrayList;
 
 public class User {
-    private String userName;
+    private String nick;
     private String firstName;
     private String lastName;
     private String email;
@@ -13,7 +13,7 @@ public class User {
     private ArrayList<Integer> myProducts = new ArrayList<Integer>();
 
     public User(String userName, String firstName, String lastName, String email, String town, String street, String school) {
-        this.userName = userName;
+        this.nick = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -25,7 +25,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "userName='" + userName + '\'' +
+                "nick='" + nick + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
