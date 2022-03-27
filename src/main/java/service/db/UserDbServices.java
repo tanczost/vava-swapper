@@ -38,7 +38,8 @@ public class UserDbServices {
                     "users.email, " +
                     "users.town, " +
                     "users.street, " +
-                    "users.school " +
+                    "users.school, " +
+                    "users.id " +
                     "FROM users WHERE nick LIKE (?) AND password LIKE (?)");
 
             stmt.setString(1, nick);

@@ -2,6 +2,7 @@ package models;
 import java.util.ArrayList;
 
 public class User {
+    private int id;
     private String nick;
     private String firstName;
     private String lastName;
@@ -12,7 +13,8 @@ public class User {
 
     private ArrayList<Integer> myProducts = new ArrayList<Integer>();
 
-    public User(String userName, String firstName, String lastName, String email, String town, String street, String school) {
+    public User(int id,String userName, String firstName, String lastName, String email, String town, String street, String school) {
+        this.id = id;
         this.nick = userName;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -20,6 +22,10 @@ public class User {
         this.town = town;
         this.street = street;
         this.school = school;
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override

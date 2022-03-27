@@ -26,6 +26,7 @@ public class Auth {
         ResultSet resultSet = UserDbServices.loginUserDb(nick, passwordHash);
 
         Account.createAccount(
+                resultSet.getInt(8),
                 resultSet.getString(1),
                 resultSet.getString(2),
                 resultSet.getString(3),
