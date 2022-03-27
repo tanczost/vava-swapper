@@ -1,6 +1,7 @@
 package service.db;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static service.PostgresConnection.connection;
@@ -23,6 +24,59 @@ public class ProductDbServices {
         } catch (SQLException throwable) {
             throwable.printStackTrace();
             return 0;
+        }
+    }
+
+    public static int insertOfferDb(int proposalId, int offerId){
+        try {
+            PreparedStatement stmt = connection.prepareStatement(
+                    "INSERT INTO product_offers(proposal_id, offer_id) " +
+                            "VALUES((?), (?));");
+
+            stmt.setInt(1, proposalId);
+            stmt.setInt(2, offerId);
+
+            return stmt.executeUpdate();
+
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+            return 0;
+        }
+    }
+
+    public static ResultSet getProductById(int productId){
+        try{
+            //TODO join with photos
+            PreparedStatement stmt = connection.prepareStatement("SELECT *" +
+                    "FROM products WHERE id = (?)");
+
+            stmt.setInt(1, productId);
+
+
+            ResultSet sqlReturnValues = stmt.executeQuery();
+            return sqlReturnValues;
+        }
+        catch (SQLException throwable) {
+            throwable.printStackTrace();
+            return null;
+        }
+    }
+
+    public static ResultSet getUsersProposals(int userId){
+        try{
+            //TODO join with photos
+            PreparedStatement stmt = connection.prepareStatement("SELECT *" +
+                    "FROM products WHERE user_id = (?)");
+
+            stmt.setInt(1, userId);
+
+
+            ResultSet sqlReturnValues = stmt.executeQuery();
+            return sqlReturnValues;
+        }
+        catch (SQLException throwable) {
+            throwable.printStackTrace();
+            return null;
         }
     }
 }

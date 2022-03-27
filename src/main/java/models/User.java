@@ -11,8 +11,6 @@ public class User {
     private String street;
     private String school;
 
-    private ArrayList<Integer> myProducts = new ArrayList<Integer>();
-
     public User(int id,String userName, String firstName, String lastName, String email, String town, String street, String school) {
         this.id = id;
         this.nick = userName;
@@ -38,7 +36,6 @@ public class User {
                 ", town='" + town + '\'' +
                 ", street='" + street + '\'' +
                 ", school='" + school + '\'' +
-                ", myProducts=" + myProducts +
                 '}';
     }
 }

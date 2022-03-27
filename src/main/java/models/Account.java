@@ -1,7 +1,14 @@
 package models;
 
+import service.db.ProductDbServices;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 public class Account {
     public static User currentUser = null;
+    public static ArrayList<Product> productsOfLoggedUser = new ArrayList<>();
 
     public static void createAccount(int id, String nick, String firstName, String lastName, String email, String town, String street, String school){
         if(currentUser == null){
@@ -25,6 +32,21 @@ public class Account {
         if(currentUser == null) return 1;  //return -1;
 
         return currentUser.getId();
+    }
+
+    public static void loadProducts() throws SQLException {
+        ResultSet products = ProductDbServices.getUsersProposals(getLoggedUserId());
+        productsOfLoggedUser.clear();
+
+        while(products.next()){
+            productsOfLoggedUser.add(new Product(
+                    products.getInt(1),
+                    products.getString(2),
+                    products.getString(3),
+                    products.getBoolean(4)
+                    ));
+        }
+        System.out.println("Products are successfully loaded into account");
     }
 
     public static User getCurrentUser() {

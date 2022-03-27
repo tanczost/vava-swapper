@@ -19,7 +19,8 @@ public class LoginController {
         System.out.println(Account.checkLogin());
 
         if(success){ // TODO redirect user to home page
-            System.out.println("do something");
+            Account.loadProducts();
+            System.out.println("success do something");
         }
         else{ // TODO inform user that login was not successful
             System.out.println("do something");

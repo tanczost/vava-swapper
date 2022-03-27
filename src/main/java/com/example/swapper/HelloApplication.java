@@ -9,6 +9,7 @@ import models.Singleton;
 import service.PostgresConnection;
 
 import service.FileHandler;
+import service.db.ProductDbServices;
 
 
 import javax.imageio.ImageIO;
@@ -30,6 +31,7 @@ public class HelloApplication extends Application {
         scene.getRoot().setStyle("-fx-font-family: 'serif'");
         primaryStage.show();
         PostgresConnection.initializePostgresqlDatabase();
+        ProductDbServices.getUsersProposals(1);
     }
 
     public void changeScene(String fxml) throws IOException {
