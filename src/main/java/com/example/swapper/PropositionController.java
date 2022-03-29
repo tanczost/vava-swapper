@@ -27,13 +27,10 @@ public class PropositionController {
                 result.getInt(5)
         );
 
-        System.out.println(currentProduct.getImgId());
 
         byte[] img = FileHandler.getFile(6);
-        //int id = FileHandler.uploadFile(FileHandler.readImageToByteStream("C:\\Users\\madre\\Documents\\GitHub\\vava-swapper\\src\\main\\resources\\test.jpg"));
-        //System.out.println(id);
+        BufferedImage photo = FileHandler.createImageFromByteStream(img);
 
-        System.out.println(Arrays.toString(img));
         //TODO: load it into fields
     }
 }

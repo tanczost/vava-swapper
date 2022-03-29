@@ -4,7 +4,6 @@ import java.io.*;
 import java.sql.*;
 
 import java.awt.image.BufferedImage;
-import java.util.Arrays;
 import javax.imageio.ImageIO;
 
 public class FileHandler {
@@ -16,8 +15,6 @@ public class FileHandler {
             throw new Exception("No name provided.");
         }
 
-        //File image = new File(file);
-        //FileInputStream fileInputStream = new FileInputStream(image);
         BufferedImage bufferedImage = ImageIO.read(new File(file));
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         ImageIO.write(bufferedImage, "jpg", byteArrayOutputStream);
@@ -33,16 +30,7 @@ public class FileHandler {
         if(bStream == null)
             throw new NullPointerException("Empty input byte stream.");
 
-        //System.out.println(Arrays.toString(bStream));
         ByteArrayInputStream bufferedStream = new ByteArrayInputStream(bStream);
-        //BufferedImage test = ImageIO.read(bufferedStream);
-
-        /*byte[] testRead = readImageToByteStream("C:\\Users\\madre\\Documents\\GitHub\\vava-swapper\\src\\main\\resources\\test.png");
-        ByteArrayInputStream buffTest = new ByteArrayInputStream(testRead);
-        BufferedImage testReadIO = ImageIO.read(buffTest);
-
-        ImageIO.write(testReadIO, "png", new File("output.png") );
-        System.out.println("image created");*/
 
         return ImageIO.read(bufferedStream);
     }
@@ -98,10 +86,6 @@ public class FileHandler {
 
         res.next();
         byte[] data = res.getBytes(1);
-        System.out.println(Arrays.toString(data));
-
-        ImageIO.write(createImageFromByteStream(data), "jpg", new File("output2.jpg") );
-        System.out.println("image created");
 
         return data;
     }
