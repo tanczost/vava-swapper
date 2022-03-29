@@ -1,30 +1,46 @@
 package com.example.swapper;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import models.Account;
 import service.Auth;
+import service.navigation.SwitchScreen;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class LoginController {
     @FXML
+    private TextField tfUsername;
 
-    private void login() throws SQLException {
-        //TODO: add input text from textfield and validate them (there should be package fx validator)
+    @FXML
+    private TextField pfPassword;
 
-        System.out.println(Account.checkLogin());
+    @FXML
+    private Label lError;
 
-        boolean success = Auth.login("tanczi", "p@$$word");
+    @FXML
+    private void login() throws SQLException, IOException {
+        if (!tfUsername.getText().isEmpty() && !pfPassword.getText().isEmpty()) {
+            boolean success = Auth.login(tfUsername.getText(), pfPassword.getText());
+            System.out.println(Account.checkLogin());
 
-        System.out.println(Account.checkLogin());
-
-        if(success){ // TODO redirect user to home page
-            Account.loadProducts();
-            System.out.println("success do something");
+            if (success) {
+                Account.loadProducts();
+                SwitchScreen.newScreen("views/landingPage.fxml");
+                System.out.println(tfUsername.getText() + " has succesfully logged in");
+            } else {
+                lError.setText("Bad login credentials!");
+                System.out.println("Bad login credentials from " + tfUsername.getText());
+            }
+        } else {
+            lError.setText("Enter your login details!");
         }
-        else{ // TODO inform user that login was not successful
-            System.out.println("do something");
-        }
+    }
 
+    @FXML
+    private void register() throws IOException {
+        SwitchScreen.newScreen("views/register.fxml");
     }
 }

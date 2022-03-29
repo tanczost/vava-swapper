@@ -3,6 +3,7 @@ package service;
 import models.Account;
 import org.apache.commons.codec.digest.DigestUtils;
 import service.db.UserDbServices;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -24,6 +25,13 @@ public class Auth {
         String passwordHash = DigestUtils.sha256Hex(password);
 
         ResultSet resultSet = UserDbServices.loginUserDb(nick, passwordHash);
+
+        if (!resultSet.isBeforeFirst()) {
+            System.out.println("No data");
+            return false;
+        }
+
+        resultSet.next();
 
         Account.createAccount(
                 resultSet.getInt(8),

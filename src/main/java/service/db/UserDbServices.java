@@ -29,8 +29,8 @@ public class UserDbServices {
         }
     }
 
-    public static ResultSet loginUserDb(String nick, String password){
-        try{
+    public static ResultSet loginUserDb(String nick, String password) {
+        try {
             PreparedStatement stmt = connection.prepareStatement("SELECT " +
                     "users.nick, " +
                     "users.first_name, " +
@@ -46,11 +46,10 @@ public class UserDbServices {
             stmt.setString(2, password);
 
             ResultSet sqlReturnValues = stmt.executeQuery();
-            sqlReturnValues.next();
+//            sqlReturnValues.next();
 
             return sqlReturnValues;
-        }
-        catch (SQLException throwable) {
+        } catch (SQLException throwable) {
             throwable.printStackTrace();
             return null;
         }
