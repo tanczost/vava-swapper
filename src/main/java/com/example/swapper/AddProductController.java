@@ -16,10 +16,19 @@ public class AddProductController {
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg")
         );
-        imgPath = fileChooser.showOpenDialog(HelloApplication.stage).getAbsolutePath();
-        if (imgPath == null) {
-            System.out.println("Img not choosed do something");
+        try{
+            imgPath = fileChooser.showOpenDialog(HelloApplication.stage).getAbsolutePath();
+            if (imgPath == null) {
+                System.out.println("Img not choosed do something");
+            }
         }
+        catch(Exception e){
+            if (imgPath == null) {
+                System.out.println("Img not choosed do something");
+            }
+            System.out.println(e);
+        }
+
 
         //TODO inform user that image is selected
     }
@@ -33,8 +42,9 @@ public class AddProductController {
         String productName = "super product";
         String productDescription = "need to have hahahaha";
         boolean topped = true;
+        String category = "Hoodies";
 
-        int result = ProductDbServices.insertProductDb(productName, productDescription, topped, loggedUserId, newImageId);
+        int result = ProductDbServices.insertProductDb(productName, productDescription, topped, loggedUserId, newImageId, category);
 
         if(result > 0){
             System.out.println("Succes do something");

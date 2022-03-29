@@ -18,22 +18,22 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class HelloApplication extends Application {
     public static Stage stage;
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) throws IOException, SQLException {
         PostgresConnection.initializePostgresqlDatabase();
         stage = primaryStage;
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("views/addProduct.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("views/CategoryPage.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1024, 576);
         primaryStage.setTitle("Swapper!");
         primaryStage.setScene(scene);
         scene.getRoot().setStyle("-fx-font-family: 'serif'");
         primaryStage.show();
-
     }
 
     public void changeScene(String fxml) throws IOException {

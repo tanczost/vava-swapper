@@ -7,18 +7,19 @@ import java.sql.SQLException;
 import static service.PostgresConnection.connection;
 
 public class ProductDbServices {
-    public static int insertProductDb(String name, String description, boolean topped, int userId, int imgId){
+    public static int insertProductDb(String name, String description, boolean topped, int userId, int imgId,String category){
         try {
             //TODO: add img_id
             PreparedStatement stmt = connection.prepareStatement(
-                    "INSERT INTO products(name, description, topped, user_id,img_id) " +
-                    "VALUES((?), (?), (?), (?), (?));");
+                    "INSERT INTO products(name, description, topped, user_id,img_id, product_t) " +
+                    "VALUES((?), (?), (?), (?), (?), (?));");
 
             stmt.setString(1, name);
             stmt.setString(2, description);
             stmt.setBoolean(3, topped);
             stmt.setInt(4, userId);
             stmt.setInt(5, imgId);
+            stmt.setString(6, category);
 
             return stmt.executeUpdate();
 
@@ -80,6 +81,7 @@ public class ProductDbServices {
     }
 
     public static ResultSet getProductById(int productId) throws SQLException {
+        //TODO check if sometyhing was returned
             PreparedStatement stmt = connection.prepareStatement("SELECT *" +
                     "FROM products WHERE id = (?)");
 
@@ -88,9 +90,8 @@ public class ProductDbServices {
             return sqlReturnValues;
     }
 
-    public static ResultSet getUsersProposals(int userId){
-        try{
-            //TODO join with photos
+    public static ResultSet getUsersProposals(int userId) throws SQLException {
+        //TODO check if sometyhing was returned
             PreparedStatement stmt = connection.prepareStatement("SELECT *" +
                     "FROM products WHERE user_id = (?)");
 
@@ -99,14 +100,11 @@ public class ProductDbServices {
 
             ResultSet sqlReturnValues = stmt.executeQuery();
             return sqlReturnValues;
-        }
-        catch (SQLException throwable) {
-            throwable.printStackTrace();
-            return null;
-        }
+
     }
 
     public static ResultSet getOffersForProduct(int productId) throws SQLException {
+        //TODO check if sometyhing was returned
         PreparedStatement stmt = connection.prepareStatement(
                 "SELECT products.id, name, description, topped, img_id, user_id, created_at" +
                 " FROM products JOIN product_offers on products.id = product_offers.offer_id " +

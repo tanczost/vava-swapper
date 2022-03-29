@@ -31,6 +31,7 @@ CREATE TABLE products
     topped      boolean default false,
     img_id      int,
     user_id     int,
+    category    pg_enum('T-shirt', 'Pants', 'Hoodies', 'Accessories', 'Coats', 'Boots'),
     created_at timestamp default CURRENT_TIMESTAMP,
     FOREIGN KEY (img_id) REFERENCES photos (id),
     FOREIGN KEY (user_id) REFERENCES users (id)
