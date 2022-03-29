@@ -16,7 +16,7 @@
             <Image url="@images/logo.png" />
          </image>
       </ImageView>
-      <Button layoutX="568.0" layoutY="255.0" mnemonicParsing="false" text="Upload image" />
+      <Button layoutX="568.0" layoutY="255.0" mnemonicParsing="false" text="Upload image" onAction="#chooseImg" />
       <TextField layoutX="292.0" layoutY="309.0" prefHeight="45.0" prefWidth="420.0" promptText="Description" />
       <RadioButton layoutX="664.0" layoutY="366.0" mnemonicParsing="false" text="TOP" />
       <Button layoutX="442.0" layoutY="447.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="121.0" text="ADD" onAction="#addProduct" />

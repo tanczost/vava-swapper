@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.Singleton;
 import service.PostgresConnection;
@@ -20,12 +21,13 @@ import java.nio.file.Files;
 import java.sql.SQLException;
 
 public class HelloApplication extends Application {
-    private static Stage stage;
+    public static Stage stage;
+
     @Override
     public void start(Stage primaryStage) throws IOException {
         PostgresConnection.initializePostgresqlDatabase();
         stage = primaryStage;
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("views/proposition.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("views/addProduct.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1024, 576);
         primaryStage.setTitle("Swapper!");
         primaryStage.setScene(scene);
