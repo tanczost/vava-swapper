@@ -79,21 +79,13 @@ public class ProductDbServices {
         return stmt.executeUpdate();
     }
 
-    public static ResultSet getProductById(int productId){
-        try{
-            //TODO join with photos
-            System.out.println(connection);
+    public static ResultSet getProductById(int productId) throws SQLException {
             PreparedStatement stmt = connection.prepareStatement("SELECT *" +
                     "FROM products WHERE id = (?)");
 
             stmt.setInt(1, productId);
             ResultSet sqlReturnValues = stmt.executeQuery();
             return sqlReturnValues;
-        }
-        catch (SQLException throwable) {
-            throwable.printStackTrace();
-            return null;
-        }
     }
 
     public static ResultSet getUsersProposals(int userId){
@@ -112,5 +104,16 @@ public class ProductDbServices {
             throwable.printStackTrace();
             return null;
         }
+    }
+
+    public static ResultSet getOffersForProduct(int productId) throws SQLException {
+        PreparedStatement stmt = connection.prepareStatement(
+                "SELECT products.id, name, description, topped, img_id, user_id, created_at" +
+                " FROM products JOIN product_offers on products.id = product_offers.offer_id " +
+                " WHERE product_offers.proposal_id = (?)");
+
+        stmt.setInt(1, productId);
+        ResultSet sqlReturnValues = stmt.executeQuery();
+        return sqlReturnValues;
     }
 }
