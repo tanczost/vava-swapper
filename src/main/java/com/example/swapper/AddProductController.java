@@ -12,7 +12,7 @@ public class AddProductController {
         int loggedUserId = Account.getLoggedUserId();
         //TODO: get info from input fields, file uploader create
 
-        String imgPath = "/Users/tanczi/Desktop/swapper/src/main/resources/test.png";
+        String imgPath = "C:\\Users\\madre\\Documents\\GitHub\\vava-swapper\\src\\main\\resources\\test.jpg";
         int newImageId = FileHandler.uploadFile(FileHandler.readImageToByteStream(imgPath));
 
         String productName = "super product";

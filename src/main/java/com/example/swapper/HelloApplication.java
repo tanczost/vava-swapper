@@ -31,7 +31,6 @@ public class HelloApplication extends Application {
         primaryStage.setScene(scene);
         scene.getRoot().setStyle("-fx-font-family: 'serif'");
         primaryStage.show();
-
     }
 
     public void changeScene(String fxml) throws IOException {
