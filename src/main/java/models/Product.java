@@ -5,14 +5,16 @@ public class Product {
     private String name;
     private String description;
     private boolean topped;
+    private int imgId;
     //TODO add image also
 
 
-    public Product(int id, String name, String description, boolean topped) {
+    public Product(int id, String name, String description, boolean topped, int imgId) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.topped = topped;
+        this.imgId = imgId;
     }
 
     public String getName() {
@@ -25,5 +27,9 @@ public class Product {
 
     public boolean isTopped() {
         return topped;
+    }
+
+    public int getImgId() {
+        return imgId;
     }
 }

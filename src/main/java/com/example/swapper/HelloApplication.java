@@ -23,14 +23,15 @@ public class HelloApplication extends Application {
     private static Stage stage;
     @Override
     public void start(Stage primaryStage) throws IOException {
+        PostgresConnection.initializePostgresqlDatabase();
         stage = primaryStage;
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("views/login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("views/proposition.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1024, 576);
         primaryStage.setTitle("Swapper!");
         primaryStage.setScene(scene);
         scene.getRoot().setStyle("-fx-font-family: 'serif'");
         primaryStage.show();
-        PostgresConnection.initializePostgresqlDatabase();
+
     }
 
     public void changeScene(String fxml) throws IOException {

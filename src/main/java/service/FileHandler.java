@@ -32,6 +32,7 @@ public class FileHandler {
             throw new NullPointerException("Empty input byte stream.");
 
         ByteArrayInputStream bufferedStream = new ByteArrayInputStream(bStream);
+        System.out.println(bufferedStream.toString());
         return ImageIO.read(bufferedStream);
     }
 
@@ -70,7 +71,7 @@ public class FileHandler {
      * @throws SQLException
      * @throws NullPointerException
      * */
-    public static byte[] getFile(int id, String name) throws SQLException, NullPointerException {
+    public static byte[] getFile(int id) throws SQLException, NullPointerException {
         Connection con = PostgresConnection.initializePostgresqlDatabase();
         PreparedStatement query = null;
         byte[] data = null;
@@ -78,11 +79,10 @@ public class FileHandler {
         if(con == null)
             System.out.println("Failed to connect to the database.");
         try {
-            String sql = "SELECT * FROM photos WHERE id=? OR name=? ORDER BY id ASC LIMIT 1";
+            String sql = "SELECT * FROM photos WHERE id=? ORDER BY id ASC LIMIT 1";
 
             query = con.prepareStatement(sql);
             query.setInt(1, id);
-            query.setString(2, name);
             ResultSet res = query.executeQuery();
             res.next();
 

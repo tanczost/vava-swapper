@@ -82,12 +82,11 @@ public class ProductDbServices {
     public static ResultSet getProductById(int productId){
         try{
             //TODO join with photos
+            System.out.println(connection);
             PreparedStatement stmt = connection.prepareStatement("SELECT *" +
                     "FROM products WHERE id = (?)");
 
             stmt.setInt(1, productId);
-
-
             ResultSet sqlReturnValues = stmt.executeQuery();
             return sqlReturnValues;
         }
