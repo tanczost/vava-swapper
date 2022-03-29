@@ -20,9 +20,6 @@ CREATE TABLE users
 CREATE TABLE IF NOT EXISTS photos
 (
     id           SERIAL PRIMARY KEY,
-    name         VARCHAR(200) NOT NULL,
-    phone_number INTEGER      NOT NULL,
-    uploader_id  INTEGER      NOT NULL,
     data         BYTEA        NOT NULL
 );
 
@@ -34,6 +31,7 @@ CREATE TABLE products
     topped      boolean default false,
     img_id      int,
     user_id     int,
+    created_at timestamp default CURRENT_TIMESTAMP,
     FOREIGN KEY (img_id) REFERENCES photos (id),
     FOREIGN KEY (user_id) REFERENCES users (id)
 );

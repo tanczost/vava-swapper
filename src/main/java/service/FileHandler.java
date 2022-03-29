@@ -3,10 +3,7 @@ package service;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 import java.io.ByteArrayOutputStream;
 import java.awt.image.BufferedImage;
@@ -41,39 +38,30 @@ public class FileHandler {
     /**
      *
      * @param file (byte[]) - The file converted to a byte stream
-     * @param fileName - (String) Searchable parameter of the file (It will be added as a searchable parameter)
-     * @param uploaderId - (int) The uploaders unique ID
      * @throws SQLException
      */
-    public static void uploadFile(byte[] file, String fileName, int uploaderId) throws SQLException {
+    public static int uploadFile(byte[] file) throws SQLException {
         Connection con = PostgresConnection.initializePostgresqlDatabase();
         PreparedStatement query = null;
 
         if(con == null)
             System.out.println("Failed to connect to the database.");
-        try {
-            String name = "null";
-            if (fileName != "") {
-                name = fileName;
+
+            String sql = "INSERT INTO photos (data) VALUES (?)";
+
+            query = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            query.setBytes(1, file);
+            query.executeUpdate();
+
+            ResultSet rs = query.getGeneratedKeys();
+            int generatedKey = 0;
+            if (rs.next()) {
+                generatedKey = rs.getInt(1);
+                System.out.println(generatedKey);
+                return generatedKey;
             }
-            int uploaderID = uploaderId;
 
-            String sql = "INSERT INTO photos (name, uploaderid, data) VALUES (?, ?, ?)";
-
-            query = con.prepareStatement(sql);
-            query.setString(1, name);
-            query.setInt(2, uploaderID);
-            query.setBytes(3, file);
-            query.executeQuery();
-
-            con.commit();
-        } catch (SQLException ignored) {
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Failed to convert image");
-        } finally {
-            System.out.println("Transfer finished");
-        }
+            return  0;
     }
 
     /**
