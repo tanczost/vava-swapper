@@ -23,7 +23,6 @@ public class Auth {
 
     public static boolean login(String nick, String password) throws SQLException {
         String passwordHash = DigestUtils.sha256Hex(password);
-
         ResultSet resultSet = UserDbServices.loginUserDb(nick, passwordHash);
 
         if (!resultSet.isBeforeFirst()) {
