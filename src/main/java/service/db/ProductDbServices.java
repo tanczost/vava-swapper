@@ -44,6 +44,40 @@ public class ProductDbServices {
         }
     }
 
+    public static int updateProduct(int productId, String  name, String description, boolean top) throws SQLException {
+        String params = "";
+
+        if(!name.isEmpty()){
+            params =params.concat("name = '" + name + "',");
+        }
+
+        if(!description.isEmpty()){
+            params =params.concat("description = '" + description + "',");
+        }
+
+        if(top){
+            params =params.concat("topped = true,");
+        }
+        else{
+            params =params.concat("topped = false,");
+        }
+
+        if(!params.isEmpty()){
+            params = params.substring(0, params.length() - 1);
+
+        }
+
+        PreparedStatement stmt = connection.prepareStatement(
+                "UPDATE products SET " +
+                        params +
+                        " WHERE id =(?);");
+
+        stmt.setInt(1,productId);
+
+
+        return stmt.executeUpdate();
+    }
+
     public static ResultSet getProductById(int productId){
         try{
             //TODO join with photos

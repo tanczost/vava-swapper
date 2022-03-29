@@ -4,9 +4,9 @@ import java.util.regex.Pattern;
 
 public class Validator {
     public static boolean validDbInput(String string){
-        if(string == null) return false;
+        if(string == null || string.isEmpty()) return false;
 
-        String regex = "[A-Za-z0-9_]{1,30}";
+        String regex = "[A-Za-z0-9]{1,30}";
 
         // Compile the ReGex
         Pattern p = Pattern.compile(regex);

@@ -31,7 +31,6 @@ public class HelloApplication extends Application {
         scene.getRoot().setStyle("-fx-font-family: 'serif'");
         primaryStage.show();
         PostgresConnection.initializePostgresqlDatabase();
-        ProductDbServices.getUsersProposals(1);
     }
 
     public void changeScene(String fxml) throws IOException {
