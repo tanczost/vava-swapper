@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
 
 <AnchorPane prefHeight="576.0" prefWidth="1024.0" stylesheets="@style/global.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swapper.AddProductController">
    <children>
@@ -16,9 +17,11 @@
             <Image url="@images/logo.png" />
          </image>
       </ImageView>
-      <Button layoutX="568.0" layoutY="255.0" mnemonicParsing="false" text="Upload image" />
+      <Button layoutX="568.0" layoutY="255.0" mnemonicParsing="false" onAction="#chooseImg" text="Upload image" />
       <TextField layoutX="292.0" layoutY="309.0" prefHeight="45.0" prefWidth="420.0" promptText="Description" />
       <RadioButton layoutX="664.0" layoutY="366.0" mnemonicParsing="false" text="TOP" />
-      <Button layoutX="442.0" layoutY="447.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="121.0" text="ADD" onAction="#addProduct" />
+      <Button layoutX="442.0" layoutY="447.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="39.0" prefWidth="121.0" text="ADD" />
+      <ComboBox layoutX="404.0" layoutY="371.0" prefWidth="150.0" />
+      <Label layoutX="292.0" layoutY="367.0" text="Category:" />
    </children>
 </AnchorPane>

@@ -2,6 +2,10 @@ docker-compose.yml
 
 target/
 
+target/classes/schema.sql
+
+*.DS_Store
+
 ### Java template
 *.class
 

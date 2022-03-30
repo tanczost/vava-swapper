@@ -16,16 +16,13 @@ public class CategoryPageController {
     public void backMain() throws IOException {
         HelloApplication main = new HelloApplication();
         main.changeScene("views/landingPage.fxml");
-
     }
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         String Item = Singleton.getInstance().getNameOfProduct();
-        File file = new File("src/main/resources/com/example/swapper/views/images/"+Item+".png");
+        File file = new File("src/main/resources/com/example/swapper/views/images/" + Item + ".png");
         Image image = new Image(file.toURI().toString());
-
         categories.setImage(image);
-
     }
 }
