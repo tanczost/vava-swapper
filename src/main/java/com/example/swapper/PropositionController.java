@@ -28,8 +28,8 @@ public class PropositionController {
         );
 
 
-        byte[] img = FileHandler.getFile(6);
-        BufferedImage photo = FileHandler.createImageFromByteStream(img);
+        //byte[] img = FileHandler.getFile(6);
+        //BufferedImage photo = FileHandler.createImageFromByteStream(img);
 
         //TODO: load it into fields
     }
