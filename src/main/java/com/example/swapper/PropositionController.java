@@ -10,12 +10,13 @@ import java.nio.Buffer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.image.BufferedImage;
+import java.util.Arrays;
 
 
 public class PropositionController {
 
     @FXML
-    public void initialize() throws SQLException, IOException {
+    public void initialize() throws Exception {
         ResultSet result = ProductDbServices.getProductById(3);
         result.next();
         Product currentProduct = new Product(
@@ -26,14 +27,10 @@ public class PropositionController {
                 result.getInt(5)
         );
 
-        System.out.println(currentProduct.getImgId());
 
-        byte[] img = FileHandler.getFile(currentProduct.getImgId());
-        System.out.println(img.toString());
-        BufferedImage bufferedImg = FileHandler.createImageFromByteStream(img);
+        //byte[] img = FileHandler.getFile(6);
+        //BufferedImage photo = FileHandler.createImageFromByteStream(img);
 
-        System.out.println(bufferedImg);
         //TODO: load it into fields
-
     }
 }
