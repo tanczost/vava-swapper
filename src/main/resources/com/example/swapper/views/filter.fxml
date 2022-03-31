@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="576.0" prefWidth="1024.0" stylesheets="@style/global.css" xmlns="http://javafx.com/javafx/17"
+<AnchorPane prefHeight="576.0" prefWidth="1024.0" stylesheets="@style/global.css" xmlns="http://javafx.com/javafx/16"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swapper.FilterController">
     <children>
         <Label layoutX="286.0" layoutY="63.0" text="Date"/>
@@ -10,20 +10,30 @@
         <Label layoutX="114.0" layoutY="175.0"/>
         <Label layoutX="288.0" layoutY="173.0" text="To"/>
         <Label layoutX="285.0" layoutY="244.0" text="CATEGORY"/>
-        <RadioButton fx:id="top" layoutX="591.0" layoutY="354.0" mnemonicParsing="false" text="TOP"/>
-        <RadioButton fx:id="shirt" layoutX="291.0" layoutY="314.0" mnemonicParsing="false" text="T-shirts"/>
-        <RadioButton fx:id="pant" layoutX="291.0" layoutY="354.0" mnemonicParsing="false" text="Pants"/>
-        <RadioButton fx:id="hoodie" layoutX="291.0" layoutY="394.0" mnemonicParsing="false" text="Hoodies"/>
-        <RadioButton fx:id="accesories" layoutX="447.0" layoutY="314.0" mnemonicParsing="false" text="Accesories"/>
-        <RadioButton fx:id="coat" layoutX="447.0" layoutY="354.0" mnemonicParsing="false" text="Coats"/>
-        <RadioButton fx:id="boot" layoutX="447.0" layoutY="394.0" mnemonicParsing="false" text="Boots"/>
+        <RadioButton fx:id="rbTop" layoutX="591.0" layoutY="354.0" mnemonicParsing="false" text="TOP">
+            <toggleGroup>
+                <ToggleGroup fx:id="category"/>
+            </toggleGroup>
+        </RadioButton>
+        <RadioButton layoutX="291.0" layoutY="314.0" mnemonicParsing="false" text="T-shirts"
+                     toggleGroup="$category"/>
+        <RadioButton layoutX="291.0" layoutY="354.0" mnemonicParsing="false" text="Pants"
+                     toggleGroup="$category"/>
+        <RadioButton layoutX="291.0" layoutY="394.0" mnemonicParsing="false" text="Hoodies"
+                     toggleGroup="$category"/>
+        <RadioButton layoutX="447.0" layoutY="314.0" mnemonicParsing="false" text="Accesories"
+                     toggleGroup="$category"/>
+        <RadioButton layoutX="447.0" layoutY="354.0" mnemonicParsing="false" text="Coats"
+                     toggleGroup="$category"/>
+        <RadioButton layoutX="447.0" layoutY="394.0" mnemonicParsing="false" text="Boots"
+                     toggleGroup="$category"/>
         <Button layoutX="320.0" layoutY="495.0" mnemonicParsing="false" style="-fx-background-color: red;"
                 text="CLEAR FILTERS"/>
         <Button layoutX="519.0" layoutY="495.0" mnemonicParsing="false" onAction="#applyFilters"
                 style="-fx-background-color: green;" text="APPLY FILTERS"/>
-        <Button layoutX="519.0" layoutY="495.0" mnemonicParsing="false" style="-fx-background-color: green;"
-                text="APPLY FILTERS"/>
-        <DatePicker layoutX="354.0" layoutY="121.0"/>
-        <DatePicker layoutX="354.0" layoutY="175.0"/>
+        <Button layoutX="519.0" layoutY="495.0" mnemonicParsing="false" onAction="#applyFilters"
+                style="-fx-background-color: green;" text="APPLY FILTERS"/>
+        <DatePicker fx:id="dpFrom" layoutX="354.0" layoutY="121.0"/>
+        <DatePicker fx:id="dpTo" layoutX="354.0" layoutY="175.0"/>
     </children>
 </AnchorPane>
