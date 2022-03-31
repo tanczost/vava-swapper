@@ -38,6 +38,7 @@ public class AddProductController {
         int loggedUserId = Account.getLoggedUserId();
         //TODO: get info from input fields, file uploader create
 
+
         int newImageId = FileHandler.uploadFile(FileHandler.readImageToByteStream(imgPath));
         String productName = "super product";
         String productDescription = "need to have hahahaha";

@@ -49,5 +49,7 @@ CREATE TABLE product_offers
     FOREIGN KEY (offer_id) REFERENCES products (id)
 )
 
-
+    INSERT INTO public.users(
+	id, nick, first_name, last_name, email, password, town, street, school, created_at)
+	VALUES (1, 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', CURRENT_TIMESTAMP);
 

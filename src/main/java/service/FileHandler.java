@@ -1,11 +1,8 @@
 package service;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.sql.*;
 
-import java.io.ByteArrayOutputStream;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
@@ -18,21 +15,23 @@ public class FileHandler {
             throw new Exception("No name provided.");
         }
 
-        BufferedImage image = ImageIO.read(new File(file));
-        ByteArrayOutputStream imageInBytes = new ByteArrayOutputStream();
-        ImageIO.write(image, "jpg", imageInBytes);
-        return imageInBytes.toByteArray();
+        BufferedImage bufferedImage = ImageIO.read(new File(file));
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ImageIO.write(bufferedImage, "jpg", byteArrayOutputStream);
+        byte[] data = byteArrayOutputStream.toByteArray();
+
+        return data;
     }
 
     /**
      * @param bStream (byte[]) - The byte stream, from which the actual file should be created
      * */
-    public static BufferedImage createImageFromByteStream(byte[] bStream) throws IOException {
+    public static BufferedImage createImageFromByteStream(byte[] bStream) throws Exception {
         if(bStream == null)
             throw new NullPointerException("Empty input byte stream.");
 
         ByteArrayInputStream bufferedStream = new ByteArrayInputStream(bStream);
-        System.out.println(bufferedStream.toString());
+
         return ImageIO.read(bufferedStream);
     }
 
@@ -52,6 +51,7 @@ public class FileHandler {
 
             query = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             query.setBytes(1, file);
+            System.out.println(file);
             query.executeUpdate();
 
             ResultSet rs = query.getGeneratedKeys();
@@ -71,27 +71,21 @@ public class FileHandler {
      * @throws SQLException
      * @throws NullPointerException
      * */
-    public static byte[] getFile(int id) throws SQLException, NullPointerException {
+    public static byte[] getFile(int id) throws Exception {
         Connection con = PostgresConnection.initializePostgresqlDatabase();
         PreparedStatement query = null;
-        byte[] data = null;
 
         if(con == null)
             System.out.println("Failed to connect to the database.");
-        try {
-            String sql = "SELECT * FROM photos WHERE id=? ORDER BY id ASC LIMIT 1";
 
-            query = con.prepareStatement(sql);
-            query.setInt(1, id);
-            ResultSet res = query.executeQuery();
-            res.next();
+        String sql = "SELECT data FROM photos WHERE id=? ORDER BY id ASC LIMIT 1";
 
-            data = res.getBytes("data");
-        } catch (SQLException ignored) {
-        }catch(NullPointerException np){
-            System.out.println("No data for the file found.");
-            throw new NullPointerException("No data for the file found.");
-        }
+        query = con.prepareStatement(sql);
+        query.setInt(1, id);
+        ResultSet res = query.executeQuery();
+
+        res.next();
+        byte[] data = res.getBytes(1);
 
         return data;
     }

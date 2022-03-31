@@ -27,6 +27,7 @@ public class HelloApplication extends Application {
 
     public void changeScene(String fxml) throws IOException {
         Parent NextScene = FXMLLoader.load(getClass().getResource(fxml));
+        NextScene.setStyle("-fx-font-family: 'serif'");
         stage.getScene().setRoot(NextScene);
     }
 
