@@ -4,21 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import models.Singleton;
 import service.PostgresConnection;
 
-import service.FileHandler;
-import service.db.ProductDbServices;
-
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class HelloApplication extends Application {
@@ -28,7 +17,7 @@ public class HelloApplication extends Application {
     public void start(Stage primaryStage) throws IOException, SQLException {
         PostgresConnection.initializePostgresqlDatabase();
         stage = primaryStage;
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("views/CategoryPage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("views/login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1024, 576);
         primaryStage.setTitle("Swapper!");
         primaryStage.setScene(scene);
@@ -38,6 +27,7 @@ public class HelloApplication extends Application {
 
     public void changeScene(String fxml) throws IOException {
         Parent NextScene = FXMLLoader.load(getClass().getResource(fxml));
+        NextScene.setStyle("-fx-font-family: 'serif'");
         stage.getScene().setRoot(NextScene);
     }
 

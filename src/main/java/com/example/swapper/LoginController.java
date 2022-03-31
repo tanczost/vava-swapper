@@ -28,7 +28,7 @@ public class LoginController {
 
             if (success) {
                 Account.loadProducts();
-                SwitchScreen.newScreen("views/landingPage.fxml");
+                SwitchScreen.changeScreen("views/landingPage.fxml");
                 System.out.println(tfUsername.getText() + " has succesfully logged in");
             } else {
                 lError.setText("Bad login credentials!");
@@ -41,6 +41,6 @@ public class LoginController {
 
     @FXML
     private void register() throws IOException {
-        SwitchScreen.newScreen("views/register.fxml");
+        SwitchScreen.changeScreen("views/register.fxml");
     }
 }

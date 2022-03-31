@@ -1,9 +1,8 @@
 package models;
-import java.util.ArrayList;
 
 public class User {
     private int id;
-    private String nick;
+    private String nickName;
     private String firstName;
     private String lastName;
     private String email;
@@ -11,9 +10,9 @@ public class User {
     private String street;
     private String school;
 
-    public User(int id,String userName, String firstName, String lastName, String email, String town, String street, String school) {
+    public User(int id, String userName, String firstName, String lastName, String email, String town, String street, String school) {
         this.id = id;
-        this.nick = userName;
+        this.nickName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -26,10 +25,14 @@ public class User {
         return id;
     }
 
+    public String getNickName() {
+        return nickName;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "nick='" + nick + '\'' +
+                "nick='" + nickName + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
