@@ -1,7 +1,8 @@
+DROP TABLE IF EXISTS product_offers;
+DROP TYPE IF EXISTS product_t;
 DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS photos;
 DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS product_offers;
 
 CREATE TABLE users
 (
@@ -20,11 +21,10 @@ CREATE TABLE users
 CREATE TABLE IF NOT EXISTS photos
 (
     id           SERIAL PRIMARY KEY,
-    name         VARCHAR(200) NOT NULL,
-    phone_number INTEGER      NOT NULL,
-    uploader_id  INTEGER      NOT NULL,
     data         BYTEA        NOT NULL
 );
+
+create type product_t as enum('T-shirt', 'Pants', 'Hoodies', 'Accessories', 'Coats', 'Boots');
 
 CREATE TABLE products
 (
@@ -34,6 +34,8 @@ CREATE TABLE products
     topped      boolean default false,
     img_id      int,
     user_id     int,
+    category    product_t,
+    created_at timestamp default CURRENT_TIMESTAMP,
     FOREIGN KEY (img_id) REFERENCES photos (id),
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
