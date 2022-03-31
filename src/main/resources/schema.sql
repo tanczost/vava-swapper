@@ -24,7 +24,6 @@ CREATE TABLE IF NOT EXISTS photos
     data         BYTEA        NOT NULL
 );
 
-create type product_t as enum('T-shirt', 'Pants', 'Hoodies', 'Accessories', 'Coats', 'Boots');
 
 CREATE TABLE products
 (
@@ -34,7 +33,7 @@ CREATE TABLE products
     topped      boolean default false,
     img_id      int,
     user_id     int,
-    category    product_t,
+    category    varchar(255) NOT NULL ,
     created_at timestamp default CURRENT_TIMESTAMP,
     FOREIGN KEY (img_id) REFERENCES photos (id),
     FOREIGN KEY (user_id) REFERENCES users (id)
