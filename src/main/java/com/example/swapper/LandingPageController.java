@@ -5,7 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import models.Singleton;
+import models.Account;
+import models.Category;
 import service.navigation.SwitchScreen;
 
 import java.io.IOException;
@@ -21,18 +22,26 @@ public class LandingPageController {
     @FXML
     public void changeScenario(MouseEvent event) throws IOException {
         ImageView Item = (ImageView) event.getSource();
-        Singleton.getInstance().setNameOfProduct(Item.getId());
-        SwitchScreen.newScreen("views/categoryPage.fxml");
+        Category.getInstance().setNameOfCategory(Item.getId());
+        SwitchScreen.changeScreen("views/categoryPage.fxml");
     }
 
 
     @FXML
     public void initialize() {
-        boolean status = true;
-        if (status == true) {
+        if (Account.getCurrentUser() == null) {
             login.setVisible(true);
         } else {
             addproduct.setVisible(true);
         }
+    }
+
+    @FXML
+    public void loadAddProductPage() throws IOException {
+        SwitchScreen.changeScreen("views/addProduct.fxml");
+    }
+
+    public void navigateToProposalPage(MouseEvent mouseEvent) throws IOException {
+        SwitchScreen.changeScreen("views/ProposalPage.fxml");
     }
 }
