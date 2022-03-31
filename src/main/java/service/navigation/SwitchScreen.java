@@ -16,7 +16,7 @@ public class SwitchScreen {
      * @throws IOException Exception when .fxml file not found
      */
     @FXML
-    public static void newScreen(String path) throws IOException {
+    public static void changeScreen(String path) throws IOException {
         HelloApplication main = new HelloApplication();
         main.changeScene(path);
     }

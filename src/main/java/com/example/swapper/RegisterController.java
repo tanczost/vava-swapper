@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import service.Auth;
+import service.navigation.SwitchScreen;
 import service.validation.Validator;
 
 public class RegisterController {
@@ -53,6 +54,7 @@ public class RegisterController {
 
                 if (result) {
                     System.out.println("Successfully registered user");
+                    SwitchScreen.changeScreen("views/login.fxml");
                 } else {
                     System.out.println("Registration was aborted");
                 }
