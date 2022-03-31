@@ -58,6 +58,7 @@ public class AddProductController {
     private void addProduct() throws Exception {
         //TODO: file uploader create
         int loggedUserId = Account.getLoggedUserId();
+        //TODO:  file uploader create
         int newImageId = FileHandler.uploadFile(FileHandler.readImageToByteStream(imgPath));
         int result = ProductDbServices.insertProductDb(tfProductName.getText(), tfDescription.getText(), rbTop.isSelected(), loggedUserId, newImageId, cbCategory.getValue().toString());
 
