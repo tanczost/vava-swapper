@@ -1,8 +1,11 @@
 package service.db;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Instant;
+import java.util.Hashtable;
 
 import static service.PostgresConnection.connection;
 
@@ -111,6 +114,65 @@ public class ProductDbServices {
 
         stmt.setInt(1, productId);
         ResultSet sqlReturnValues = stmt.executeQuery();
+        return sqlReturnValues;
+    }
+
+    public static ResultSet getFilteredProducts(Instant timeStampFrom, Instant timeStampTo, String category) throws SQLException {
+        //TODO maybe return everything then?
+        //dont query the database if no filters were set
+        if(timeStampFrom == null && timeStampTo == null && category == null)
+            return null;
+
+        java.util.Date dateFrom = null;
+        java.util.Date dateTo = null;
+        if(timeStampFrom != null)
+            dateFrom = (java.util.Date) java.util.Date.from(timeStampFrom);
+        if(timeStampTo != null)
+            dateTo = (java.util.Date) java.util.Date.from(timeStampTo);
+        String sql = "SELECT * FROM products WHERE ";
+
+        if(timeStampFrom != null)
+            sql = sql.concat("created_at>(?)");
+        if(timeStampTo != null){
+            if(timeStampFrom != null)
+                sql = sql.concat(" AND ");
+            sql = sql.concat("created_at<(?)");
+        }
+        if(category != null){
+            if(timeStampFrom != null || timeStampTo != null)
+                sql = sql.concat(" AND ");
+            if(!category.equals("TOP"))
+                sql = sql.concat("category=(?)");
+            else
+                sql = sql.concat("topped=TRUE");
+        }
+        //TODO order by what?
+        //TODO maybe limit?
+        sql = sql.concat(" ORDER BY ID DESC");
+        System.out.println(sql);
+
+        PreparedStatement stmt = connection.prepareStatement(sql);
+
+        if(timeStampFrom != null){
+            stmt.setDate(1, new java.sql.Date(dateFrom.getTime()));
+        }
+        if(timeStampTo != null){
+            if(timeStampFrom != null)
+                stmt.setDate(2, new java.sql.Date(dateTo.getTime()));
+            else
+                stmt.setDate(1, new java.sql.Date(dateTo.getTime()));
+        }
+        if(category != null && !category.equals("TOP")){
+            if(timeStampFrom != null && timeStampTo != null)
+                stmt.setString(3, category);
+            else if(timeStampFrom != null || timeStampTo != null)
+                stmt.setString(2, category);
+            else
+                stmt.setString(1, category);
+        }
+
+        ResultSet sqlReturnValues = stmt.executeQuery();
+
         return sqlReturnValues;
     }
 }
