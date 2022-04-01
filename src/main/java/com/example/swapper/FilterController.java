@@ -47,6 +47,5 @@ public class FilterController {
         }
 
         ResultSet filteredProductsList = ProductDbServices.getFilteredProducts(timeStampFrom, timeStampTo, toogleGroupValue);
-        System.out.println(filteredProductsList);
     }
 }

@@ -117,6 +117,13 @@ public class ProductDbServices {
         return sqlReturnValues;
     }
 
+    /**
+     * @param timeStampFrom (Instant) - From which creation date should the products be selected.
+     * @param timeStampTo   (Instant) - Till which creation date should the products be selected.
+     * @param category      (String)  - The products with this exact category will be selected.
+     * @throws SQLException - On database connection issues.
+     * @return ResultSet - The list of products which met the criteria
+     * */
     public static ResultSet getFilteredProducts(Instant timeStampFrom, Instant timeStampTo, String category) throws SQLException {
         //TODO maybe return everything then?
         //dont query the database if no filters were set
@@ -131,6 +138,7 @@ public class ProductDbServices {
             dateTo = (java.util.Date) java.util.Date.from(timeStampTo);
         String sql = "SELECT * FROM products WHERE ";
 
+        //Add the required specifiers
         if(timeStampFrom != null)
             sql = sql.concat("created_at>(?)");
         if(timeStampTo != null){
@@ -149,10 +157,10 @@ public class ProductDbServices {
         //TODO order by what?
         //TODO maybe limit?
         sql = sql.concat(" ORDER BY ID DESC");
-        System.out.println(sql);
 
         PreparedStatement stmt = connection.prepareStatement(sql);
 
+        //Bind the data in the correct order/spot
         if(timeStampFrom != null){
             stmt.setDate(1, new java.sql.Date(dateFrom.getTime()));
         }
@@ -163,6 +171,7 @@ public class ProductDbServices {
                 stmt.setDate(1, new java.sql.Date(dateTo.getTime()));
         }
         if(category != null && !category.equals("TOP")){
+            //only bind category, if we are not searching for products with TOPPED set to TRUE
             if(timeStampFrom != null && timeStampTo != null)
                 stmt.setString(3, category);
             else if(timeStampFrom != null || timeStampTo != null)
@@ -171,8 +180,6 @@ public class ProductDbServices {
                 stmt.setString(1, category);
         }
 
-        ResultSet sqlReturnValues = stmt.executeQuery();
-
-        return sqlReturnValues;
+        return stmt.executeQuery();
     }
 }
