@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import models.Account;
 import models.User;
+import service.db.UserDbServices;
 import service.navigation.SwitchScreen;
 import service.validation.Validator;
 
@@ -84,18 +85,19 @@ public class EditPersonalInfoController {
                     && Validator.validRegisterPassword(tfPassword.getText(), lMessage)
             ) {
 
-//                boolean result = Auth.registration(tfNickName.getText(),
-//                        tfFirstName.getText(), tfLastName.getText(),
-//                        tfEmail.getText(), tfTown.getText(),
-//                        tfStreet.getText(), tfSchool.getText(),
-//                        tfPassword.getText());
-//
-//                if (result) {
-//                    System.out.println("Successfully registered user");
-//                    SwitchScreen.changeScreen("views/login.fxml");
-//                } else {
-//                    System.out.println("Registration was aborted");
-//                }
+                int success = UserDbServices.updateUserDb(tfNickName.getText(),
+                        tfFirstName.getText(), tfLastName.getText(),
+                        tfEmail.getText(), tfTown.getText(),
+                        tfStreet.getText(), tfSchool.getText(),
+                        tfPassword.getText());
+
+                if(success > 0){
+                    //TODO update also Account object
+                    System.out.println("Successfully updated");
+                }
+                else{
+                    System.out.println("Update failed. :(");
+                }
             }
         } else {
             lMessage.setText("You have empty fields");

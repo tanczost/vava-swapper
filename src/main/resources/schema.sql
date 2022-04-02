@@ -1,5 +1,4 @@
 DROP TABLE IF EXISTS product_offers;
-DROP TYPE IF EXISTS product_t;
 DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS photos;
 DROP TABLE IF EXISTS users;

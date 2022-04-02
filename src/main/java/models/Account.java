@@ -54,7 +54,10 @@ public class Account {
         ResultSet products = ProductDbServices.getUsersProposals(getLoggedUserId());
         productsOfLoggedUser.clear();
 
-        //TODO check me
+        if(products == null){
+            return;
+        }
+
         while (products.next()) {
             productsOfLoggedUser.add(new Product(
                     products.getInt(1),
