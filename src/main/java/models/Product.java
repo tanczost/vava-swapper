@@ -6,7 +6,6 @@ public class Product {
     private String description;
     private boolean topped;
     private int imgId;
-    //TODO add image also
 
 
     public Product(int id, String name, String description, boolean topped, int imgId) {

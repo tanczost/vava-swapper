@@ -43,14 +43,17 @@ public class Account {
         ResultSet products = ProductDbServices.getUsersProposals(getLoggedUserId());
         productsOfLoggedUser.clear();
 
-        //TODO check me
+        if(products == null){
+            return;
+        }
+
         while (products.next()) {
             productsOfLoggedUser.add(new Product(
                     products.getInt(1),
                     products.getString(2),
                     products.getString(3),
                     products.getBoolean(4),
-                    0
+                    products.getInt(5)
             ));
         }
         System.out.println("Products are successfully loaded into account");

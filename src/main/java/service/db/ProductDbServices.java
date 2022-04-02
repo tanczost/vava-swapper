@@ -1,17 +1,17 @@
 package service.db;
 
+import service.PostgresConnection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static service.PostgresConnection.connection;
 
-public class ProductDbServices {
+public class ProductDbServices extends PostgresConnection {
     public static int insertProductDb(String name, String description, boolean topped, int userId, int imgId, String category) {
         try {
-            //TODO: add img_id
             PreparedStatement stmt = connection.prepareStatement(
-                    "INSERT INTO products(name, description, topped, user_id,img_id, category) " +
+                    "INSERT INTO products(name, description, topped, user_id, img_id, category) " +
                             "VALUES((?), (?), (?), (?), (?), (?));");
 
             stmt.setString(1, name);
@@ -80,30 +80,34 @@ public class ProductDbServices {
     }
 
     public static ResultSet getProductById(int productId) throws SQLException {
-        //TODO check if sometyhing was returned
         PreparedStatement stmt = connection.prepareStatement("SELECT *" +
                 "FROM products WHERE id = (?)");
 
         stmt.setInt(1, productId);
         ResultSet sqlReturnValues = stmt.executeQuery();
+
+        if(isResultEmpty(sqlReturnValues)){
+            return null;
+        }
+
         return sqlReturnValues;
     }
 
     public static ResultSet getUsersProposals(int userId) throws SQLException {
-        //TODO check if sometyhing was returned
         PreparedStatement stmt = connection.prepareStatement("SELECT *" +
                 "FROM products WHERE user_id = (?)");
 
         stmt.setInt(1, userId);
-
-
         ResultSet sqlReturnValues = stmt.executeQuery();
-        return sqlReturnValues;
 
+        if(isResultEmpty(sqlReturnValues)){
+            return null;
+        }
+
+        return sqlReturnValues;
     }
 
     public static ResultSet getOffersForProduct(int productId) throws SQLException {
-        //TODO check if sometyhing was returned
         PreparedStatement stmt = connection.prepareStatement(
                 "SELECT products.id, name, description, topped, img_id, user_id, created_at" +
                         " FROM products JOIN product_offers on products.id = product_offers.offer_id " +
@@ -111,6 +115,11 @@ public class ProductDbServices {
 
         stmt.setInt(1, productId);
         ResultSet sqlReturnValues = stmt.executeQuery();
+
+        if(isResultEmpty(sqlReturnValues)){
+            return null;
+        }
+
         return sqlReturnValues;
     }
 }

@@ -2,10 +2,11 @@ package service;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import io.github.cdimascio.dotenv.Dotenv;
 
-public class PostgresConnection {
+public abstract class PostgresConnection {
     private static Dotenv dotenv = Dotenv.configure().ignoreIfMissing().ignoreIfMalformed().load();
     private static String url = dotenv.get("DB_HOST");
     private static int port = Integer.parseInt(dotenv.get("DB_PORT"));
@@ -13,6 +14,10 @@ public class PostgresConnection {
     private static String username = dotenv.get("DB_USER");
     private static String password = dotenv.get("DB_PASSWORD");
     public static Connection connection = null;
+
+    public static boolean isResultEmpty(ResultSet resultSet) throws SQLException {
+        return !resultSet.isBeforeFirst();
+    }
 
     public static Connection initializePostgresqlDatabase() {
         if (connection != null){
