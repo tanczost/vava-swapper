@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Account {
-    public static User currentUser = null;
-    public static ArrayList<Product> productsOfLoggedUser = new ArrayList<>();
-    public static Product currentProduct = null;
+    private static User currentUser = null;
+    private static ArrayList<Product> productsOfLoggedUser = new ArrayList<>();
+    private static Product currentProduct = null;
 
     public static void createAccount(int id, String nick, String firstName, String lastName, String email, String town, String street, String school) {
         if (currentUser == null) {
@@ -38,11 +38,7 @@ public class Account {
         loadProducts();
         return productsOfLoggedUser;
     }
-
-    public static void addProductsOfLoggedUser(Product newProduct) {
-        Account.productsOfLoggedUser.add(newProduct);
-    }
-
+    
     public static void loadProducts() throws SQLException {
         ResultSet products = ProductDbServices.getUsersProposals(getLoggedUserId());
         productsOfLoggedUser.clear();

@@ -64,11 +64,11 @@
         </AnchorPane>
         <AnchorPane layoutY="88.0" prefHeight="482.0" prefWidth="1024.0" style="-fx-background-color: white;">
             <children>
-                <ImageView fx:id="tshirt" fitHeight="88.0" fitWidth="268.0" layoutX="18.0" layoutY="68.0"
+                <ImageView fx:id="t-shirt" fitHeight="88.0" fitWidth="268.0" layoutX="18.0" layoutY="68.0"
                            onMouseClicked="#changeScenario" pickOnBounds="true" preserveRatio="true"
                            style="-fx-border-color-fx-border-color: black;">
                     <image>
-                        <Image url="@images/tshirt.png"/>
+                        <Image url="@images/shirt.png"/>
                     </image>
                 </ImageView>
                 <ImageView fx:id="accessory" fitHeight="70.0" fitWidth="383.0" layoutX="18.0" layoutY="155.0"
@@ -78,18 +78,18 @@
                         <Image url="@images/accessory.png"/>
                     </image>
                 </ImageView>
-                <ImageView fx:id="pants" fitHeight="88.0" fitWidth="268.0" layoutX="379.0" layoutY="68.0"
+                <ImageView fx:id="pant" fitHeight="88.0" fitWidth="268.0" layoutX="379.0" layoutY="68.0"
                            onMouseClicked="#changeScenario" pickOnBounds="true" preserveRatio="true"
                            style="-fx-border-color-fx-border-color: black;">
                     <image>
-                        <Image url="@images/pants.png"/>
+                        <Image url="@images/pant.png"/>
                     </image>
                 </ImageView>
-                <ImageView fx:id="goat" fitHeight="88.0" fitWidth="268.0" layoutX="379.0" layoutY="155.0"
+                <ImageView fx:id="coat" fitHeight="88.0" fitWidth="268.0" layoutX="379.0" layoutY="155.0"
                            onMouseClicked="#changeScenario" pickOnBounds="true" preserveRatio="true"
                            style="-fx-border-color-fx-border-color: black;">
                     <image>
-                        <Image url="@images/goat.png"/>
+                        <Image url="@images/coat.png"/>
                     </image>
                 </ImageView>
                 <ImageView fx:id="hoddy" fitHeight="88.0" fitWidth="268.0" layoutX="740.0" layoutY="67.0"

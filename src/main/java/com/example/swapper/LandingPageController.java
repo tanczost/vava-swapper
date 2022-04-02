@@ -25,7 +25,7 @@ public class LandingPageController {
     @FXML
     public void changeScenario(MouseEvent event) throws IOException {
         ImageView Item = (ImageView) event.getSource();
-        Category.getInstance().setNameOfCategory(Item.getId());
+        Category.setNameOfCategory(Item.getId());
         SwitchScreen.changeScreen("views/categoryPage.fxml");
     }
 

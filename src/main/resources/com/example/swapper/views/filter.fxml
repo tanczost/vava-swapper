@@ -15,17 +15,17 @@
                 <ToggleGroup fx:id="category"/>
             </toggleGroup>
         </RadioButton>
-        <RadioButton layoutX="291.0" layoutY="314.0" mnemonicParsing="false" text="T-shirts"
+        <RadioButton layoutX="291.0" layoutY="314.0" mnemonicParsing="false" text="Shirt"
                      toggleGroup="$category"/>
-        <RadioButton layoutX="291.0" layoutY="354.0" mnemonicParsing="false" text="Pants"
+        <RadioButton layoutX="291.0" layoutY="354.0" mnemonicParsing="false" text="Pant"
                      toggleGroup="$category"/>
-        <RadioButton layoutX="291.0" layoutY="394.0" mnemonicParsing="false" text="Hoodies"
+        <RadioButton layoutX="291.0" layoutY="394.0" mnemonicParsing="false" text="Hoody"
                      toggleGroup="$category"/>
-        <RadioButton layoutX="447.0" layoutY="314.0" mnemonicParsing="false" text="Accesories"
+        <RadioButton layoutX="447.0" layoutY="314.0" mnemonicParsing="false" text="Accessory"
                      toggleGroup="$category"/>
-        <RadioButton layoutX="447.0" layoutY="354.0" mnemonicParsing="false" text="Coats"
+        <RadioButton layoutX="447.0" layoutY="354.0" mnemonicParsing="false" text="Coat"
                      toggleGroup="$category"/>
-        <RadioButton layoutX="447.0" layoutY="394.0" mnemonicParsing="false" text="Boots"
+        <RadioButton layoutX="447.0" layoutY="394.0" mnemonicParsing="false" text="Boot"
                      toggleGroup="$category"/>
         <Button layoutX="320.0" layoutY="495.0" mnemonicParsing="false" style="-fx-background-color: red;"
                 text="CLEAR FILTERS"/>
