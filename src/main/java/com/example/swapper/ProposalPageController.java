@@ -20,6 +20,8 @@ public class ProposalPageController {
     @FXML
     public Button btnProposals;
     @FXML
+    public Button btnUpdateProduct;
+    @FXML
     private ComboBox cbUserItems;
     @FXML
     private Label lbName;
@@ -44,6 +46,7 @@ public class ProposalPageController {
         btnOffers.setText(resourceBundle.getString("myOffers"));
         btnProposals.setText(resourceBundle.getString("myProposals"));
         addProduct.setText(resourceBundle.getString("addProduct"));
+        btnUpdateProduct.setText(resourceBundle.getString("updateProduct"));
 
 
         lbName.setText(Account.getCurrentUser().getNickName().toUpperCase(Locale.ROOT));
@@ -74,5 +77,15 @@ public class ProposalPageController {
 
     public void redirectToEditPersonalInfo() throws IOException {
         SwitchScreen.changeScreen("views/editPersonalInfo.fxml");
+    }
+
+    public void redirectToUpdateProduct() throws IOException, SQLException {
+        for (Product product : Account.getProductsOfLoggedUser()) {
+            if (product.getName().equals(cbUserItems.getValue().toString())) {
+                Account.setCurrentProduct(product);
+                SwitchScreen.changeScreen("views/modifyProduct.fxml");
+                break;
+            }
+        }
     }
 }

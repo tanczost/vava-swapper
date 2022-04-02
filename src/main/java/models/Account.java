@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Account {
     public static User currentUser = null;
     public static ArrayList<Product> productsOfLoggedUser = new ArrayList<>();
-    public static int currentProduct = -1;
+    public static Product currentProduct = null;
 
     public static void createAccount(int id, String nick, String firstName, String lastName, String email, String town, String street, String school) {
         if (currentUser == null) {
@@ -33,13 +33,6 @@ public class Account {
         return currentUser.getId();
     }
 
-    public static void setCurrentProduct(int currentProduct) {
-        Account.currentProduct = currentProduct;
-    }
-
-    public static int getCurrentProduct() {
-        return currentProduct;
-    }
 
     public static ArrayList<Product> getProductsOfLoggedUser() throws SQLException {
         loadProducts();
@@ -72,5 +65,13 @@ public class Account {
 
     public static User getCurrentUser() {
         return currentUser;
+    }
+
+    public static Product getCurrentProduct() {
+        return currentProduct;
+    }
+
+    public static void setCurrentProduct(Product currentProduct) {
+        Account.currentProduct = currentProduct;
     }
 }

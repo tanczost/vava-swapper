@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import models.Account;
+import models.Product;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
 
@@ -15,7 +17,7 @@ public class ModifyController {
     @FXML
     public Button btnUpdate;
     @FXML
-    public Button btnMainPage;
+    public Button btnProposalPage;
     @FXML
     private TextField tfProductName;
     @FXML
@@ -26,25 +28,28 @@ public class ModifyController {
 
     @FXML
     public void initialize() {
+        Product currentProduct = Account.getCurrentProduct();
+        tfProductName.setText(currentProduct.getName());
+        tfDescription.setText(currentProduct.getDescription());
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
-        btnMainPage.setText(resourceBundle.getString("mainPage"));
+        btnProposalPage.setText(resourceBundle.getString("myProposals"));
         btnUpdate.setText(resourceBundle.getString("update"));
     }
 
     @FXML
-    private void updateProduct() throws SQLException {
+    private void updateProduct() throws SQLException, IOException {
 
-        int result = ProductDbServices.updateProduct(1, tfProductName.getText(), tfDescription.getText(), rbTop.isSelected());
+        int result = ProductDbServices.updateProduct(Account.getCurrentProduct().getId(), tfProductName.getText(), tfDescription.getText(), rbTop.isSelected());
 
         if (result > 0) {
-            System.out.println("Success do something");
+            SwitchScreen.changeScreen("views/ProposalPage.fxml");
         } else {
             System.out.println("Not  success do something");
         }
     }
 
     @FXML
-    public void BackToMainPage() throws IOException {
-        SwitchScreen.changeScreen("views/landingPage.fxml");
+    public void BackToProposalPage() throws IOException {
+        SwitchScreen.changeScreen("views/ProposalPage.fxml");
     }
 }

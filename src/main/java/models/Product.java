@@ -16,6 +16,10 @@ public class Product {
         this.imgId = imgId;
     }
 
+    public int getId() {
+        return id;
+    }
+    
     public String getName() {
         return name;
     }
