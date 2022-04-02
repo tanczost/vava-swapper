@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
-<AnchorPane prefHeight="576.0" prefWidth="1024.0" stylesheets="@style/global.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swapper.ModifyController">
+<AnchorPane prefHeight="576.0" prefWidth="1024.0" stylesheets="@style/global.css" xmlns="http://javafx.com/javafx/16"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swapper.ModifyController">
     <children>
-        <TextField layoutX="291.0" layoutY="89.0" prefHeight="39.0" prefWidth="171.0" promptText="Product name" />
-        <ImageView fitHeight="160.0" fitWidth="420.0" layoutX="291.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
+        <TextField fx:id="tfProductName" layoutX="292.0" layoutY="47.0" prefHeight="39.0" prefWidth="171.0"
+                   promptText="Product name"/>
+        <ImageView fitHeight="160.0" fitWidth="420.0" layoutX="292.0" layoutY="96.0" pickOnBounds="true"
+                   preserveRatio="true">
             <image>
-                <Image url="@images/logo.png" />
+                <Image url="@images/logo.png"/>
             </image>
         </ImageView>
-        <TextField layoutX="291.0" layoutY="308.0" prefHeight="45.0" prefWidth="420.0" promptText="Description" />
-        <RadioButton layoutX="663.0" layoutY="367.0" mnemonicParsing="false" text="TOP" />
-        <Button layoutX="441.0" layoutY="421.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="121.0" text="MODIFY" />
+        <TextField fx:id="tfDescription" layoutX="292.0" layoutY="309.0" prefHeight="45.0" prefWidth="420.0"
+                   promptText="Description"/>
+        <RadioButton fx:id="rbTop" layoutX="664.0" layoutY="366.0" mnemonicParsing="false" text="TOP"/>
+        <Button fx:id="btnUpdate" layoutX="442.0" layoutY="447.0" mnemonicParsing="false" onAction="#updateProduct"
+                prefHeight="39.0" prefWidth="185.0"/>
+        <Button fx:id="btnMainPage" layoutX="442.0" layoutY="501.0" mnemonicParsing="false" onAction="#BackToMainPage"
+                prefHeight="39.0" prefWidth="185.0"/>
     </children>
 </AnchorPane>

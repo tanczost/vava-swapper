@@ -21,8 +21,8 @@
                 </ImageView>
                 <TextField alignment="CENTER" focusTraversable="false" layoutX="410.0" layoutY="32.0" prefHeight="29.0"
                            prefWidth="206.0" promptText="Search for product"/>
-                <Button fx:id="addproduct" layoutX="787.0" layoutY="22.0" mnemonicParsing="false"
-                        onMouseClicked="#loadAddProductPage" prefHeight="40.0" prefWidth="143.0"
+                <Button fx:id="btnAddProduct" layoutX="760.0" layoutY="22.0" mnemonicParsing="false"
+                        onMouseClicked="#loadAddProductPage" prefHeight="41.0" prefWidth="170.0"
                         style="-fx-background-color: rgb(179,179,179); -fx-border-color: rgb(0,0,200);"
                         text="Add product" textAlignment="CENTER" textFill="#0000c8" visible="false">
                     <opaqueInsets>
@@ -32,8 +32,8 @@
                         <Font size="17.0"/>
                     </font>
                 </Button>
-                <ImageView fitHeight="58.0" fitWidth="63.0" layoutX="937.0" layoutY="15.0" pickOnBounds="true"
-                           preserveRatio="true" onMouseClicked="#navigateToProposalPage">
+                <ImageView fitHeight="58.0" fitWidth="63.0" layoutX="937.0" layoutY="15.0" fx:id="ivAvatar"
+                           onMouseClicked="#navigateToProposalPage" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/avatar.png"/>
                     </image>
@@ -50,17 +50,11 @@
                         <Image url="@images/cancel.png"/>
                     </image>
                 </ImageView>
-                <ImageView fitHeight="46.0" fitWidth="44.0" layoutX="732.0" layoutY="22.0" pickOnBounds="true"
-                           preserveRatio="true">
-                    <image>
-                        <Image url="@images/add.png"/>
-                    </image>
-                </ImageView>
                 <Line endX="903.7000122070312" endY="-1.0" layoutX="116.0" layoutY="86.0" startX="-113.99999237060547"
                       startY="-1.0" strokeWidth="5.0"/>
-                <Button fx:id="login" layoutX="787.0" layoutY="22.0" mnemonicParsing="false" prefHeight="46.0"
-                        prefWidth="143.0"
-                        style="-fx-background-color: rgb(179,179,179); -fx-border-color: rgb(0,0,200);" text="Log In"
+                <Button fx:id="btnLogin" layoutX="760.0" layoutY="22.0" mnemonicParsing="false" prefHeight="46.0"
+                        prefWidth="170.0" onMouseClicked="#redirectToLogin"
+                        style="-fx-background-color: rgb(179,179,179); -fx-border-color: rgb(0,0,200);"
                         textFill="#0000c8" visible="false">
                     <font>
                         <Font size="17.0"/>

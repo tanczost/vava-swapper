@@ -1,9 +1,7 @@
 package com.example.swapper;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import models.Account;
 import service.FileHandler;
@@ -11,10 +9,18 @@ import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class AddProductController {
     final FileChooser fileChooser = new FileChooser();
-    private String imgPath;
+    @FXML
+    public Button btnUploadImage;
+    @FXML
+    public Button btnAdd;
+    @FXML
+    public Button btnMainPage;
+    @FXML
+    public Label lbCategory;
     @FXML
     private TextField tfProductName;
     @FXML
@@ -23,9 +29,16 @@ public class AddProductController {
     private RadioButton rbTop;
     @FXML
     private ComboBox cbCategory;
+    private String imgPath;
 
     @FXML
     public void initialize() {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
+        btnMainPage.setText(resourceBundle.getString("mainPage"));
+        btnAdd.setText(resourceBundle.getString("add"));
+        btnUploadImage.setText(resourceBundle.getString("uploadImage"));
+        lbCategory.setText(resourceBundle.getString("category"));
+
         String categories[] = {"T-shirt", "Pants", "Hoodies", "Accessories", "Coats", "Boots"};
         for (String category : categories) {
             cbCategory.getItems().add(category);
@@ -56,9 +69,8 @@ public class AddProductController {
 
     @FXML
     private void addProduct() throws Exception {
-        //TODO: file uploader create
-        int loggedUserId = Account.getLoggedUserId();
         //TODO:  file uploader create
+        int loggedUserId = Account.getLoggedUserId();
         int newImageId = FileHandler.uploadFile(FileHandler.readImageToByteStream(imgPath));
         int result = ProductDbServices.insertProductDb(tfProductName.getText(), tfDescription.getText(), rbTop.isSelected(), loggedUserId, newImageId, cbCategory.getValue().toString());
 
