@@ -1,22 +1,33 @@
 package com.example.swapper;
 
 import javafx.fxml.FXML;
-import models.Product;
-import service.FileHandler;
-import service.db.ProductDbServices;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 
-import java.io.IOException;
-import java.nio.Buffer;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.awt.image.BufferedImage;
-import java.util.Arrays;
+import java.util.ResourceBundle;
 
 
 public class PropositionController {
+    @FXML
+    public ImageView ivProduct;
+    @FXML
+    public Button btnTrade;
+    @FXML
+    public Label lbProduct;
+    @FXML
+    public Label lbDescription;
+    @FXML
+    public Label lbUserProduct;
+    @FXML
+    public Label lbTopBadge;
+
 
     @FXML
     public void initialize() throws Exception {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
+        btnTrade.setText(resourceBundle.getString("trade"));
+        lbUserProduct.setText(resourceBundle.getString("yourItems"));
 //        ResultSet result = ProductDbServices.getProductById(3);
 //        result.next();
 //        Product currentProduct = new Product(

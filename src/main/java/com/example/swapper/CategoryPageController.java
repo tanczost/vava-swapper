@@ -56,4 +56,11 @@ public class CategoryPageController {
     public void redirectToLogin() throws IOException {
         SwitchScreen.changeScreen("views/login.fxml");
     }
+
+    public void setDateASC() {
+
+    }
+
+    public void setDateDESC() {
+    }
 }
