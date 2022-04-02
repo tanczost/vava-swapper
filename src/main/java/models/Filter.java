@@ -1,11 +1,10 @@
 package models;
 
 import java.time.Instant;
-import java.time.LocalDate;
 
 public class Filter {
-    private static Instant dateFrom = Instant.from(LocalDate.of(2022, 1, 1));
-    private static Instant dateTo = Instant.from(LocalDate.now());
+    private static Instant dateFrom;
+    private static Instant dateTo;
     private static String category;
 
     public static Instant getDateFrom() {
