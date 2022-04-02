@@ -88,4 +88,8 @@ public class ProposalPageController {
             }
         }
     }
+
+    public void redirectToOfferPage() throws IOException {
+        SwitchScreen.changeScreen("views/OfferPage.fxml");
+    }
 }

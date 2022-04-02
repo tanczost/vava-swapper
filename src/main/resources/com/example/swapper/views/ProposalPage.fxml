@@ -49,7 +49,7 @@
             </children>
         </AnchorPane>
         <Button fx:id="btnOffers" layoutX="622.0" layoutY="148.0" mnemonicParsing="false" prefHeight="40.0"
-                prefWidth="150.0"/>
+                prefWidth="150.0" onAction="#redirectToOfferPage"/>
         <Button fx:id="btnEditInfo" layoutX="25.0" layoutY="503.0" mnemonicParsing="false"
                 onAction="#redirectToEditPersonalInfo" prefHeight="39.0" prefWidth="184.0"/>
         <Button fx:id="btnMainPage" layoutX="849.0" layoutY="503.0" mnemonicParsing="false"

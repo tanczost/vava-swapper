@@ -3,6 +3,7 @@ package com.example.swapper;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import models.Account;
@@ -20,6 +21,8 @@ public class LandingPageController {
     private Button btnLogin;
     @FXML
     private Button btnAddProduct;
+    @FXML
+    private Label lbCategories;
 
 
     @FXML
@@ -33,6 +36,7 @@ public class LandingPageController {
     @FXML
     public void initialize() {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
+        lbCategories.setText(resourceBundle.getString("category"));
         if (Account.getCurrentUser() == null) {
             btnLogin.setText(resourceBundle.getString("login"));
             btnLogin.setVisible(true);
