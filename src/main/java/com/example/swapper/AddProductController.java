@@ -7,8 +7,10 @@ import models.Account;
 import service.FileHandler;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.ResourceBundle;
 
 public class AddProductController {
@@ -29,10 +31,16 @@ public class AddProductController {
     private RadioButton rbTop;
     @FXML
     private ComboBox cbCategory;
-    private String imgPath;
 
     @FXML
-    public void initialize() {
+    private ImageView imgView;
+
+    private String imgPath;
+    private String imgName;
+    private File file;
+
+    @FXML
+    public void initialize() throws Exception {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         btnMainPage.setText(resourceBundle.getString("mainPage"));
         btnAdd.setText(resourceBundle.getString("add"));
@@ -45,17 +53,16 @@ public class AddProductController {
         }
     }
 
-
     @FXML
     private void chooseImg() {
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg")
         );
         try {
-            imgPath = fileChooser.showOpenDialog(HelloApplication.stage).getAbsolutePath();
-            if (imgPath == null) {
-                System.out.println("Img not choosed do something");
-            }
+            file = fileChooser.showOpenDialog(HelloApplication.stage);
+            imgPath = file.getAbsolutePath();
+            imgName = file.getName();
+
         } catch (Exception e) {
             if (imgPath == null) {
                 System.out.println("Img not choosed do something");
@@ -63,15 +70,15 @@ public class AddProductController {
             System.out.println(e);
         }
 
+        Image choosedImg = new Image("file://" + imgPath);
+        imgView.setImage(choosedImg);
 
-        //TODO inform user that image is selected
     }
 
     @FXML
     private void addProduct() throws Exception {
-        //TODO:  file uploader create
         int loggedUserId = Account.getLoggedUserId();
-        int newImageId = FileHandler.uploadFile(FileHandler.readImageToByteStream(imgPath));
+        int newImageId = FileHandler.uploadFile(FileHandler.readImageToByteStream(imgPath, imgName));
         int result = ProductDbServices.insertProductDb(tfProductName.getText(), tfDescription.getText(), rbTop.isSelected(), loggedUserId, newImageId, cbCategory.getValue().toString());
 
         if (result > 0) {

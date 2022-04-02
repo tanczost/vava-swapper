@@ -10,7 +10,7 @@
         <TextField fx:id="tfProductName" layoutX="292.0" layoutY="47.0" prefHeight="39.0" prefWidth="171.0"
                    promptText="Product name"/>
         <ImageView fitHeight="160.0" fitWidth="420.0" layoutX="292.0" layoutY="96.0" pickOnBounds="true"
-                   preserveRatio="true">
+                   preserveRatio="true" fx:id="imgView">
             <image>
                 <Image url="@images/logo.png"/>
             </image>

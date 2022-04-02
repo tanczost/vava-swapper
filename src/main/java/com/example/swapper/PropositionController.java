@@ -17,20 +17,21 @@ public class PropositionController {
 
     @FXML
     public void initialize() throws Exception {
-        ResultSet result = ProductDbServices.getProductById(3);
-        result.next();
-        Product currentProduct = new Product(
-                result.getInt(1),
-                result.getString(2),
-                result.getString(3),
-                result.getBoolean(4),
-                result.getInt(5)
-        );
+//        ResultSet result = ProductDbServices.getProductById(3);
+//        result.next();
+//        Product currentProduct = new Product(
+//                result.getInt(1),
+//                result.getString(2),
+//                result.getString(3),
+//                result.getBoolean(4),
+//                result.getInt(5)
+//        );
 
 
-        //byte[] img = FileHandler.getFile(6);
-        //BufferedImage photo = FileHandler.createImageFromByteStream(img);
+        //TODO template to display img from db
+//        InputStream is = FileHandler.getFile(currentProduct.getImgId);
+//        Image img = new Image(is);
+//        imgView.setImage(img);
 
-        //TODO: load it into fields
     }
 }

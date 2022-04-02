@@ -88,8 +88,8 @@ public class EditPersonalInfoController {
                 int success = UserDbServices.updateUserDb(tfNickName.getText(),
                         tfFirstName.getText(), tfLastName.getText(),
                         tfEmail.getText(), tfTown.getText(),
-                        tfStreet.getText(), tfSchool.getText(),
-                        tfPassword.getText());
+                        tfStreet.getText(), tfSchool.getText()
+                        );
 
                 if(success > 0){
                     //TODO update also Account object

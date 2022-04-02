@@ -13,7 +13,8 @@ public class UserDbServices extends PostgresConnection {
             PreparedStatement stmt = connection.prepareStatement("INSERT INTO users(nick, first_name, last_name, email, town, street, school, password) " +
                     "VALUES((?), (?), (?), (?), (?), (?), (?), (?) );");
 
-            setUserAttributes(nick, firstName, lastName, email, town, street, school, password, stmt);
+            setUserAttributes(nick, firstName, lastName, email, town, street, school, stmt);
+            stmt.setString(8, password);
 
             return stmt.executeUpdate();
 
@@ -47,7 +48,7 @@ public class UserDbServices extends PostgresConnection {
             return sqlReturnValues;
     }
 
-    public static int updateUserDb(String nick, String firstName, String lastName, String email, String town, String street, String school, String password){
+    public static int updateUserDb(String nick, String firstName, String lastName, String email, String town, String street, String school){
         try {
             PreparedStatement stmt = connection.prepareStatement(
                     "UPDATE users SET " +
@@ -57,12 +58,12 @@ public class UserDbServices extends PostgresConnection {
                             "email = (?), " +
                             "town = (?), " +
                             "street = (?), " +
-                            "school = (?), " +
-                            "password = (?)" +
+                            "school = (?) " +
                             "WHERE users.nick LIKE (?)");
 
-            setUserAttributes(nick, firstName, lastName, email, town, street, school, password, stmt);
-            stmt.setString(9, nick);
+            setUserAttributes(nick, firstName, lastName, email, town, street, school, stmt);
+
+            stmt.setString(8, nick);
 
             return stmt.executeUpdate();
 
@@ -72,7 +73,7 @@ public class UserDbServices extends PostgresConnection {
         }
     }
 
-    private static void setUserAttributes(String nick, String firstName, String lastName, String email, String town, String street, String school, String password, PreparedStatement stmt) throws SQLException {
+    private static void setUserAttributes(String nick, String firstName, String lastName, String email, String town, String street, String school,  PreparedStatement stmt) throws SQLException {
         stmt.setString(1, nick);
         stmt.setString(2, firstName);
         stmt.setString(3, lastName);
@@ -80,6 +81,5 @@ public class UserDbServices extends PostgresConnection {
         stmt.setString(5, town);
         stmt.setString(6, street);
         stmt.setString(7, school);
-        stmt.setString(8, password);
     }
 }
