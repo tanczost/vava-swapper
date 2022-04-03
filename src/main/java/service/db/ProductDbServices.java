@@ -5,6 +5,7 @@ import service.PostgresConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Instant;
 
 
 public class ProductDbServices extends PostgresConnection {
@@ -159,4 +160,71 @@ public class ProductDbServices extends PostgresConnection {
 
     }
 
+    /**
+     * @param timeStampFrom (Instant) - From which creation date should the products be selected.
+     * @param timeStampTo   (Instant) - Till which creation date should the products be selected.
+     * @param category      (String)  - The products with this exact category will be selected.
+     * @throws SQLException - On database connection issues.
+     * @return ResultSet - The list of products which met the criteria
+     * */
+    public static ResultSet getFilteredProducts(Instant timeStampFrom, Instant timeStampTo, String category) throws SQLException {
+        //TODO maybe return everything then?
+        //dont query the database if no filters were set
+        if(timeStampFrom == null && timeStampTo == null && category == null)
+            return null;
+
+        java.util.Date dateFrom = null;
+        java.util.Date dateTo = null;
+        if(timeStampFrom != null)
+            dateFrom = (java.util.Date) java.util.Date.from(timeStampFrom);
+        if(timeStampTo != null)
+            dateTo = (java.util.Date) java.util.Date.from(timeStampTo);
+        String sql = "SELECT * FROM products WHERE ";
+
+        //Add the required specifiers
+        if(timeStampFrom != null)
+            sql = sql.concat("created_at>(?)");
+        if(timeStampTo != null){
+            if(timeStampFrom != null)
+                sql = sql.concat(" AND ");
+            sql = sql.concat("created_at<(?)");
+        }
+        if(category != null){
+            if(timeStampFrom != null || timeStampTo != null)
+                sql = sql.concat(" AND ");
+            if(!category.equals("TOP"))
+                sql = sql.concat("category='" + category + "'");
+            else
+                sql = sql.concat("topped=TRUE");
+        }
+        //TODO order by what?
+        //TODO maybe limit?
+        sql = sql.concat(" ORDER BY ID DESC");
+
+        PreparedStatement stmt = connection.prepareStatement(sql);
+
+        //Bind the data in the correct order/spot
+        if(timeStampFrom != null){
+            stmt.setDate(1, new java.sql.Date(dateFrom.getTime()));
+        }
+        if(timeStampTo != null){
+            if(timeStampFrom != null)
+                stmt.setDate(2, new java.sql.Date(dateTo.getTime()));
+            else
+                stmt.setDate(1, new java.sql.Date(dateTo.getTime()));
+        }
+        //TODO bind the category not set it straight
+        /* if(category != null && !category.equals("TOP")){
+            //only bind category, if we are not searching for products with TOPPED set to TRUE
+            if(timeStampFrom != null && timeStampTo != null)
+                stmt.setString(3, category);
+            else if(timeStampFrom != null || timeStampTo != null)
+                stmt.setString(2, category);
+            else
+                stmt.setString(1, category);
+        } */
+
+
+        return stmt.executeQuery();
+    }
 }
