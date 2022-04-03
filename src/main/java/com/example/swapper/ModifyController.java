@@ -40,7 +40,7 @@ public class ModifyController {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         btnProposalPage.setText(resourceBundle.getString("myProposals"));
         btnUpdate.setText(resourceBundle.getString("update"));
-
+        rbTop.setSelected(currentProduct.isTopped());
         InputStream is = FileHandler.getFile(currentProduct.getImgId());
         Image img = new Image(is);
         imgView.setImage(img);

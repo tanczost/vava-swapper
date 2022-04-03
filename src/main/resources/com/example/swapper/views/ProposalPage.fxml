@@ -54,9 +54,9 @@
                 onAction="#redirectToEditPersonalInfo" prefHeight="39.0" prefWidth="184.0"/>
         <Button fx:id="btnMainPage" layoutX="849.0" layoutY="503.0" mnemonicParsing="false"
                 onAction="#redirectToMainPage" prefHeight="39.0" prefWidth="166.0"/>
-        <ComboBox fx:id="cbUserItems" layoutX="170.0" layoutY="218.0" prefHeight="26.0" prefWidth="176.0"/>
+        <ComboBox fx:id="cbUserItems" layoutX="170.0" layoutY="218.0" prefHeight="26.0" prefWidth="176.0" onAction="#productSelected"/>
         <Label fx:id="lbItems" layoutX="6.0" layoutY="216.0" prefHeight="30.0" prefWidth="156.0"/>
-        <ListView fx:id="lvUserItems" layoutX="355.0" layoutY="219.0" onMouseClicked="#itemSelected" prefHeight="272.0"
+        <ListView fx:id="lvUserItems" layoutX="355.0" layoutY="219.0" onMouseClicked="#offerSelected" prefHeight="272.0"
                   prefWidth="638.0"/>
         <Button fx:id="btnToggleLanguage" layoutX="834.0" layoutY="102.0" mnemonicParsing="false"
                 onAction="#toggleLanguage" prefHeight="39.0" prefWidth="176.0"/>

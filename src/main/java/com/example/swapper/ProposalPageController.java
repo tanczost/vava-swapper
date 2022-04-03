@@ -9,10 +9,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import models.Account;
 import models.Product;
+import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -39,6 +42,8 @@ public class ProposalPageController {
     private Button btnToggleLanguage;
     @FXML
     public Button addProduct;
+
+    private ArrayList<Product> offersForProduct = new ArrayList<>();
 
     @FXML
     public void initialize() throws SQLException {
@@ -84,20 +89,53 @@ public class ProposalPageController {
     }
 
     public void redirectToUpdateProduct() throws IOException, SQLException {
-        for (Product product : Account.getProductsOfLoggedUser()) {
-            if (product.getName().equals(cbUserItems.getValue().toString())) {
-                Account.setCurrentProduct(product);
-                SwitchScreen.changeScreen("views/modifyProduct.fxml");
-                break;
-            }
+        if(cbUserItems.getSelectionModel().isEmpty()){
+            return;
         }
+        SwitchScreen.changeScreen("views/modifyProduct.fxml");
     }
 
     public void redirectToOfferPage() throws IOException {
         SwitchScreen.changeScreen("views/OfferPage.fxml");
     }
 
-    public void itemSelected(MouseEvent mouseEvent) {
+    public void offerSelected(MouseEvent mouseEvent) {
         System.out.println(lvUserItems.getSelectionModel().getSelectedItem().toString());
+    }
+
+    public void productSelected(ActionEvent actionEvent) throws SQLException {
+        for (Product product : Account.getProductsOfLoggedUser()) {
+            if (product.getName().equals(cbUserItems.getValue().toString())) {
+                Account.setCurrentProduct(product);
+                break;
+            }
+        }
+
+        ResultSet offers = ProductDbServices.getOffersForProduct(Account.getCurrentProduct().getId());
+
+        lvUserItems.getItems().clear();
+        if(offers == null){
+            return;
+        }
+
+        offersForProduct.clear();
+
+
+        while (offers.next()) {
+            offersForProduct.add(new Product(
+                    offers.getInt(1),
+                    offers.getString(2),
+                    offers.getString(3),
+                    offers.getBoolean(4),
+                    offers.getInt(5)
+            ));
+        }
+
+        offersForProduct.forEach(e -> {
+            lvUserItems.getItems().add(e.toString());
+        });
+
+
+
     }
 }

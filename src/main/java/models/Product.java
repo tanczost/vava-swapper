@@ -35,4 +35,9 @@ public class Product {
     public int getImgId() {
         return imgId;
     }
+
+    @Override
+    public String toString() {
+        return "Name: " + name + "\t\tDescription: " + description;
+    }
 }
