@@ -21,7 +21,7 @@
                      toggleGroup="$category"/>
         <RadioButton layoutX="291.0" layoutY="394.0" mnemonicParsing="false" text="Hoodies"
                      toggleGroup="$category"/>
-        <RadioButton layoutX="447.0" layoutY="314.0" mnemonicParsing="false" text="Accesories"
+        <RadioButton layoutX="447.0" layoutY="314.0" mnemonicParsing="false" text="Accessories"
                      toggleGroup="$category"/>
         <RadioButton layoutX="447.0" layoutY="354.0" mnemonicParsing="false" text="Coats"
                      toggleGroup="$category"/>

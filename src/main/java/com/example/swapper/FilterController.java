@@ -7,6 +7,7 @@ import javafx.scene.control.ToggleGroup;
 import service.db.ProductDbServices;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -47,5 +48,19 @@ public class FilterController {
         }
 
         ResultSet filteredProductsList = ProductDbServices.getFilteredProducts(timeStampFrom, timeStampTo, toogleGroupValue);
+
+        //to list each returned product and its details
+        /*if(filteredProductsList != null){
+            ResultSetMetaData rsmd = filteredProductsList.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
+            while (filteredProductsList.next()) {
+                for (int i = 1; i <= columnsNumber; i++) {
+                    if (i > 1) System.out.print(",  ");
+                    String columnValue = filteredProductsList.getString(i);
+                    System.out.print(columnValue + " " + rsmd.getColumnName(i));
+                }
+                System.out.println("");
+            }
+        }*/
     }
 }

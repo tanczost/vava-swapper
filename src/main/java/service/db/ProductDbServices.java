@@ -150,7 +150,7 @@ public class ProductDbServices {
             if(timeStampFrom != null || timeStampTo != null)
                 sql = sql.concat(" AND ");
             if(!category.equals("TOP"))
-                sql = sql.concat("category=(?)");
+                sql = sql.concat("category='" + category + "'");
             else
                 sql = sql.concat("topped=TRUE");
         }
@@ -170,7 +170,8 @@ public class ProductDbServices {
             else
                 stmt.setDate(1, new java.sql.Date(dateTo.getTime()));
         }
-        if(category != null && !category.equals("TOP")){
+        //TODO bind the category not set it straight
+        /* if(category != null && !category.equals("TOP")){
             //only bind category, if we are not searching for products with TOPPED set to TRUE
             if(timeStampFrom != null && timeStampTo != null)
                 stmt.setString(3, category);
@@ -178,7 +179,8 @@ public class ProductDbServices {
                 stmt.setString(2, category);
             else
                 stmt.setString(1, category);
-        }
+        } */
+
 
         return stmt.executeQuery();
     }
