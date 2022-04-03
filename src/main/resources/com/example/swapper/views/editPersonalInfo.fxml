@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0"
             prefWidth="1024.0" stylesheets="@style/global.css" xmlns="http://javafx.com/javafx/16"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swapper.RegisterController">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swapper.EditPersonalInfoController">
     <children>
         <Label fx:id="lbFirstName" layoutX="285.0" layoutY="75.0">
         </Label>
@@ -33,10 +33,10 @@
         <Label fx:id="lMessage" layoutX="412.0" layoutY="358.0" prefHeight="36.0" prefWidth="500.0"
                style="-fx-text-fill: red">
         </Label>
-        <Button fx:id="btnRegister" layoutX="466.0" layoutY="403.0" mnemonicParsing="false" onAction="#registration"
+        <Button fx:id="btnUpdate" layoutX="466.0" layoutY="403.0" mnemonicParsing="false" onAction="#updateInfo"
                 prefHeight="39.0" prefWidth="150.0">
         </Button>
         <Button layoutX="466.0" layoutY="472.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="150.0"
-                fx:id="btnBack" onAction="#backToLogin"/>
+                fx:id="btnBack" onAction="#backToProposalPage"/>
     </children>
 </AnchorPane>

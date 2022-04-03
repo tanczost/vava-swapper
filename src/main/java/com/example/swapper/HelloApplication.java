@@ -8,16 +8,19 @@ import javafx.stage.Stage;
 import service.PostgresConnection;
 
 import java.io.IOException;
-import java.sql.SQLException;
+import java.util.Locale;
 
 public class HelloApplication extends Application {
     public static Stage stage;
 
     @Override
-    public void start(Stage primaryStage) throws IOException, SQLException {
+    public void start(Stage primaryStage) throws IOException {
         PostgresConnection.initializePostgresqlDatabase();
+        Locale.setDefault(new Locale("en", "EN"));
         stage = primaryStage;
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("views/filter.fxml"));
+
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("views/landingPage.fxml"));
+
         Scene scene = new Scene(fxmlLoader.load(), 1024, 576);
         primaryStage.setTitle("Swapper!");
         primaryStage.setScene(scene);

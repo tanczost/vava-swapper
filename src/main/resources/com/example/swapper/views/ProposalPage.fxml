@@ -4,11 +4,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="576.0" prefWidth="1024.0" stylesheets="@style/global.css" xmlns="http://javafx.com/javafx/17"
+<AnchorPane prefHeight="576.0" prefWidth="1024.0" stylesheets="@style/global.css" xmlns="http://javafx.com/javafx/16"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swapper.ProposalPageController">
     <children>
-        <Button defaultButton="true" layoutX="226.0" layoutY="148.0" mnemonicParsing="false" text="My proposals"/>
-        <Label layoutX="25.0" layoutY="111.0" text="Username" fx:id="lbName"/>
+        <Button fx:id="btnProposals" defaultButton="true" layoutX="226.0" layoutY="148.0" mnemonicParsing="false"
+                prefHeight="39.0" prefWidth="150.0"/>
+        <Label fx:id="lbName" layoutX="25.0" layoutY="111.0"/>
         <AnchorPane prefHeight="94.0" prefWidth="1024.0" style="-fx-background-color: rgb(179,179,179);">
             <children>
                 <ImageView fitHeight="75.0" fitWidth="206.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true"
@@ -19,9 +20,10 @@
                 </ImageView>
                 <TextField alignment="CENTER" layoutX="410.0" layoutY="32.0" prefHeight="29.0" prefWidth="206.0"
                            promptText="Search for product"/>
-                <Button layoutX="787.0" layoutY="22.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="143.0"
+                <Button fx:id="addProduct" layoutX="760.0" layoutY="22.0" mnemonicParsing="false"
+                        onMouseClicked="#loadAddProductPage" prefHeight="41.0" prefWidth="170.0"
                         style="-fx-background-color: rgb(179,179,179); -fx-border-color: rgb(0,0,200);"
-                        text="Add product" textAlignment="CENTER" textFill="#0000c8">
+                        textAlignment="CENTER" textFill="#0000c8" visible="true">
                     <opaqueInsets>
                         <Insets/>
                     </opaqueInsets>
@@ -44,20 +46,21 @@
                         <Image url="@images/cancel.png"/>
                     </image>
                 </ImageView>
-                <ImageView fitHeight="46.0" fitWidth="44.0" layoutX="732.0" layoutY="22.0" pickOnBounds="true"
-                           preserveRatio="true">
-                    <image>
-                        <Image url="@images/add.png"/>
-                    </image>
-                </ImageView>
             </children>
         </AnchorPane>
-        <Button layoutX="633.0" layoutY="148.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="139.0"
-                text="My offers"/>
-        <Button layoutX="25.0" layoutY="503.0" mnemonicParsing="false" text="Edit my info"/>
-        <Button layoutX="872.0" layoutY="503.0" mnemonicParsing="false" text="Main page"/>
-        <ComboBox layoutX="138.0" layoutY="218.0" prefHeight="26.0" prefWidth="176.0" fx:id="cbUserItems"/>
-        <Label layoutX="29.0" layoutY="216.0" text="Your item"/>
-        <ListView layoutX="355.0" layoutY="219.0" prefHeight="272.0" prefWidth="638.0"/>
+        <Button fx:id="btnOffers" layoutX="622.0" layoutY="148.0" mnemonicParsing="false"
+                onAction="#redirectToOfferPage" prefHeight="40.0" prefWidth="150.0"/>
+        <Button fx:id="btnEditInfo" layoutX="25.0" layoutY="503.0" mnemonicParsing="false"
+                onAction="#redirectToEditPersonalInfo" prefHeight="39.0" prefWidth="184.0"/>
+        <Button fx:id="btnMainPage" layoutX="849.0" layoutY="503.0" mnemonicParsing="false"
+                onAction="#redirectToMainPage" prefHeight="39.0" prefWidth="166.0"/>
+        <ComboBox fx:id="cbUserItems" layoutX="170.0" layoutY="218.0" prefHeight="26.0" prefWidth="176.0" onAction="#productSelected"/>
+        <Label fx:id="lbItems" layoutX="6.0" layoutY="216.0" prefHeight="30.0" prefWidth="156.0"/>
+        <ListView fx:id="lvUserItems" layoutX="355.0" layoutY="219.0" onMouseClicked="#offerSelected" prefHeight="272.0"
+                  prefWidth="638.0"/>
+        <Button fx:id="btnToggleLanguage" layoutX="834.0" layoutY="102.0" mnemonicParsing="false"
+                onAction="#toggleLanguage" prefHeight="39.0" prefWidth="176.0"/>
+        <Button fx:id="btnUpdateProduct" layoutX="140.0" layoutY="263.0" mnemonicParsing="false"
+                onAction="#redirectToUpdateProduct" prefHeight="39.0" prefWidth="206.0"/>
     </children>
 </AnchorPane>

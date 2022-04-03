@@ -4,14 +4,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import service.Auth;
+import models.Account;
+import models.User;
+import service.db.UserDbServices;
 import service.navigation.SwitchScreen;
 import service.validation.Validator;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
 
-public class RegisterController {
+public class EditPersonalInfoController {
     @FXML
     private TextField tfFirstName;
     @FXML
@@ -45,12 +47,21 @@ public class RegisterController {
     @FXML
     private Label lMessage;
     @FXML
-    private Button btnRegister;
+    private Button btnUpdate;
     @FXML
     public Button btnBack;
 
     @FXML
     public void initialize() {
+        User currentUser = Account.getCurrentUser();
+        tfFirstName.setText(currentUser.getFirstName());
+        tfLastName.setText(currentUser.getLastName());
+        tfNickName.setText(currentUser.getNickName());
+        tfTown.setText(currentUser.getTown());
+        tfEmail.setText(currentUser.getEmail());
+        tfStreet.setText(currentUser.getStreet());
+        tfSchool.setText(currentUser.getSchool());
+
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         lbFirstName.setText(resourceBundle.getString("firstname"));
         lbLastName.setText(resourceBundle.getString("lastname"));
@@ -59,12 +70,12 @@ public class RegisterController {
         lbTown.setText(resourceBundle.getString("town"));
         lbStreet.setText(resourceBundle.getString("street"));
         lbSchool.setText(resourceBundle.getString("school"));
-        btnRegister.setText(resourceBundle.getString("register"));
+        btnUpdate.setText(resourceBundle.getString("update"));
         btnBack.setText(resourceBundle.getString("back"));
     }
 
     @FXML
-    private void registration() throws Exception {
+    private void updateInfo() throws Exception {
         if (!tfFirstName.getText().isEmpty() && !tfNickName.getText().isEmpty()
                 && !tfEmail.getText().isEmpty() && !tfPassword.getText().isEmpty()
                 && !tfLastName.getText().isEmpty() && !tfTown.getText().isEmpty()
@@ -74,17 +85,22 @@ public class RegisterController {
                     && Validator.validRegisterPassword(tfPassword.getText(), lMessage)
             ) {
 
-                boolean result = Auth.registration(tfNickName.getText(),
+                int success = UserDbServices.updateUserDb(tfNickName.getText(),
                         tfFirstName.getText(), tfLastName.getText(),
                         tfEmail.getText(), tfTown.getText(),
-                        tfStreet.getText(), tfSchool.getText(),
-                        tfPassword.getText());
+                        tfStreet.getText(), tfSchool.getText()
+                );
 
-                if (result) {
-                    System.out.println("Successfully registered user");
-                    SwitchScreen.changeScreen("views/login.fxml");
+                if (success > 0) {
+                    Account.setCurrentUserDetails(tfNickName.getText(),
+                            tfFirstName.getText(), tfLastName.getText(),
+                            tfEmail.getText(), tfTown.getText(),
+                            tfStreet.getText(), tfSchool.getText());
+
+                    System.out.println("Successfully updated");
+                    SwitchScreen.changeScreen("views/ProposalPage.fxml");
                 } else {
-                    System.out.println("Registration was aborted");
+                    System.out.println("Update failed. :(");
                 }
             }
         } else {
@@ -92,7 +108,7 @@ public class RegisterController {
         }
     }
 
-    public void backToLogin() throws IOException {
-        SwitchScreen.changeScreen("views/login.fxml");
+    public void backToProposalPage() throws IOException {
+        SwitchScreen.changeScreen("views/ProposalPage.fxml");
     }
 }

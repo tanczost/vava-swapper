@@ -10,29 +10,17 @@ public class FileHandler {
     /**
      * @param file (String) - Path and name of the file
      * */
-    public static byte[] readImageToByteStream(String file) throws Exception{
+    public static byte[] readImageToByteStream(String file,String fileName) throws Exception{
         if(file.length() == 0){
             throw new Exception("No name provided.");
         }
 
         BufferedImage bufferedImage = ImageIO.read(new File(file));
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        ImageIO.write(bufferedImage, "jpg", byteArrayOutputStream);
+        ImageIO.write(bufferedImage, file.substring(file.length() - 3), byteArrayOutputStream);
         byte[] data = byteArrayOutputStream.toByteArray();
 
         return data;
-    }
-
-    /**
-     * @param bStream (byte[]) - The byte stream, from which the actual file should be created
-     * */
-    public static BufferedImage createImageFromByteStream(byte[] bStream) throws Exception {
-        if(bStream == null)
-            throw new NullPointerException("Empty input byte stream.");
-
-        ByteArrayInputStream bufferedStream = new ByteArrayInputStream(bStream);
-
-        return ImageIO.read(bufferedStream);
     }
 
     /**
@@ -71,7 +59,7 @@ public class FileHandler {
      * @throws SQLException
      * @throws NullPointerException
      * */
-    public static byte[] getFile(int id) throws Exception {
+    public static InputStream getFile(int id) throws Exception {
         Connection con = PostgresConnection.initializePostgresqlDatabase();
         PreparedStatement query = null;
 
@@ -82,11 +70,11 @@ public class FileHandler {
 
         query = con.prepareStatement(sql);
         query.setInt(1, id);
+
         ResultSet res = query.executeQuery();
 
         res.next();
-        byte[] data = res.getBytes(1);
-
+        InputStream data = res.getBinaryStream(1);
         return data;
     }
 }

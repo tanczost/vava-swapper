@@ -3,6 +3,7 @@ package com.example.swapper;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import models.Account;
@@ -10,29 +11,39 @@ import models.Category;
 import service.navigation.SwitchScreen;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 
 public class LandingPageController {
     @FXML
-    private Button login;
+    public ImageView ivAvatar;
     @FXML
-    private Button addproduct;
+    private Button btnLogin;
+    @FXML
+    private Button btnAddProduct;
+    @FXML
+    private Label lbCategories;
 
 
     @FXML
     public void changeScenario(MouseEvent event) throws IOException {
         ImageView Item = (ImageView) event.getSource();
-        Category.getInstance().setNameOfCategory(Item.getId());
+        Category.setNameOfCategory(Item.getId());
         SwitchScreen.changeScreen("views/categoryPage.fxml");
     }
 
 
     @FXML
     public void initialize() {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
+        lbCategories.setText(resourceBundle.getString("category"));
         if (Account.getCurrentUser() == null) {
-            login.setVisible(true);
+            btnLogin.setText(resourceBundle.getString("login"));
+            btnLogin.setVisible(true);
+            ivAvatar.setVisible(false);
         } else {
-            addproduct.setVisible(true);
+            btnAddProduct.setText(resourceBundle.getString("addProduct"));
+            btnAddProduct.setVisible(true);
         }
     }
 
@@ -43,5 +54,9 @@ public class LandingPageController {
 
     public void navigateToProposalPage(MouseEvent mouseEvent) throws IOException {
         SwitchScreen.changeScreen("views/ProposalPage.fxml");
+    }
+
+    public void redirectToLogin() throws IOException {
+        SwitchScreen.changeScreen("views/login.fxml");
     }
 }

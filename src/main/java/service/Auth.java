@@ -25,7 +25,7 @@ public class Auth {
         String passwordHash = DigestUtils.sha256Hex(password);
         ResultSet resultSet = UserDbServices.loginUserDb(nick, passwordHash);
 
-        if (!resultSet.isBeforeFirst()) {
+        if (resultSet == null) {
             System.out.println("No data");
             return false;
         }

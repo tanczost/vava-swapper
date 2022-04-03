@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Account {
-    public static User currentUser = null;
-    public static ArrayList<Product> productsOfLoggedUser = new ArrayList<>();
-    public static int currentProduct = -1;
+    private static User currentUser = null;
+    private static ArrayList<Product> productsOfLoggedUser = new ArrayList<>();
+    private static Product currentProduct = null;
 
     public static void createAccount(int id, String nick, String firstName, String lastName, String email, String town, String street, String school) {
         if (currentUser == null) {
@@ -33,35 +33,37 @@ public class Account {
         return currentUser.getId();
     }
 
-    public static void setCurrentProduct(int currentProduct) {
-        Account.currentProduct = currentProduct;
+    public static void setCurrentUserDetails(String nickName, String firstName, String lastName, String email, String town, String street, String school) {
+        currentUser.setNickName(nickName);
+        currentUser.setFirstName(firstName);
+        currentUser.setLastName(lastName);
+        currentUser.setEmail(email);
+        currentUser.setTown(town);
+        currentUser.setStreet(street);
+        currentUser.setSchool(school);
     }
 
-    public static int getCurrentProduct() {
-        return currentProduct;
-    }
 
     public static ArrayList<Product> getProductsOfLoggedUser() throws SQLException {
         loadProducts();
         return productsOfLoggedUser;
     }
 
-    public static void addProductsOfLoggedUser(Product newProduct) {
-        Account.productsOfLoggedUser.add(newProduct);
-    }
-
     public static void loadProducts() throws SQLException {
         ResultSet products = ProductDbServices.getUsersProposals(getLoggedUserId());
         productsOfLoggedUser.clear();
 
-        //TODO check me
+        if (products == null) {
+            return;
+        }
+
         while (products.next()) {
             productsOfLoggedUser.add(new Product(
                     products.getInt(1),
                     products.getString(2),
                     products.getString(3),
                     products.getBoolean(4),
-                    0
+                    products.getInt(5)
             ));
         }
         System.out.println("Products are successfully loaded into account");
@@ -69,5 +71,13 @@ public class Account {
 
     public static User getCurrentUser() {
         return currentUser;
+    }
+
+    public static Product getCurrentProduct() {
+        return currentProduct;
+    }
+
+    public static void setCurrentProduct(Product currentProduct) {
+        Account.currentProduct = currentProduct;
     }
 }

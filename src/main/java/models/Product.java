@@ -6,7 +6,6 @@ public class Product {
     private String description;
     private boolean topped;
     private int imgId;
-    //TODO add image also
 
 
     public Product(int id, String name, String description, boolean topped, int imgId) {
@@ -17,6 +16,10 @@ public class Product {
         this.imgId = imgId;
     }
 
+    public int getId() {
+        return id;
+    }
+    
     public String getName() {
         return name;
     }
@@ -31,5 +34,10 @@ public class Product {
 
     public int getImgId() {
         return imgId;
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + name + "\t\tDescription: " + description;
     }
 }
