@@ -14,7 +14,7 @@
             </image>
         </ImageView>
         <Button fx:id="btnTrade" layoutX="452.0" layoutY="446.0" mnemonicParsing="false" prefHeight="39.0"
-                prefWidth="128.0"/>
+                prefWidth="128.0" onAction="#trade"/>
         <Label fx:id="lbProduct" layoutX="302.0" layoutY="57.0"/>
         <Label fx:id="lbDescription" layoutX="302.0" layoutY="265.0"/>
         <Label fx:id="lbTopBadge" layoutX="664.0" layoutY="118.0"/>

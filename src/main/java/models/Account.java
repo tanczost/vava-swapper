@@ -10,6 +10,7 @@ public class Account {
     private static User currentUser = null;
     private static ArrayList<Product> productsOfLoggedUser = new ArrayList<>();
     private static Product currentProduct = null;
+    private static Product currentOffer = null;
 
     public static void createAccount(int id, String nick, String firstName, String lastName, String email, String town, String street, String school) {
         if (currentUser == null) {
@@ -79,5 +80,13 @@ public class Account {
 
     public static void setCurrentProduct(Product currentProduct) {
         Account.currentProduct = currentProduct;
+    }
+
+    public static Product getCurrentOffer() {
+        return currentOffer;
+    }
+
+    public static void setCurrentOffer(Product currentOffer) {
+        Account.currentOffer = currentOffer;
     }
 }

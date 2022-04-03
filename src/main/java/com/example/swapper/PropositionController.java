@@ -1,10 +1,15 @@
 package com.example.swapper;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import models.Account;
+import service.FileHandler;
+import javafx.scene.image.Image;
 
+import java.io.InputStream;
 import java.util.ResourceBundle;
 
 
@@ -25,26 +30,23 @@ public class PropositionController {
     public Label lbUserProduct;
 
 
+
     @FXML
     public void initialize() throws Exception {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         btnTrade.setText(resourceBundle.getString("trade"));
+        lbUserProduct.setText(Account.getCurrentProduct().getName());
         lbUserProductLabel.setText(resourceBundle.getString("yourItem"));
-//        ResultSet result = ProductDbServices.getProductById(3);
-//        result.next();
-//        Product currentProduct = new Product(
-//                result.getInt(1),
-//                result.getString(2),
-//                result.getString(3),
-//                result.getBoolean(4),
-//                result.getInt(5)
-//        );
 
+        lbProduct.setText(Account.getCurrentOffer().getName());
+        lbDescription.setText(Account.getCurrentOffer().getDescription());
 
-        //TODO template to display img from db
-//        InputStream is = FileHandler.getFile(currentProduct.getImgId);
-//        Image img = new Image(is);
-//        imgView.setImage(img);
+        InputStream is = FileHandler.getFile(Account.getCurrentOffer().getImgId());
+        Image img = new Image(is);
+        ivProduct.setImage(img);
 
+    }
+
+    public void trade(ActionEvent actionEvent) {
     }
 }
