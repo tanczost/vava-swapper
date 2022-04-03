@@ -8,8 +8,12 @@ import javafx.scene.image.ImageView;
 import models.Account;
 import service.FileHandler;
 import javafx.scene.image.Image;
+import service.db.ProductDbServices;
+import service.navigation.SwitchScreen;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
@@ -47,6 +51,14 @@ public class PropositionController {
 
     }
 
-    public void trade(ActionEvent actionEvent) {
+    public void trade(ActionEvent actionEvent) throws SQLException, IOException {
+        ProductDbServices.tradeProduct(Account.getCurrentProduct().getId(),Account.getCurrentOffer().getId());
+
+        Account.setCurrentOffer(null);
+        Account.setCurrentProduct(null);
+
+        SwitchScreen.changeScreen("views/landingPage.fxml");
+
+        //TODO maybe  add decline trade button
     }
 }

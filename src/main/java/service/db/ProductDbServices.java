@@ -207,4 +207,25 @@ public class ProductDbServices extends PostgresConnection {
 
         return stmt.executeQuery();
     }
+
+    public static void tradeProduct(int proposalId, int offerId) throws SQLException {
+        PreparedStatement stmt = connection.prepareStatement(
+                "DELETE FROM product_offers " +
+                        "WHERE proposal_id = (?) OR offer_id = (?);"
+        );
+
+        stmt.setInt(1,proposalId);
+        stmt.setInt(2, offerId);
+        stmt.executeUpdate();
+
+        stmt = connection.prepareStatement("DELETE FROM products WHERE id = (?);");
+        stmt.setInt(1,proposalId);
+        stmt.executeUpdate();
+
+
+        stmt = connection.prepareStatement("DELETE FROM products WHERE id = (?);");
+        stmt.setInt(1,offerId);
+        stmt.executeUpdate();
+
+    }
 }
