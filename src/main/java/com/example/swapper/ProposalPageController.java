@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import models.Account;
 import models.Product;
 import service.navigation.SwitchScreen;
@@ -21,6 +23,8 @@ public class ProposalPageController {
     public Button btnProposals;
     @FXML
     public Button btnUpdateProduct;
+    @FXML
+    public ListView lvUserItems;
     @FXML
     private ComboBox cbUserItems;
     @FXML
@@ -91,5 +95,9 @@ public class ProposalPageController {
 
     public void redirectToOfferPage() throws IOException {
         SwitchScreen.changeScreen("views/OfferPage.fxml");
+    }
+
+    public void itemSelected(MouseEvent mouseEvent) {
+        System.out.println(lvUserItems.getSelectionModel().getSelectedItem().toString());
     }
 }

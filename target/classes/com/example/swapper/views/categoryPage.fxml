@@ -65,13 +65,15 @@
                         <Image url="@images/sort.png"/>
                     </image>
                 </ImageView>
-                <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="213.0" layoutY="14.0" pickOnBounds="true"
+                <ImageView onMouseClicked="#setDateASC" fitHeight="40.0" fitWidth="40.0" layoutX="213.0" layoutY="14.0"
+                           pickOnBounds="true"
                            preserveRatio="true">
                     <image>
                         <Image url="@images/upvote.png"/>
                     </image>
                 </ImageView>
-                <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="256.0" layoutY="14.0" pickOnBounds="true"
+                <ImageView onMouseClicked="#setDateDESC" fitHeight="40.0" fitWidth="40.0" layoutX="256.0" layoutY="14.0"
+                           pickOnBounds="true"
                            preserveRatio="true">
                     <image>
                         <Image url="@images/downvote.png"/>

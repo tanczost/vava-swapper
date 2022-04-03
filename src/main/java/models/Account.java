@@ -33,17 +33,27 @@ public class Account {
         return currentUser.getId();
     }
 
+    public static void setCurrentUserDetails(String nickName, String firstName, String lastName, String email, String town, String street, String school) {
+        currentUser.setNickName(nickName);
+        currentUser.setFirstName(firstName);
+        currentUser.setLastName(lastName);
+        currentUser.setEmail(email);
+        currentUser.setTown(town);
+        currentUser.setStreet(street);
+        currentUser.setSchool(school);
+    }
+
 
     public static ArrayList<Product> getProductsOfLoggedUser() throws SQLException {
         loadProducts();
         return productsOfLoggedUser;
     }
-    
+
     public static void loadProducts() throws SQLException {
         ResultSet products = ProductDbServices.getUsersProposals(getLoggedUserId());
         productsOfLoggedUser.clear();
 
-        if(products == null){
+        if (products == null) {
             return;
         }
 

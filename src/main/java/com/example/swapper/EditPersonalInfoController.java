@@ -89,13 +89,17 @@ public class EditPersonalInfoController {
                         tfFirstName.getText(), tfLastName.getText(),
                         tfEmail.getText(), tfTown.getText(),
                         tfStreet.getText(), tfSchool.getText()
-                        );
+                );
 
-                if(success > 0){
-                    //TODO update also Account object
+                if (success > 0) {
+                    Account.setCurrentUserDetails(tfNickName.getText(),
+                            tfFirstName.getText(), tfLastName.getText(),
+                            tfEmail.getText(), tfTown.getText(),
+                            tfStreet.getText(), tfSchool.getText());
+
                     System.out.println("Successfully updated");
-                }
-                else{
+                    SwitchScreen.changeScreen("views/ProposalPage.fxml");
+                } else {
                     System.out.println("Update failed. :(");
                 }
             }

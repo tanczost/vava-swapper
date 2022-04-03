@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="576.0" prefWidth="1024.0" stylesheets="@style/global.css" xmlns="http://javafx.com/javafx/17"
+<AnchorPane prefHeight="576.0" prefWidth="1024.0" stylesheets="@style/global.css" xmlns="http://javafx.com/javafx/16"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swapper.PropositionController">
     <children>
         <ImageView fx:id="ivProduct" fitHeight="160.0" fitWidth="420.0" layoutX="302.0" layoutY="106.0"
@@ -15,7 +14,7 @@
             </image>
         </ImageView>
         <Button fx:id="btnTrade" layoutX="452.0" layoutY="446.0" mnemonicParsing="false" prefHeight="39.0"
-                prefWidth="121.0" text="Trade"/>
+                prefWidth="128.0"/>
         <Label fx:id="lbProduct" layoutX="302.0" layoutY="57.0"/>
         <Label fx:id="lbDescription" layoutX="302.0" layoutY="265.0"/>
         <Label fx:id="lbTopBadge" layoutX="664.0" layoutY="118.0"/>
