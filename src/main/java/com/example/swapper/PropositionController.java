@@ -18,16 +18,18 @@ public class PropositionController {
     @FXML
     public Label lbDescription;
     @FXML
-    public Label lbUserProduct;
+    public Label lbUserProductLabel;
     @FXML
     public Label lbTopBadge;
+    @FXML
+    public Label lbUserProduct;
 
 
     @FXML
     public void initialize() throws Exception {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         btnTrade.setText(resourceBundle.getString("trade"));
-        lbUserProduct.setText(resourceBundle.getString("yourItems"));
+        lbUserProductLabel.setText(resourceBundle.getString("yourItem"));
 //        ResultSet result = ProductDbServices.getProductById(3);
 //        result.next();
 //        Product currentProduct = new Product(

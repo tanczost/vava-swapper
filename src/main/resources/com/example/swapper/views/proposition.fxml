@@ -18,7 +18,7 @@
         <Label fx:id="lbProduct" layoutX="302.0" layoutY="57.0"/>
         <Label fx:id="lbDescription" layoutX="302.0" layoutY="265.0"/>
         <Label fx:id="lbTopBadge" layoutX="664.0" layoutY="118.0"/>
-        <ComboBox layoutX="452.0" layoutY="325.0" prefHeight="25.0" prefWidth="210.0"/>
-        <Label fx:id="lbUserProduct" layoutX="302.0" layoutY="320.0"/>
+        <Label fx:id="lbUserProductLabel" layoutX="302.0" layoutY="320.0"/>
+        <Label fx:id="lbUserProduct" layoutX="452.0" layoutY="320.0"/>
     </children>
 </AnchorPane>
