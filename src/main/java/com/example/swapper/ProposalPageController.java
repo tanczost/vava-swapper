@@ -99,8 +99,15 @@ public class ProposalPageController {
         SwitchScreen.changeScreen("views/OfferPage.fxml");
     }
 
-    public void offerSelected(MouseEvent mouseEvent) {
-        System.out.println(lvUserItems.getSelectionModel().getSelectedItem().toString());
+    public void offerSelected(MouseEvent mouseEvent) throws IOException {
+        if(lvUserItems.getSelectionModel().isEmpty()){
+            return;
+        }
+
+        int offersIndex =  lvUserItems.getSelectionModel().getSelectedIndex();
+        Account.setCurrentOffer(offersForProduct.get(offersIndex));
+
+        SwitchScreen.changeScreen("views/proposition.fxml");
     }
 
     public void productSelected(ActionEvent actionEvent) throws SQLException {
