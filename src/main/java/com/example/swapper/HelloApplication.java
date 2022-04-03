@@ -18,7 +18,9 @@ public class HelloApplication extends Application {
         PostgresConnection.initializePostgresqlDatabase();
         Locale.setDefault(new Locale("en", "EN"));
         stage = primaryStage;
+
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("views/landingPage.fxml"));
+
         Scene scene = new Scene(fxmlLoader.load(), 1024, 576);
         primaryStage.setTitle("Swapper!");
         primaryStage.setScene(scene);
