@@ -1,13 +1,12 @@
 package com.example.swapper;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import models.Account;
 import service.FileHandler;
-import javafx.scene.image.Image;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
 
@@ -32,7 +31,10 @@ public class PropositionController {
     public Label lbTopBadge;
     @FXML
     public Label lbUserProduct;
-
+    @FXML
+    public Button btnDecline;
+    @FXML
+    public Button btnBack;
 
 
     @FXML
@@ -41,24 +43,28 @@ public class PropositionController {
         btnTrade.setText(resourceBundle.getString("trade"));
         lbUserProduct.setText(Account.getCurrentProduct().getName());
         lbUserProductLabel.setText(resourceBundle.getString("yourItem"));
+        btnDecline.setText(resourceBundle.getString("decline"));
+        btnBack.setText(resourceBundle.getString("back"));
 
         lbProduct.setText(Account.getCurrentOffer().getName());
         lbDescription.setText(Account.getCurrentOffer().getDescription());
 
         InputStream is = FileHandler.getFile(Account.getCurrentOffer().getImgId());
-        Image img = new Image(is);
-        ivProduct.setImage(img);
+        ivProduct.setImage(new Image(is));
 
     }
 
-    public void trade(ActionEvent actionEvent) throws SQLException, IOException {
-        ProductDbServices.tradeProduct(Account.getCurrentProduct().getId(),Account.getCurrentOffer().getId());
-
+    public void trade() throws SQLException, IOException {
+        ProductDbServices.tradeProduct(Account.getCurrentProduct().getId(), Account.getCurrentOffer().getId());
         Account.setCurrentOffer(null);
         Account.setCurrentProduct(null);
-
         SwitchScreen.changeScreen("views/landingPage.fxml");
+    }
 
-        //TODO maybe  add decline trade button
+    public void declineProposal() {
+    }
+
+    public void redirectBack() throws IOException {
+        SwitchScreen.changeScreen("views/ProposalPage.fxml");
     }
 }
