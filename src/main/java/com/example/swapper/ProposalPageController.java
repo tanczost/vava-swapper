@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.input.MouseEvent;
 import models.Account;
 import models.Product;
 import service.db.ProductDbServices;
@@ -28,6 +27,8 @@ public class ProposalPageController {
     public Button btnUpdateProduct;
     @FXML
     public ListView lvUserItems;
+    @FXML
+    public Button btnLogout;
     @FXML
     private ComboBox cbUserItems;
     @FXML
@@ -56,6 +57,7 @@ public class ProposalPageController {
         btnProposals.setText(resourceBundle.getString("myProposals"));
         addProduct.setText(resourceBundle.getString("addProduct"));
         btnUpdateProduct.setText(resourceBundle.getString("updateProduct"));
+        btnLogout.setText(resourceBundle.getString("logout"));
 
 
         lbName.setText(Account.getCurrentUser().getNickName().toUpperCase(Locale.ROOT));
@@ -88,8 +90,8 @@ public class ProposalPageController {
         SwitchScreen.changeScreen("views/editPersonalInfo.fxml");
     }
 
-    public void redirectToUpdateProduct() throws IOException, SQLException {
-        if(cbUserItems.getSelectionModel().isEmpty()){
+    public void redirectToUpdateProduct() throws IOException {
+        if (cbUserItems.getSelectionModel().isEmpty()) {
             return;
         }
         SwitchScreen.changeScreen("views/modifyProduct.fxml");
@@ -99,18 +101,18 @@ public class ProposalPageController {
         SwitchScreen.changeScreen("views/OfferPage.fxml");
     }
 
-    public void offerSelected(MouseEvent mouseEvent) throws IOException {
-        if(lvUserItems.getSelectionModel().isEmpty()){
+    public void offerSelected() throws IOException {
+        if (lvUserItems.getSelectionModel().isEmpty()) {
             return;
         }
 
-        int offersIndex =  lvUserItems.getSelectionModel().getSelectedIndex();
+        int offersIndex = lvUserItems.getSelectionModel().getSelectedIndex();
         Account.setCurrentOffer(offersForProduct.get(offersIndex));
 
         SwitchScreen.changeScreen("views/proposition.fxml");
     }
 
-    public void productSelected(ActionEvent actionEvent) throws SQLException {
+    public void productSelected() throws SQLException {
         for (Product product : Account.getProductsOfLoggedUser()) {
             if (product.getName().equals(cbUserItems.getValue().toString())) {
                 Account.setCurrentProduct(product);
@@ -121,7 +123,7 @@ public class ProposalPageController {
         ResultSet offers = ProductDbServices.getOffersForProduct(Account.getCurrentProduct().getId());
 
         lvUserItems.getItems().clear();
-        if(offers == null){
+        if (offers == null) {
             return;
         }
 
@@ -143,6 +145,10 @@ public class ProposalPageController {
         });
 
 
+    }
 
+    public void logout() throws IOException {
+        Account.logout();
+        SwitchScreen.changeScreen("views/login.fxml");
     }
 }

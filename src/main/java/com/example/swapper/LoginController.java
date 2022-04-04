@@ -44,8 +44,8 @@ public class LoginController {
     private void login() throws SQLException, IOException {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         if (!tfNickname.getText().isEmpty() && !pfPassword.getText().isEmpty()) {
-            boolean success = Auth.login("admin", "Soky11@");
-//            boolean success = Auth.login(tfNickname.getText(), pfPassword.getText());
+//            boolean success = Auth.login(tfNickname.getText(), "Soky11@");
+            boolean success = Auth.login(tfNickname.getText(), pfPassword.getText());
             System.out.println(Account.checkLogin());
 
             if (success) {

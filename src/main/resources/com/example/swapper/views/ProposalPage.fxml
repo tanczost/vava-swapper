@@ -54,7 +54,8 @@
                 onAction="#redirectToEditPersonalInfo" prefHeight="39.0" prefWidth="184.0"/>
         <Button fx:id="btnMainPage" layoutX="849.0" layoutY="503.0" mnemonicParsing="false"
                 onAction="#redirectToMainPage" prefHeight="39.0" prefWidth="166.0"/>
-        <ComboBox fx:id="cbUserItems" layoutX="170.0" layoutY="218.0" prefHeight="26.0" prefWidth="176.0" onAction="#productSelected"/>
+        <ComboBox fx:id="cbUserItems" layoutX="170.0" layoutY="218.0" onAction="#productSelected" prefHeight="26.0"
+                  prefWidth="176.0"/>
         <Label fx:id="lbItems" layoutX="6.0" layoutY="216.0" prefHeight="30.0" prefWidth="156.0"/>
         <ListView fx:id="lvUserItems" layoutX="355.0" layoutY="219.0" onMouseClicked="#offerSelected" prefHeight="272.0"
                   prefWidth="638.0"/>
@@ -62,5 +63,7 @@
                 onAction="#toggleLanguage" prefHeight="39.0" prefWidth="176.0"/>
         <Button fx:id="btnUpdateProduct" layoutX="140.0" layoutY="263.0" mnemonicParsing="false"
                 onAction="#redirectToUpdateProduct" prefHeight="39.0" prefWidth="206.0"/>
+        <Button fx:id="btnLogout" layoutX="848.0" layoutY="149.0" mnemonicParsing="false" onAction="#logout"
+                prefHeight="39.0" prefWidth="150.0"/>
     </children>
 </AnchorPane>
