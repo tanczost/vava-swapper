@@ -125,10 +125,9 @@ public class ProductDbServices extends PostgresConnection {
     }
 
     public static ResultSet getProductsByName(String name) throws SQLException {
-        PreparedStatement stmt = connection.prepareStatement("SELECT *" +
-                "FROM products WHERE name LIKE (?)");
+        PreparedStatement stmt = connection.prepareStatement(
+                "SELECT *  FROM products WHERE name LIKE '%" + name + "%'");
 
-        stmt.setString(1, name);
         ResultSet sqlReturnValues = stmt.executeQuery();
 
         if (isResultEmpty(sqlReturnValues)) {
