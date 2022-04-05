@@ -6,6 +6,7 @@ public class Filter {
     private static Instant dateFrom;
     private static Instant dateTo;
     private static String category;
+    private static String searchInput;
 
     public static Instant getDateFrom() {
         return dateFrom;
@@ -29,5 +30,13 @@ public class Filter {
 
     public static void setCategory(String category) {
         Filter.category = category;
+    }
+
+    public static void setSearchInput(String searchInput) {
+        Filter.searchInput = searchInput;
+    }
+
+    public static String getSearchInput() {
+        return Filter.searchInput;
     }
 }

@@ -5,10 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import models.Account;
 import models.Category;
+import models.Filter;
 import models.Product;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
@@ -30,6 +32,8 @@ public class LandingPageController {
     private Button btnAddProduct;
     @FXML
     private Label lbCategories;
+    @FXML
+    private TextField tfSearch;
 
 
     @FXML
@@ -62,6 +66,20 @@ public class LandingPageController {
 
 
         //TODO set top products in lvTopProducts
+    }
+
+    @FXML
+    public void searchForProduct() throws IOException {
+        Filter.setSearchInput(tfSearch.getText());
+
+        Category.setNameOfCategory("");
+
+        SwitchScreen.changeScreen("views/categoryPage.fxml");
+    }
+
+    @FXML
+    public void clearSearch() {
+        tfSearch.setText(null);
     }
 
     @FXML

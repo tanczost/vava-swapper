@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="576.0" prefWidth="1024.0" stylesheets="@style/global.css" xmlns="http://javafx.com/javafx/17"
+<AnchorPane prefHeight="576.0" prefWidth="1024.0" stylesheets="@style/global.css" xmlns="http://javafx.com/javafx/16"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swapper.LandingPageController">
     <children>
         <AnchorPane prefHeight="94.0" prefWidth="1024.0" style="-fx-background-color: rgb(179,179,179);">
@@ -17,8 +17,8 @@
                         <Image url="@images/logo.png"/>
                     </image>
                 </ImageView>
-                <TextField alignment="CENTER" focusTraversable="false" layoutX="410.0" layoutY="32.0" prefHeight="29.0"
-                           prefWidth="206.0" promptText="Search for product"/>
+                <TextField fx:id="tfSearch" alignment="CENTER" focusTraversable="false" layoutX="410.0" layoutY="32.0"
+                           prefHeight="29.0" prefWidth="206.0" promptText="Search for product"/>
                 <Button fx:id="btnAddProduct" layoutX="760.0" layoutY="22.0" mnemonicParsing="false"
                         onMouseClicked="#loadAddProductPage" prefHeight="41.0" prefWidth="170.0"
                         style="-fx-background-color: rgb(179,179,179); -fx-border-color: rgb(0,0,200);"
@@ -36,14 +36,14 @@
                         <Image url="@images/avatar.png"/>
                     </image>
                 </ImageView>
-                <ImageView fitHeight="18.0" fitWidth="20.0" layoutX="417.0" layoutY="38.0" pickOnBounds="true"
-                           preserveRatio="true">
+                <ImageView fitHeight="18.0" fitWidth="20.0" layoutX="417.0" layoutY="38.0"
+                           onMouseClicked="#searchForProduct" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/lupa.png"/>
                     </image>
                 </ImageView>
-                <ImageView fitHeight="18.0" fitWidth="20.0" layoutX="589.0" layoutY="38.0" pickOnBounds="true"
-                           preserveRatio="true">
+                <ImageView fitHeight="18.0" fitWidth="20.0" layoutX="589.0" layoutY="38.0" onMouseClicked="#clearSearch"
+                           pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/cancel.png"/>
                     </image>
@@ -117,7 +117,7 @@
                         <Image url="@images/top.png"/>
                     </image>
                 </ImageView>
-                <Label layoutX="18.0" layoutY="21.0" fx:id="lbCategories"/>
+                <Label fx:id="lbCategories" layoutX="18.0" layoutY="21.0"/>
             </children>
         </AnchorPane>
     </children>
