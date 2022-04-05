@@ -107,7 +107,8 @@
                 <AnchorPane layoutX="18.0" layoutY="270.0" prefHeight="206.0" prefWidth="990.0"
                             style="-fx-background-color: rgb(179,179,179); -fx-border-color: black;">
                     <children>
-                        <ListView layoutX="124.0" layoutY="3.0" prefHeight="200.0" prefWidth="742.0"/>
+                        <ListView layoutX="124.0" layoutY="3.0" prefHeight="200.0" prefWidth="742.0"
+                                  fx:id="lvTopProducts" onMouseClicked="#topProductSelected"/>
                     </children>
                 </AnchorPane>
                 <ImageView fitHeight="32.0" fitWidth="125.0" layoutX="18.0" layoutY="238.0" pickOnBounds="true"
