@@ -2,6 +2,7 @@ package com.example.swapper;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -28,6 +29,8 @@ public class CategoryPageController {
     @FXML
     public ImageView ivAvatar;
     @FXML
+    public Label lbSort;
+    @FXML
     private ImageView categories;
     @FXML
     private TextField tfSearch;
@@ -49,6 +52,7 @@ public class CategoryPageController {
         categories.setImage(image);
 
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
+        lbSort.setText(resourceBundle.getString("sortByDate"));
         if (Account.getCurrentUser() == null) {
             btnLogin.setText(resourceBundle.getString("login"));
             btnLogin.setVisible(true);
@@ -89,9 +93,7 @@ public class CategoryPageController {
     @FXML
     public void searchForProduct() throws IOException {
         Filter.setSearchInput(tfSearch.getText());
-
         Category.setNameOfCategory("");
-
         SwitchScreen.changeScreen("views/categoryPage.fxml");
     }
 
@@ -107,7 +109,6 @@ public class CategoryPageController {
 
         int offersIndex = lwCategoryItems.getSelectionModel().getSelectedIndex();
         Account.setCurrentProduct(filteredProducts.get(offersIndex));
-
         SwitchScreen.changeScreen("views/SelectProposition.fxml");
     }
 

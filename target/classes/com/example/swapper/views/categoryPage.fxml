@@ -58,12 +58,8 @@
                         prefHeight="46.0" prefWidth="143.0"
                         style="-fx-background-color: rgb(179,179,179); -fx-border-color: rgb(0,0,200);" text="FILTER"
                         textAlignment="CENTER" textFill="#0000c8"/>
-                <ImageView fitHeight="36.0" fitWidth="206.0" layoutX="5.0" layoutY="20.0" pickOnBounds="true"
-                           preserveRatio="true">
-                    <image>
-                        <Image url="@images/sort.png"/>
-                    </image>
-                </ImageView>
+                <Label fx:id="lbSort" prefHeight="36.0" prefWidth="206.0" layoutX="5.0" layoutY="20.0"
+                       pickOnBounds="true"/>
                 <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="213.0" layoutY="14.0" onMouseClicked="#setDateASC"
                            pickOnBounds="true" preserveRatio="true">
                     <image>

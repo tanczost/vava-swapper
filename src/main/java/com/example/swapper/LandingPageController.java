@@ -60,19 +60,22 @@ public class LandingPageController {
         }
 
         ResultSet topProductRaw = ProductDbServices.getTopProduct();
-        while (topProductRaw.next()) {
-            topProduct = new Product(
-                    topProductRaw.getInt(1),
-                    topProductRaw.getString(2),
-                    topProductRaw.getString(3),
-                    topProductRaw.getBoolean(4),
-                    topProductRaw.getInt(5)
-            );
+        if (topProductRaw != null) {
+            while (topProductRaw.next()) {
+                topProduct = new Product(
+                        topProductRaw.getInt(1),
+                        topProductRaw.getString(2),
+                        topProductRaw.getString(3),
+                        topProductRaw.getBoolean(4),
+                        topProductRaw.getInt(5)
+                );
+            }
+
+            InputStream is = FileHandler.getFile(topProduct.getImgId());
+            System.out.println(topProduct);
+            ivTopProduct.setImage(new Image(is));
         }
 
-        InputStream is = FileHandler.getFile(topProduct.getImgId());
-        System.out.println(topProduct);
-        ivTopProduct.setImage(new Image(is));
     }
 
     @FXML
