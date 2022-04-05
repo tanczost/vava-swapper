@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -17,8 +16,8 @@
                         <Image url="@images/logo.png"/>
                     </image>
                 </ImageView>
-                <TextField alignment="CENTER" focusTraversable="false" layoutX="410.0" layoutY="32.0" prefHeight="29.0"
-                           prefWidth="206.0" promptText="Search for product"/>
+                <TextField fx:id="tfSearch" alignment="CENTER" focusTraversable="false" layoutX="410.0" layoutY="32.0"
+                           prefHeight="29.0" prefWidth="206.0" promptText="Search for product"/>
                 <Button fx:id="btnAddProduct" layoutX="760.0" layoutY="22.0" mnemonicParsing="false"
                         onMouseClicked="#loadAddProductPage" prefHeight="41.0" prefWidth="170.0"
                         style="-fx-background-color: rgb(179,179,179); -fx-border-color: rgb(0,0,200);"
@@ -27,26 +26,25 @@
                         <Insets/>
                     </opaqueInsets>
                 </Button>
-                <Button fx:id="btnLogin" layoutX="760.0" layoutY="22.0" mnemonicParsing="false" prefHeight="46.0"
-                        prefWidth="170.0" onMouseClicked="#redirectToLogin"
+                <Button fx:id="btnLogin" layoutX="760.0" layoutY="22.0" mnemonicParsing="false"
+                        onMouseClicked="#redirectToLogin" prefHeight="46.0" prefWidth="170.0"
                         style="-fx-background-color: rgb(179,179,179); -fx-border-color: rgb(0,0,200);"
                         textFill="#0000c8" visible="false">
                 </Button>
                 <ImageView fx:id="ivAvatar" fitHeight="58.0" fitWidth="63.0" layoutX="937.0" layoutY="15.0"
-                           pickOnBounds="true"
-                           preserveRatio="true">
+                           pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/avatar.png"/>
                     </image>
                 </ImageView>
-                <ImageView fitHeight="18.0" fitWidth="20.0" layoutX="417.0" layoutY="38.0" pickOnBounds="true"
-                           preserveRatio="true">
+                <ImageView fitHeight="18.0" fitWidth="20.0" layoutX="417.0" layoutY="38.0"
+                           onMouseClicked="#searchForProduct" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/lupa.png"/>
                     </image>
                 </ImageView>
-                <ImageView fitHeight="18.0" fitWidth="20.0" layoutX="589.0" layoutY="38.0" pickOnBounds="true"
-                           preserveRatio="true">
+                <ImageView fitHeight="18.0" fitWidth="20.0" layoutX="589.0" layoutY="38.0" onMouseClicked="#clearSearch"
+                           pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/cancel.png"/>
                     </image>
@@ -56,25 +54,24 @@
         <AnchorPane layoutX="33.0" layoutY="151.0" prefHeight="364.0" prefWidth="960.0"
                     style="-fx-background-color: rgb(179,179,179) rgb(179,179,179); -fx-border-color: black;">
             <children>
-                <Button layoutX="792.0" layoutY="13.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="143.0"
+                <Button layoutX="792.0" layoutY="13.0" mnemonicParsing="false" onAction="#redirectToFilterPage"
+                        prefHeight="46.0" prefWidth="143.0"
                         style="-fx-background-color: rgb(179,179,179); -fx-border-color: rgb(0,0,200);" text="FILTER"
-                        textAlignment="CENTER" textFill="#0000c8" onAction="#redirectToFilterPage"/>
+                        textAlignment="CENTER" textFill="#0000c8"/>
                 <ImageView fitHeight="36.0" fitWidth="206.0" layoutX="5.0" layoutY="20.0" pickOnBounds="true"
                            preserveRatio="true">
                     <image>
                         <Image url="@images/sort.png"/>
                     </image>
                 </ImageView>
-                <ImageView onMouseClicked="#setDateASC" fitHeight="40.0" fitWidth="40.0" layoutX="213.0" layoutY="14.0"
-                           pickOnBounds="true"
-                           preserveRatio="true">
+                <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="213.0" layoutY="14.0" onMouseClicked="#setDateASC"
+                           pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/upvote.png"/>
                     </image>
                 </ImageView>
-                <ImageView onMouseClicked="#setDateDESC" fitHeight="40.0" fitWidth="40.0" layoutX="256.0" layoutY="14.0"
-                           pickOnBounds="true"
-                           preserveRatio="true">
+                <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="256.0" layoutY="14.0" onMouseClicked="#setDateDESC"
+                           pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/downvote.png"/>
                     </image>

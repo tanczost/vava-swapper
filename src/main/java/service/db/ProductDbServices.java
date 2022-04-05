@@ -126,7 +126,7 @@ public class ProductDbServices extends PostgresConnection {
 
     public static ResultSet getProductsByName(String name) throws SQLException {
         PreparedStatement stmt = connection.prepareStatement("SELECT *" +
-                "FROM products WHERE name LIKE %(?)%");
+                "FROM products WHERE name LIKE (?)");
 
         stmt.setString(1, name);
         ResultSet sqlReturnValues = stmt.executeQuery();
@@ -164,35 +164,35 @@ public class ProductDbServices extends PostgresConnection {
      * @param timeStampFrom (Instant) - From which creation date should the products be selected.
      * @param timeStampTo   (Instant) - Till which creation date should the products be selected.
      * @param category      (String)  - The products with this exact category will be selected.
-     * @throws SQLException - On database connection issues.
      * @return ResultSet - The list of products which met the criteria
-     * */
+     * @throws SQLException - On database connection issues.
+     */
     public static ResultSet getFilteredProducts(Instant timeStampFrom, Instant timeStampTo, String category) throws SQLException {
         //TODO maybe return everything then?
         //dont query the database if no filters were set
-        if(timeStampFrom == null && timeStampTo == null && category == null)
+        if (timeStampFrom == null && timeStampTo == null && category == null)
             return null;
 
         java.util.Date dateFrom = null;
         java.util.Date dateTo = null;
-        if(timeStampFrom != null)
+        if (timeStampFrom != null)
             dateFrom = (java.util.Date) java.util.Date.from(timeStampFrom);
-        if(timeStampTo != null)
+        if (timeStampTo != null)
             dateTo = (java.util.Date) java.util.Date.from(timeStampTo);
         String sql = "SELECT * FROM products WHERE ";
 
         //Add the required specifiers
-        if(timeStampFrom != null)
+        if (timeStampFrom != null)
             sql = sql.concat("created_at>(?)");
-        if(timeStampTo != null){
-            if(timeStampFrom != null)
+        if (timeStampTo != null) {
+            if (timeStampFrom != null)
                 sql = sql.concat(" AND ");
             sql = sql.concat("created_at<(?)");
         }
-        if(category != null){
-            if(timeStampFrom != null || timeStampTo != null)
+        if (category != null) {
+            if (timeStampFrom != null || timeStampTo != null)
                 sql = sql.concat(" AND ");
-            if(!category.equals("TOP"))
+            if (!category.equals("TOP"))
                 sql = sql.concat("category='" + category + "'");
             else
                 sql = sql.concat("topped=TRUE");
@@ -204,11 +204,11 @@ public class ProductDbServices extends PostgresConnection {
         PreparedStatement stmt = connection.prepareStatement(sql);
 
         //Bind the data in the correct order/spot
-        if(timeStampFrom != null){
+        if (timeStampFrom != null) {
             stmt.setDate(1, new java.sql.Date(dateFrom.getTime()));
         }
-        if(timeStampTo != null){
-            if(timeStampFrom != null)
+        if (timeStampTo != null) {
+            if (timeStampFrom != null)
                 stmt.setDate(2, new java.sql.Date(dateTo.getTime()));
             else
                 stmt.setDate(1, new java.sql.Date(dateTo.getTime()));
