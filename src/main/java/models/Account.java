@@ -27,12 +27,8 @@ public class Account {
         currentOffer = null;
     }
 
-    public static String checkLogin() {
-        if (currentUser == null) {
-            return "Nobody is logged in";
-        } else {
-            return currentUser.toString();
-        }
+    public static boolean checkLogin() {
+        return currentUser != null;
     }
 
     public static int getLoggedUserId() {
