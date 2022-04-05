@@ -1,5 +1,6 @@
 package service.db;
 
+import models.Account;
 import service.PostgresConnection;
 
 import java.sql.PreparedStatement;
@@ -125,10 +126,33 @@ public class ProductDbServices extends PostgresConnection {
     }
 
     public static ResultSet getProductsByName(String name) throws SQLException {
-        PreparedStatement stmt = connection.prepareStatement("SELECT *" +
-                "FROM products WHERE name LIKE (?)");
+        PreparedStatement stmt = connection.prepareStatement(
+                "SELECT *  FROM products WHERE name LIKE '%" + name + "%'");
 
-        stmt.setString(1, name);
+        ResultSet sqlReturnValues = stmt.executeQuery();
+
+        if (isResultEmpty(sqlReturnValues)) {
+            return null;
+        }
+
+        return sqlReturnValues;
+    }
+
+    public static ResultSet getMyOffers() throws SQLException{
+        if(!Account.checkLogin()){
+            return null;
+        }
+
+        PreparedStatement stmt  = connection.prepareStatement(
+                "SELECT products.id," +
+                "name," +
+                "description," +
+                "topped," +
+                "img_id," +
+                "proposal_id" +
+                "FROM products JOIN product_offers po on products.id = po.offer_id WHERE user_id = (?);");
+
+        stmt.setInt(1,Account.getCurrentUser().getId());
         ResultSet sqlReturnValues = stmt.executeQuery();
 
         if (isResultEmpty(sqlReturnValues)) {
