@@ -4,21 +4,26 @@ package com.example.swapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import models.Account;
 import models.Category;
 import models.Filter;
+import models.Product;
 import service.navigation.SwitchScreen;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
 public class LandingPageController {
     @FXML
     public ImageView ivAvatar;
+    @FXML
+    public ListView lvTopProducts;
     @FXML
     private Button btnLogin;
     @FXML
@@ -49,6 +54,8 @@ public class LandingPageController {
             btnAddProduct.setText(resourceBundle.getString("addProduct"));
             btnAddProduct.setVisible(true);
         }
+
+        //TODO set top products in lvTopProducts
     }
 
     @FXML
@@ -70,11 +77,21 @@ public class LandingPageController {
         SwitchScreen.changeScreen("views/addProduct.fxml");
     }
 
-    public void navigateToProposalPage(MouseEvent mouseEvent) throws IOException {
+    public void navigateToProposalPage() throws IOException {
         SwitchScreen.changeScreen("views/ProposalPage.fxml");
     }
 
     public void redirectToLogin() throws IOException {
         SwitchScreen.changeScreen("views/login.fxml");
+    }
+
+    public void topProductSelected() throws SQLException, IOException {
+        for (Product product : Account.getProductsOfLoggedUser()) {
+            if (product.getName().equals(lvTopProducts.getSelectionModel().getSelectedItem().toString())) {
+                Account.setCurrentProduct(product);
+                SwitchScreen.changeScreen("views/SelectProposition.fxml");
+                break;
+            }
+        }
     }
 }
