@@ -137,7 +137,7 @@ public class ProductDbServices extends PostgresConnection {
         return sqlReturnValues;
     }
 
-    public static ResultSet getTopProduct()throws SQLException{
+    public static ResultSet getTopProduct() throws SQLException {
         PreparedStatement stmt = connection.prepareStatement("SELECT *" +
                 "FROM products WHERE topped = true ORDER BY created_at LIMIT 1");
 

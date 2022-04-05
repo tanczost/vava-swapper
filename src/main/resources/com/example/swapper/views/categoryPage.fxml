@@ -76,7 +76,8 @@
                         <Image url="@images/downvote.png"/>
                     </image>
                 </ImageView>
-                <ListView layoutX="126.0" layoutY="68.0" prefHeight="272.0" prefWidth="709.0"/>
+                <ListView fx:id="lwCategoryItems" layoutX="126.0" layoutY="68.0" prefHeight="272.0" prefWidth="709.0"
+                          onMouseClicked="#offerSelected"/>
             </children>
         </AnchorPane>
         <Button layoutX="845.0" layoutY="522.0" mnemonicParsing="false" onAction="#backMain" prefHeight="46.0"

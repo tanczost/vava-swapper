@@ -2,6 +2,7 @@ package com.example.swapper;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,6 +31,8 @@ public class CategoryPageController {
     private ImageView categories;
     @FXML
     private TextField tfSearch;
+    @FXML
+    private ListView lwCategoryItems;
 
 
     private ArrayList<Product> filteredProducts = new ArrayList<>();
@@ -59,6 +62,9 @@ public class CategoryPageController {
         if (Filter.getSearchInput() != null) {
             ResultSet result = ProductDbServices.getProductsByName(Filter.getSearchInput());
 
+            if (result == null) {
+                return;
+            }
             while (result.next()) {
                 filteredProducts.add(new Product(
                         result.getInt(1),
@@ -69,7 +75,9 @@ public class CategoryPageController {
                 ));
             }
 
-            Filter.setSearchInput(null);
+            filteredProducts.forEach(e -> {
+                lwCategoryItems.getItems().add(e.toString());
+            });
             System.out.println(filteredProducts);
             //else search by categories
         } else {
@@ -92,6 +100,16 @@ public class CategoryPageController {
         tfSearch.setText(null);
     }
 
+    public void offerSelected() throws IOException {
+        if (lwCategoryItems.getSelectionModel().isEmpty()) {
+            return;
+        }
+
+        int offersIndex = lwCategoryItems.getSelectionModel().getSelectedIndex();
+        Account.setCurrentProduct(filteredProducts.get(offersIndex));
+
+        SwitchScreen.changeScreen("views/SelectProposition.fxml");
+    }
 
     public void redirectToFilterPage() throws IOException {
         SwitchScreen.changeScreen("views/filter.fxml");

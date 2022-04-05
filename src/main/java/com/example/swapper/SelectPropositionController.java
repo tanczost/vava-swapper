@@ -63,6 +63,6 @@ public class SelectPropositionController {
     }
 
     public void redirectBack() throws IOException {
-        SwitchScreen.changeScreen("views/landingPage.fxml");
+        SwitchScreen.changeScreen("views/categoryPage.fxml");
     }
 }
