@@ -10,9 +10,11 @@ import javafx.scene.input.MouseEvent;
 import models.Account;
 import models.Category;
 import models.Product;
+import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -39,7 +41,7 @@ public class LandingPageController {
 
 
     @FXML
-    public void initialize() {
+    public void initialize() throws SQLException {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         lbCategories.setText(resourceBundle.getString("category"));
         if (Account.getCurrentUser() == null) {
@@ -50,6 +52,14 @@ public class LandingPageController {
             btnAddProduct.setText(resourceBundle.getString("addProduct"));
             btnAddProduct.setVisible(true);
         }
+
+        ResultSet topProductRaw = ProductDbServices.getTopProduct();
+
+        if(topProductRaw != null){
+            topProductRaw.next();
+            System.out.println(topProductRaw.getString(2));
+        }
+
 
         //TODO set top products in lvTopProducts
     }
