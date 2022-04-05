@@ -4,20 +4,21 @@ package com.example.swapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import models.Account;
 import models.Category;
 import models.Filter;
 import models.Product;
+import service.FileHandler;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
@@ -25,7 +26,7 @@ public class LandingPageController {
     @FXML
     public ImageView ivAvatar;
     @FXML
-    public ListView lvTopProducts;
+    public ImageView ivTopProduct;
     @FXML
     private Button btnLogin;
     @FXML
@@ -34,6 +35,7 @@ public class LandingPageController {
     private Label lbCategories;
     @FXML
     private TextField tfSearch;
+    Product topProduct = null;
 
 
     @FXML
@@ -45,7 +47,7 @@ public class LandingPageController {
 
 
     @FXML
-    public void initialize() throws SQLException {
+    public void initialize() throws Exception {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         lbCategories.setText(resourceBundle.getString("category"));
         if (Account.getCurrentUser() == null) {
@@ -58,22 +60,25 @@ public class LandingPageController {
         }
 
         ResultSet topProductRaw = ProductDbServices.getTopProduct();
-
-        if(topProductRaw != null){
-            topProductRaw.next();
-            System.out.println(topProductRaw.getString(2));
+        while (topProductRaw.next()) {
+            topProduct = new Product(
+                    topProductRaw.getInt(1),
+                    topProductRaw.getString(2),
+                    topProductRaw.getString(3),
+                    topProductRaw.getBoolean(4),
+                    topProductRaw.getInt(5)
+            );
         }
 
-
-        //TODO set top products in lvTopProducts
+        InputStream is = FileHandler.getFile(topProduct.getImgId());
+        System.out.println(topProduct);
+        ivTopProduct.setImage(new Image(is));
     }
 
     @FXML
     public void searchForProduct() throws IOException {
         Filter.setSearchInput(tfSearch.getText());
-
         Category.setNameOfCategory("");
-
         SwitchScreen.changeScreen("views/categoryPage.fxml");
     }
 
@@ -95,13 +100,10 @@ public class LandingPageController {
         SwitchScreen.changeScreen("views/login.fxml");
     }
 
-    public void topProductSelected() throws SQLException, IOException {
-        for (Product product : Account.getProductsOfLoggedUser()) {
-            if (product.getName().equals(lvTopProducts.getSelectionModel().getSelectedItem().toString())) {
-                Account.setCurrentProduct(product);
-                SwitchScreen.changeScreen("views/SelectProposition.fxml");
-                break;
-            }
-        }
+    public void topProductSelected() throws IOException {
+        Account.setCurrentProduct(topProduct);
+        SwitchScreen.changeScreen("views/SelectProposition.fxml");
+
     }
 }
+
