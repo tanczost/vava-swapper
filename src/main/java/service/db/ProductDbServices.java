@@ -1,13 +1,11 @@
 package service.db;
 
-import java.sql.Date;
 import service.PostgresConnection;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Instant;
-import java.util.Hashtable;
 
 
 public class ProductDbServices extends PostgresConnection {
@@ -89,7 +87,7 @@ public class ProductDbServices extends PostgresConnection {
         stmt.setInt(1, productId);
         ResultSet sqlReturnValues = stmt.executeQuery();
 
-        if(isResultEmpty(sqlReturnValues)){
+        if (isResultEmpty(sqlReturnValues)) {
             return null;
         }
 
@@ -103,7 +101,7 @@ public class ProductDbServices extends PostgresConnection {
         stmt.setInt(1, userId);
         ResultSet sqlReturnValues = stmt.executeQuery();
 
-        if(isResultEmpty(sqlReturnValues)){
+        if (isResultEmpty(sqlReturnValues)) {
             return null;
         }
 
@@ -119,7 +117,7 @@ public class ProductDbServices extends PostgresConnection {
         stmt.setInt(1, productId);
         ResultSet sqlReturnValues = stmt.executeQuery();
 
-        if(isResultEmpty(sqlReturnValues)){
+        if (isResultEmpty(sqlReturnValues)) {
             return null;
         }
 
@@ -133,11 +131,33 @@ public class ProductDbServices extends PostgresConnection {
         stmt.setString(1, name);
         ResultSet sqlReturnValues = stmt.executeQuery();
 
-        if(isResultEmpty(sqlReturnValues)){
+        if (isResultEmpty(sqlReturnValues)) {
             return null;
         }
 
         return sqlReturnValues;
+    }
+
+
+    public static void tradeProduct(int proposalId, int offerId) throws SQLException {
+        PreparedStatement stmt = connection.prepareStatement(
+                "DELETE FROM product_offers " +
+                        "WHERE proposal_id = (?) OR offer_id = (?);"
+        );
+
+        stmt.setInt(1, proposalId);
+        stmt.setInt(2, offerId);
+        stmt.executeUpdate();
+
+        stmt = connection.prepareStatement("DELETE FROM products WHERE id = (?);");
+        stmt.setInt(1, proposalId);
+        stmt.executeUpdate();
+
+
+        stmt = connection.prepareStatement("DELETE FROM products WHERE id = (?);");
+        stmt.setInt(1, offerId);
+        stmt.executeUpdate();
+
     }
 
     /**
@@ -206,26 +226,5 @@ public class ProductDbServices extends PostgresConnection {
 
 
         return stmt.executeQuery();
-    }
-
-    public static void tradeProduct(int proposalId, int offerId) throws SQLException {
-        PreparedStatement stmt = connection.prepareStatement(
-                "DELETE FROM product_offers " +
-                        "WHERE proposal_id = (?) OR offer_id = (?);"
-        );
-
-        stmt.setInt(1,proposalId);
-        stmt.setInt(2, offerId);
-        stmt.executeUpdate();
-
-        stmt = connection.prepareStatement("DELETE FROM products WHERE id = (?);");
-        stmt.setInt(1,proposalId);
-        stmt.executeUpdate();
-
-
-        stmt = connection.prepareStatement("DELETE FROM products WHERE id = (?);");
-        stmt.setInt(1,offerId);
-        stmt.executeUpdate();
-
     }
 }

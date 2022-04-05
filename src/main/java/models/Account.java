@@ -20,6 +20,13 @@ public class Account {
         }
     }
 
+    public static void logout() {
+        currentUser = null;
+        productsOfLoggedUser.clear();
+        currentProduct = null;
+        currentOffer = null;
+    }
+
     public static String checkLogin() {
         if (currentUser == null) {
             return "Nobody is logged in";

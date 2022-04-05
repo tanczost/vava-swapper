@@ -73,6 +73,7 @@
                 prefWidth="150.0"/>
         <Button fx:id="btnMainPage" layoutX="849.0" layoutY="503.0" mnemonicParsing="false"
                 onAction="#redirectToMainPage" prefHeight="39.0" prefWidth="166.0"/>
-        <ListView layoutX="264.0" layoutY="210.0" prefHeight="286.0" prefWidth="499.0" fx:id="lvOffers"/>
+        <ListView layoutX="264.0" layoutY="210.0" prefHeight="286.0" prefWidth="499.0" onMouseClicked="#offerSelected"
+                  fx:id="lvOffers"/>
     </children>
 </AnchorPane>

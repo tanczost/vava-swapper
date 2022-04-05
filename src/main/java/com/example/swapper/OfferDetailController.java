@@ -7,20 +7,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import models.Account;
 import service.FileHandler;
-import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-
-public class PropositionController {
+public class OfferDetailController {
     @FXML
     public ImageView ivProduct;
-    @FXML
-    public Button btnTrade;
     @FXML
     public Label lbProduct;
     @FXML
@@ -36,12 +31,10 @@ public class PropositionController {
     @FXML
     public Button btnBack;
 
-
     @FXML
     public void initialize() throws Exception {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
-        btnTrade.setText(resourceBundle.getString("trade"));
-        lbUserProduct.setText(Account.getCurrentProduct().getName());
+        lbUserProduct.setText(Account.getCurrentOffer().getName());
         lbUserProductLabel.setText(resourceBundle.getString("yourItem"));
         btnDecline.setText(resourceBundle.getString("decline"));
         btnBack.setText(resourceBundle.getString("back"));
@@ -54,17 +47,10 @@ public class PropositionController {
 
     }
 
-    public void trade() throws SQLException, IOException {
-        ProductDbServices.tradeProduct(Account.getCurrentProduct().getId(), Account.getCurrentOffer().getId());
-        Account.setCurrentOffer(null);
-        Account.setCurrentProduct(null);
-        SwitchScreen.changeScreen("views/landingPage.fxml");
-    }
-
-    public void declineProposal() {
+    public void cancelOffer() {
     }
 
     public void redirectBack() throws IOException {
-        SwitchScreen.changeScreen("views/ProposalPage.fxml");
+        SwitchScreen.changeScreen("views/OfferPage.fxml");
     }
 }
