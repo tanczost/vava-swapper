@@ -11,6 +11,7 @@ import models.Account;
 import models.Category;
 import models.Filter;
 import models.Product;
+import service.ProductComparator;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
 
@@ -75,7 +76,8 @@ public class CategoryPageController {
                         result.getString(2),
                         result.getString(3),
                         result.getBoolean(4),
-                        result.getInt(5)
+                        result.getInt(5),
+                        result.getTimestamp(8)
                 ));
             }
 
@@ -85,7 +87,7 @@ public class CategoryPageController {
             System.out.println(filteredProducts);
             //else search by categories
         } else {
-            //TODO: if user did not use searchbar then get categories from BE
+            ResultSet productsByCategory = ProductDbServices.getProductsByCategory("Hoodies");
         }
 
     }
@@ -125,10 +127,22 @@ public class CategoryPageController {
     }
 
     public void setDateASC() {
-        //TODO set sorting by date ASC
+        System.out.println("asc");
+
+        filteredProducts.sort(new ProductComparator());
+
+
+        filteredProducts.forEach(e -> System.out.println(e.toString()));
+
     }
 
     public void setDateDESC() {
-        //TODO set sorting by date DESC
+
+        System.out.println("desc");
+
+        filteredProducts.sort(new ProductComparator().reversed());
+
+
+        filteredProducts.forEach(e -> System.out.println(e.toString()));
     }
 }

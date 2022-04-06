@@ -138,6 +138,19 @@ public class ProductDbServices extends PostgresConnection {
         return sqlReturnValues;
     }
 
+    public static ResultSet getProductsByCategory(String category) throws SQLException {
+        PreparedStatement stmt = connection.prepareStatement(
+                "SELECT *  FROM products WHERE category LIKE '%" + category + "%'");
+
+        ResultSet sqlReturnValues = stmt.executeQuery();
+
+        if (isResultEmpty(sqlReturnValues)) {
+            return null;
+        }
+
+        return sqlReturnValues;
+    }
+
     public static ResultSet getTopProduct() throws SQLException {
         PreparedStatement stmt = connection.prepareStatement("SELECT *" +
                 "FROM products WHERE topped = true ORDER BY created_at LIMIT 1");

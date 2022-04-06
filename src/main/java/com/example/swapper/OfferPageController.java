@@ -9,7 +9,9 @@ import models.Product;
 import service.navigation.SwitchScreen;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -44,7 +46,7 @@ public class OfferPageController {
 
     public void allProposals() throws SQLException {
         offersForProduct.clear();
-        Product product = new Product(5, "Sajt", "Szep", true, 5);
+        Product product = new Product(5, "Sajt", "Szep", true, 5,new Timestamp(new Date(2012,12,12).getTime()));
         offersForProduct.add(product);
 
 

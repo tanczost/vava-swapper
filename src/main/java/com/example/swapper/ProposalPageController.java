@@ -136,7 +136,8 @@ public class ProposalPageController {
                     offers.getString(2),
                     offers.getString(3),
                     offers.getBoolean(4),
-                    offers.getInt(5)
+                    offers.getInt(5),
+                    offers.getTimestamp(7)
             ));
         }
 

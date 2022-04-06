@@ -67,7 +67,8 @@ public class Account {
                     products.getString(2),
                     products.getString(3),
                     products.getBoolean(4),
-                    products.getInt(5)
+                    products.getInt(5),
+                    products.getTimestamp(8)
             ));
         }
         System.out.println("Products are successfully loaded into account");

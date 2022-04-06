@@ -67,7 +67,8 @@ public class LandingPageController {
                         topProductRaw.getString(2),
                         topProductRaw.getString(3),
                         topProductRaw.getBoolean(4),
-                        topProductRaw.getInt(5)
+                        topProductRaw.getInt(5),
+                        topProductRaw.getTimestamp(8)
                 );
             }
 
