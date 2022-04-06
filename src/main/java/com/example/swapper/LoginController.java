@@ -48,6 +48,7 @@ public class LoginController {
             System.out.println(Account.checkLogin());
 
             if (success) {
+                //TODO check if user is not Admin(redirectToAdminPage)
                 Account.loadProducts();
                 SwitchScreen.changeScreen("views/landingPage.fxml");
                 System.out.println(tfNickname.getText() + " has succesfully logged in");

@@ -125,9 +125,10 @@ public class CategoryPageController {
     }
 
     public void setDateASC() {
-
+        //TODO set sorting by date ASC
     }
 
     public void setDateDESC() {
+        //TODO set sorting by date DESC
     }
 }

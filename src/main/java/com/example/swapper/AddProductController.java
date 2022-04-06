@@ -2,15 +2,16 @@ package com.example.swapper;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import models.Account;
 import service.FileHandler;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.Image;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ResourceBundle;
 
 public class AddProductController {
@@ -31,7 +32,6 @@ public class AddProductController {
     private RadioButton rbTop;
     @FXML
     private ComboBox cbCategory;
-
     @FXML
     private ImageView imgView;
 

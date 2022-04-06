@@ -104,9 +104,10 @@ public class LandingPageController {
     }
 
     public void topProductSelected() throws IOException {
-        Account.setCurrentProduct(topProduct);
-        SwitchScreen.changeScreen("views/SelectProposition.fxml");
-
+        if (Account.getCurrentUser() != null) {
+            Account.setCurrentProduct(topProduct);
+            SwitchScreen.changeScreen("views/SelectProposition.fxml");
+        }
     }
 }
 
