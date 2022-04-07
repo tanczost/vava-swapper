@@ -58,4 +58,6 @@ public class FilterController {
         SwitchScreen.changeScreen("views/categoryPage.fxml");
 
     }
+
+    //TODO: create back btn
 }
