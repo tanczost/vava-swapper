@@ -56,4 +56,6 @@ public class AdminPageController {
         //TODO logic for logout
         SwitchScreen.changeScreen("views/login.fxml");
     }
+
+    //TODO fix icon in  corner
 }
