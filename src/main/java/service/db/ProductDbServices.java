@@ -138,6 +138,11 @@ public class ProductDbServices extends PostgresConnection {
         return sqlReturnValues;
     }
 
+    public static ResultSet getAllProduct() throws SQLException {
+        // LIKE %% return every product
+        return getProductsByName("");
+    }
+
     public static ResultSet getProductsByCategory(String category) throws SQLException {
         PreparedStatement stmt = connection.prepareStatement(
                 "SELECT *  FROM products WHERE category LIKE '%" + category + "%'");
@@ -275,5 +280,14 @@ public class ProductDbServices extends PostgresConnection {
         }
 
         return sqlReturnValues;
+    }
+
+    public static boolean deleteProduct(int productId) throws SQLException {
+        PreparedStatement stmt = connection.prepareStatement(
+                "DELETE FROM products WHERE id = (?)");
+
+        stmt.setInt(1,productId);
+       return stmt.execute();
+
     }
 }

@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import models.Account;
 import service.Auth;
+import service.db.UserDbServices;
 import service.navigation.SwitchScreen;
 
 import java.io.IOException;
@@ -48,7 +49,10 @@ public class LoginController {
             System.out.println(Account.checkLogin());
 
             if (success) {
-                //TODO check if user is not Admin(redirectToAdminPage)
+                if(UserDbServices.isUserAdmin(Account.getLoggedUserId())){
+                    SwitchScreen.changeScreen("views/AdminPage.fxml");
+                    return;
+                }
                 Account.loadProducts();
                 SwitchScreen.changeScreen("views/landingPage.fxml");
                 System.out.println(tfNickname.getText() + " has succesfully logged in");

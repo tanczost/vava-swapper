@@ -82,4 +82,19 @@ public class UserDbServices extends PostgresConnection {
         stmt.setString(6, street);
         stmt.setString(7, school);
     }
+
+    public static boolean isUserAdmin(int userId) throws SQLException {
+        PreparedStatement stmt = connection.prepareStatement("SELECT is_admin FROM users WHERE id = (?)");
+
+        stmt.setInt(1, userId);
+
+        ResultSet sqlReturnValues = stmt.executeQuery();
+
+        if(isResultEmpty(sqlReturnValues)){
+            System.out.println("hah");
+            return false;
+        }
+        sqlReturnValues.next();
+        return sqlReturnValues.getBoolean(1);
+    }
 }

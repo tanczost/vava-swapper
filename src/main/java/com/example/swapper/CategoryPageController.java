@@ -67,23 +67,7 @@ public class CategoryPageController {
         if (Filter.getSearchInput() != null) {
             ResultSet result = ProductDbServices.getProductsByName(Filter.getSearchInput());
 
-            if (result == null) {
-                return;
-            }
-            while (result.next()) {
-                filteredProducts.add(new Product(
-                        result.getInt(1),
-                        result.getString(2),
-                        result.getString(3),
-                        result.getBoolean(4),
-                        result.getInt(5),
-                        result.getTimestamp(8)
-                ));
-            }
-
-            filteredProducts.forEach(e -> {
-                lwCategoryItems.getItems().add(e.toString());
-            });
+            AdminPageController.mapResultSetToProducts(result, filteredProducts, lwCategoryItems);
             System.out.println(filteredProducts);
             //else search by categories
         } else {
@@ -127,6 +111,7 @@ public class CategoryPageController {
     }
 
     public void setDateASC() {
+        //TODO urob aj v liestview
         System.out.println("asc");
 
         filteredProducts.sort(new ProductComparator());
@@ -137,7 +122,7 @@ public class CategoryPageController {
     }
 
     public void setDateDESC() {
-
+//TODO urob aj v liestview
         System.out.println("desc");
 
         filteredProducts.sort(new ProductComparator().reversed());
