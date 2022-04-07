@@ -3,6 +3,7 @@ package com.example.swapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import models.Account;
 import service.navigation.SwitchScreen;
 
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class AdminPageController {
     }
 
     public void logout() throws IOException {
-        //TODO logic for logout
+        Account.logout();
         SwitchScreen.changeScreen("views/login.fxml");
     }
 }
