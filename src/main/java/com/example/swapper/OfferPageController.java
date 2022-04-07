@@ -3,7 +3,6 @@ package com.example.swapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.input.MouseEvent;
 import models.Account;
 import models.Product;
 import service.navigation.SwitchScreen;
@@ -45,8 +44,9 @@ public class OfferPageController {
     }
 
     public void allProposals() throws SQLException {
+        //TODO connect to BE
         offersForProduct.clear();
-        Product product = new Product(5, "Sajt", "Szep", true, 5,new Timestamp(new Date(2012,12,12).getTime()));
+        Product product = new Product(5, "Sajt", "Szep", true, 5, new Timestamp(new Date(2012, 12, 12).getTime()));
         offersForProduct.add(product);
 
 
@@ -55,7 +55,7 @@ public class OfferPageController {
         });
     }
 
-    public void offerSelected(MouseEvent mouseEvent) throws IOException {
+    public void offerSelected() throws IOException {
         if (lvOffers.getSelectionModel().isEmpty()) {
             return;
         }

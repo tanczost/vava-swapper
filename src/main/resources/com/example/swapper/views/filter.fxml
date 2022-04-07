@@ -15,21 +15,14 @@
                 <ToggleGroup fx:id="category"/>
             </toggleGroup>
         </RadioButton>
-        <RadioButton layoutX="291.0" layoutY="314.0" mnemonicParsing="false" text="Shirt"
-                     toggleGroup="$category"/>
-        <RadioButton layoutX="291.0" layoutY="354.0" mnemonicParsing="false" text="Pant"
-                     toggleGroup="$category"/>
-        <RadioButton layoutX="291.0" layoutY="394.0" mnemonicParsing="false" text="Hoddy"
-                     toggleGroup="$category"/>
-        
+        <RadioButton layoutX="291.0" layoutY="314.0" mnemonicParsing="false" text="Shirt" toggleGroup="$category"/>
+        <RadioButton layoutX="291.0" layoutY="354.0" mnemonicParsing="false" text="Pant" toggleGroup="$category"/>
+        <RadioButton layoutX="291.0" layoutY="394.0" mnemonicParsing="false" text="Hoddy" toggleGroup="$category"/>
 
-        <RadioButton layoutX="447.0" layoutY="314.0" mnemonicParsing="false" text="Accessory"
 
-                     toggleGroup="$category"/>
-        <RadioButton layoutX="447.0" layoutY="354.0" mnemonicParsing="false" text="Coat"
-                     toggleGroup="$category"/>
-        <RadioButton layoutX="447.0" layoutY="394.0" mnemonicParsing="false" text="Boot"
-                     toggleGroup="$category"/>
+        <RadioButton layoutX="447.0" layoutY="314.0" mnemonicParsing="false" text="Accessory" toggleGroup="$category"/>
+        <RadioButton layoutX="447.0" layoutY="354.0" mnemonicParsing="false" text="Coat" toggleGroup="$category"/>
+        <RadioButton layoutX="447.0" layoutY="394.0" mnemonicParsing="false" text="Boot" toggleGroup="$category"/>
         <Button layoutX="320.0" layoutY="495.0" mnemonicParsing="false" style="-fx-background-color: red;"
                 text="CLEAR FILTERS"/>
         <Button layoutX="519.0" layoutY="495.0" mnemonicParsing="false" onAction="#applyFilters"
@@ -38,5 +31,7 @@
                 style="-fx-background-color: green;" text="APPLY FILTERS"/>
         <DatePicker fx:id="dpFrom" layoutX="354.0" layoutY="121.0"/>
         <DatePicker fx:id="dpTo" layoutX="354.0" layoutY="175.0"/>
+        <Button layoutX="28.0" layoutY="19.0" mnemonicParsing="false" onAction="#backToCategory" prefHeight="44.0"
+                prefWidth="90.0" text="Back"/>
     </children>
 </AnchorPane>

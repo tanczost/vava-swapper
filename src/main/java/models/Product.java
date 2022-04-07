@@ -1,7 +1,8 @@
 package models;
+
 import java.sql.Timestamp;
 
-public class Product{
+public class Product {
     private int id;
     private String name;
     private String description;
@@ -42,6 +43,7 @@ public class Product{
     public int getImgId() {
         return imgId;
     }
+
 
     @Override
     public String toString() {

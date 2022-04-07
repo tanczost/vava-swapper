@@ -59,5 +59,8 @@ public class FilterController {
 
     }
 
-    //TODO: create back btn
+    @FXML
+    private void backToCategory() throws IOException {
+        SwitchScreen.changeScreen("views/categoryPage.fxml");
+    }
 }

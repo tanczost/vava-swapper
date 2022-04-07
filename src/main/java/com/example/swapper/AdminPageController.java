@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import models.Account;
+import models.Admin;
 import models.Product;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
@@ -49,7 +50,13 @@ public class AdminPageController {
     }
 
     public void productSelected() throws IOException {
-        //TODO logic for selection(ADMIN model)
+        if (lvAllProducts.getSelectionModel().isEmpty()) {
+            return;
+        }
+
+        int offersIndex = lvAllProducts.getSelectionModel().getSelectedIndex();
+        Admin.setSelectedProduct(allProducts.get(offersIndex));
+
         SwitchScreen.changeScreen("views/adminDelete.fxml");
     }
 
@@ -58,5 +65,4 @@ public class AdminPageController {
         SwitchScreen.changeScreen("views/login.fxml");
     }
 
-    //TODO fix icon in  corner
 }

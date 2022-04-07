@@ -91,7 +91,7 @@ public class ProductDbServices extends PostgresConnection {
         if (isResultEmpty(sqlReturnValues)) {
             return null;
         }
-
+         
         return sqlReturnValues;
     }
 
@@ -258,12 +258,12 @@ public class ProductDbServices extends PostgresConnection {
         return stmt.executeQuery();
     }
 
-    public static ResultSet getMyOffers() throws SQLException{
-        if(!Account.checkLogin()){
+    public static ResultSet getMyOffers() throws SQLException {
+        if (!Account.checkLogin()) {
             return null;
         }
 
-        PreparedStatement stmt  = connection.prepareStatement(
+        PreparedStatement stmt = connection.prepareStatement(
                 "SELECT products.id," +
                         "name," +
                         "description," +
@@ -272,7 +272,7 @@ public class ProductDbServices extends PostgresConnection {
                         "proposal_id" +
                         "FROM products JOIN product_offers po on products.id = po.offer_id WHERE user_id = (?);");
 
-        stmt.setInt(1,Account.getCurrentUser().getId());
+        stmt.setInt(1, Account.getCurrentUser().getId());
         ResultSet sqlReturnValues = stmt.executeQuery();
 
         if (isResultEmpty(sqlReturnValues)) {
@@ -286,8 +286,8 @@ public class ProductDbServices extends PostgresConnection {
         PreparedStatement stmt = connection.prepareStatement(
                 "DELETE FROM products WHERE id = (?)");
 
-        stmt.setInt(1,productId);
-       return stmt.execute();
+        stmt.setInt(1, productId);
+        return stmt.execute();
 
     }
 }

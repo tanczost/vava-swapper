@@ -94,4 +94,6 @@ public class AddProductController {
     public void BackToMainPage() throws IOException {
         SwitchScreen.changeScreen("views/landingPage.fxml");
     }
+
+    //TODO fix showing image when uploading
 }
