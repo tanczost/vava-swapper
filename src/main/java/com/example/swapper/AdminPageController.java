@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 
 public class AdminPageController {
@@ -24,6 +25,8 @@ public class AdminPageController {
 
     @FXML
     public void initialize() throws SQLException {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
+        btnLogout.setText(resourceBundle.getString("logout"));
         ResultSet result = ProductDbServices.getAllProduct();
 
         mapResultSetToProducts(result, allProducts, lvAllProducts);
