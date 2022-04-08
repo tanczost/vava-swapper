@@ -3,10 +3,10 @@ package models;
 import java.time.Instant;
 
 public class Filter {
-    private static Instant dateFrom;
-    private static Instant dateTo;
-    private static String category;
-    private static String searchInput;
+    private static Instant dateFrom = null;
+    private static Instant dateTo = null;
+    private static String category = null;
+    private static String searchInput = null;
 
     public static Instant getDateFrom() {
         return dateFrom;
@@ -38,5 +38,13 @@ public class Filter {
 
     public static String getSearchInput() {
         return Filter.searchInput;
+    }
+
+    public static void resetFilterValues() {
+        dateFrom = null;
+        dateTo = null;
+        category = null;
+        searchInput = null;
+
     }
 }

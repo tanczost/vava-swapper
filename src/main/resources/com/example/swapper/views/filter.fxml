@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="576.0" prefWidth="1024.0" stylesheets="@style/global.css" xmlns="http://javafx.com/javafx/16"
+<AnchorPane prefHeight="576.0" prefWidth="1024.0" stylesheets="@style/global.css" xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swapper.FilterController">
     <children>
         <Label layoutX="286.0" layoutY="63.0" text="Date"/>
@@ -23,15 +23,13 @@
         <RadioButton layoutX="447.0" layoutY="314.0" mnemonicParsing="false" text="Accessory" toggleGroup="$category"/>
         <RadioButton layoutX="447.0" layoutY="354.0" mnemonicParsing="false" text="Coat" toggleGroup="$category"/>
         <RadioButton layoutX="447.0" layoutY="394.0" mnemonicParsing="false" text="Boot" toggleGroup="$category"/>
-        <Button layoutX="320.0" layoutY="495.0" mnemonicParsing="false" style="-fx-background-color: red;"
-                text="CLEAR FILTERS"/>
-        <Button layoutX="519.0" layoutY="495.0" mnemonicParsing="false" onAction="#applyFilters"
-                style="-fx-background-color: green;" text="APPLY FILTERS"/>
-        <Button layoutX="519.0" layoutY="495.0" mnemonicParsing="false" onAction="#applyFilters"
-                style="-fx-background-color: green;" text="APPLY FILTERS"/>
+        <Button layoutX="298.0" layoutY="465.0" mnemonicParsing="false" fx:id="btnResetFilter" onAction="#resetFilter"
+                prefHeight="39.0" prefWidth="180.0" style="-fx-background-color: red;"/>
+        <Button layoutX="497.0" layoutY="465.0" mnemonicParsing="false" fx:id="btnApplyFilter" onAction="#applyFilters"
+                prefWidth="180.0" style="-fx-background-color: green;"/>
         <DatePicker fx:id="dpFrom" layoutX="354.0" layoutY="121.0"/>
         <DatePicker fx:id="dpTo" layoutX="354.0" layoutY="175.0"/>
-        <Button layoutX="28.0" layoutY="19.0" mnemonicParsing="false" onAction="#backToCategory" prefHeight="44.0"
-                prefWidth="90.0" text="Back"/>
+        <Button fx:id="btnBack" layoutX="428.0" layoutY="518.0" mnemonicParsing="false" onAction="#backToCategory"
+                prefHeight="44.0" prefWidth="118.0"/>
     </children>
 </AnchorPane>

@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.util.ResourceBundle;
 
 public class AddProductController {
-    final FileChooser fileChooser = new FileChooser();
     @FXML
     public Button btnUploadImage;
     @FXML
@@ -35,6 +34,7 @@ public class AddProductController {
     @FXML
     private ImageView imgView;
 
+    final FileChooser fileChooser = new FileChooser();
     private String imgPath;
     private String imgName;
     private File file;
@@ -47,7 +47,7 @@ public class AddProductController {
         btnUploadImage.setText(resourceBundle.getString("uploadImage"));
         lbCategory.setText(resourceBundle.getString("category"));
 
-        String categories[] = {"T-shirt", "Pants", "Hoodies", "Accessories", "Coats", "Boots"};
+        String categories[] = {"Shirt", "Pant", "Hoody", "Accessory", "Coat", "Boot"};
         for (String category : categories) {
             cbCategory.getItems().add(category);
         }
@@ -70,8 +70,7 @@ public class AddProductController {
             System.out.println(e);
         }
 
-        Image choosedImg = new Image("file://" + imgPath);
-        imgView.setImage(choosedImg);
+        imgView.setImage(new Image("file://" + imgPath));
 
     }
 
@@ -86,8 +85,6 @@ public class AddProductController {
         } else {
             System.out.println("Not succes do something");
         }
-
-        System.out.println("hello");
     }
 
     @FXML

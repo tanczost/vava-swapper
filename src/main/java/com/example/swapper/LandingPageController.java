@@ -35,7 +35,7 @@ public class LandingPageController {
     private Label lbCategories;
     @FXML
     private TextField tfSearch;
-    Product topProduct = null;
+    private Product topProduct = null;
 
 
     @FXML
@@ -71,9 +71,7 @@ public class LandingPageController {
                         topProductRaw.getTimestamp(8)
                 );
             }
-
             InputStream is = FileHandler.getFile(topProduct.getImgId());
-            System.out.println(topProduct);
             ivTopProduct.setImage(new Image(is));
         }
 

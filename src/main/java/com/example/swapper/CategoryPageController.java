@@ -69,9 +69,17 @@ public class CategoryPageController {
 
             AdminPageController.mapResultSetToProducts(result, filteredProducts, lwCategoryItems);
             System.out.println(filteredProducts);
-            //else search by categories
-        } else {
-            ResultSet productsByCategory = ProductDbServices.getProductsByCategory("Hoodies");
+
+        } //search by filter
+        if (Filter.getCategory() != null) {
+            ResultSet filteredProductsList = ProductDbServices.getFilteredProducts(Filter.getDateFrom(), Filter.getDateTo(), Filter.getCategory());
+            AdminPageController.mapResultSetToProducts(filteredProductsList, filteredProducts, lwCategoryItems);
+            Filter.resetFilterValues();
+        }
+        //else - search by categories
+        else {
+            ResultSet productsByCategory = ProductDbServices.getProductsByCategory(Category.getNameOfCategory());
+            AdminPageController.mapResultSetToProducts(productsByCategory, filteredProducts, lwCategoryItems);
         }
 
     }
@@ -92,7 +100,6 @@ public class CategoryPageController {
         if (lwCategoryItems.getSelectionModel().isEmpty()) {
             return;
         }
-
         int offersIndex = lwCategoryItems.getSelectionModel().getSelectedIndex();
         Account.setCurrentProduct(filteredProducts.get(offersIndex));
         SwitchScreen.changeScreen("views/SelectProposition.fxml");
@@ -111,23 +118,14 @@ public class CategoryPageController {
     }
 
     public void setDateASC() {
-        //TODO urob aj v liestview
-        System.out.println("asc");
-
         filteredProducts.sort(new ProductComparator());
-
-
-        filteredProducts.forEach(e -> System.out.println(e.toString()));
-
+        lwCategoryItems.getItems().clear();
+        filteredProducts.forEach(e -> lwCategoryItems.getItems().add(e.toString()));
     }
 
     public void setDateDESC() {
-//TODO urob aj v liestview
-        System.out.println("desc");
-
         filteredProducts.sort(new ProductComparator().reversed());
-
-
-        filteredProducts.forEach(e -> System.out.println(e.toString()));
+        lwCategoryItems.getItems().clear();
+        filteredProducts.forEach(e -> lwCategoryItems.getItems().add(e.toString()));
     }
 }

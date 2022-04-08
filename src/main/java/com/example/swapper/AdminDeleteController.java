@@ -31,7 +31,7 @@ public class AdminDeleteController {
     @FXML
     public ImageView ivImg;
 
-    Product currentProduct;
+    private Product currentProduct;
 
     @FXML
     public void initialize() throws Exception {
