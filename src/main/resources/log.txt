@@ -1,0 +1,6 @@
+Apr 09, 2022 9:44:03 PM service.LogManager severe
+SEVERE: ERROR
+Apr 09, 2022 9:44:26 PM service.LogManager severe
+SEVERE: ERROR
+Apr 09, 2022 9:45:30 PM service.LogManager severe
+SEVERE: ERROR

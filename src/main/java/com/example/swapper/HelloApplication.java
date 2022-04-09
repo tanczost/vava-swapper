@@ -5,13 +5,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import service.LogManager;
 import service.PostgresConnection;
 
 import java.io.IOException;
 import java.util.Locale;
+import java.util.logging.Logger;
 
 public class HelloApplication extends Application {
     public static Stage stage;
+    //needed for initialization
+    private LogManager logManager = new LogManager();
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -26,6 +30,8 @@ public class HelloApplication extends Application {
         primaryStage.setScene(scene);
         scene.getRoot().setStyle("-fx-font-family: 'serif'");
         primaryStage.show();
+
+        LogManager.severe("Test");
     }
 
     public void changeScene(String fxml) throws IOException {
