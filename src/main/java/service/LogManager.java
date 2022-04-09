@@ -1,6 +1,8 @@
 package service;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 import java.util.logging.SimpleFormatter;
 import java.util.logging.FileHandler;
 
@@ -10,6 +12,12 @@ public class LogManager{
 
     public LogManager(){
         try {
+            var date = new Date();
+            //at init draw a divider
+            FileWriter fileWriter = new FileWriter("src/main/resources/log.txt", true);
+            fileWriter.append("\n==========" + date.toString() + "==========\n");
+            fileWriter.close();
+
             fileHandler = new FileHandler("src/main/resources/log.txt", true);
             log.addHandler(fileHandler);
 
