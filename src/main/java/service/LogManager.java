@@ -14,11 +14,11 @@ public class LogManager{
         try {
             var date = new Date();
             //at init draw a divider
-            FileWriter fileWriter = new FileWriter("src/main/resources/log.txt", true);
+            FileWriter fileWriter = new FileWriter("log.txt", true);
             fileWriter.append("\n==========" + date.toString() + "==========\n");
             fileWriter.close();
 
-            fileHandler = new FileHandler("src/main/resources/log.txt", true);
+            fileHandler = new FileHandler("log.txt", true);
             log.addHandler(fileHandler);
 
             SimpleFormatter formatter = new SimpleFormatter();

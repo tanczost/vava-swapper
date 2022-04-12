@@ -19,6 +19,7 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+        LogManager.info("Start");
         PostgresConnection.initializePostgresqlDatabase();
         Locale.setDefault(new Locale("en", "EN"));
         stage = primaryStage;

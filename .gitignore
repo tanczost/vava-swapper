@@ -5,7 +5,7 @@ target/
 target/classes/schema.sql
 
 *.DS_Store
-
+*.txt
 ### Java template
 *.class
 
