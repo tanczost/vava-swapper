@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import models.Account;
 import service.Auth;
+import service.LogManager;
 import service.db.UserDbServices;
 import service.navigation.SwitchScreen;
 
@@ -72,5 +73,6 @@ public class LoginController {
 
     public void navigateToMainPage() throws IOException {
         SwitchScreen.changeScreen("views/landingPage.fxml");
+        LogManager.log("Changing to landing page.", LogManager.LEVEL.info);
     }
 }
