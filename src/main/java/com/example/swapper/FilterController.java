@@ -30,6 +30,7 @@ public class FilterController {
     private DatePicker dpTo;
     @FXML
     private ToggleGroup category;
+    private Filter filter = Filter.getInstance();
 
     @FXML
     public void initialize() throws SQLException {
@@ -43,21 +44,21 @@ public class FilterController {
     private void applyFilters() throws IOException {
         if (dpFrom.getValue() != null) {
             LocalDate localDateFrom = dpFrom.getValue();
-            Filter.setDateFrom(Instant.from(localDateFrom.atStartOfDay(ZoneId.systemDefault())));
+            filter.setDateFrom(Instant.from(localDateFrom.atStartOfDay(ZoneId.systemDefault())));
         }
 
         if (dpTo.getValue() != null) {
             LocalDate localDateTo = dpTo.getValue();
-            Filter.setDateTo(Instant.from(localDateTo.atStartOfDay(ZoneId.systemDefault())));
+            filter.setDateTo(Instant.from(localDateTo.atStartOfDay(ZoneId.systemDefault())));
         }
 
         if (category.getSelectedToggle() != null) {
             RadioButton selectedRadioButton = (RadioButton) category.getSelectedToggle();
-            Filter.setCategory(selectedRadioButton.getText());
+            filter.setCategory(selectedRadioButton.getText());
         }
         //TODO filtrovat aj podla kategorie aj kategoria+top
         RadioButton selectedRadioButton = (RadioButton) category.getSelectedToggle();
-        Category.setNameOfCategory(selectedRadioButton.getText().toLowerCase(Locale.ROOT));
+        Category.getInstance().setNameOfCategory(selectedRadioButton.getText().toLowerCase(Locale.ROOT));
         SwitchScreen.changeScreen("views/categoryPage.fxml");
     }
 

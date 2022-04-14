@@ -34,7 +34,7 @@ public class AddProductController {
     @FXML
     private ImageView imgView;
 
-    final FileChooser fileChooser = new FileChooser();
+    private final FileChooser fileChooser = new FileChooser();
     private String imgPath;
     private String imgName;
     private File file;
@@ -76,7 +76,7 @@ public class AddProductController {
 
     @FXML
     private void addProduct() throws Exception {
-        int loggedUserId = Account.getLoggedUserId();
+        int loggedUserId = Account.getInstance().getLoggedUserId();
         int newImageId = FileHandler.uploadFile(FileHandler.readImageToByteStream(imgPath, imgName));
         int result = ProductDbServices.insertProductDb(tfProductName.getText(), tfDescription.getText(), rbTop.isSelected(), loggedUserId, newImageId, cbCategory.getValue().toString());
 

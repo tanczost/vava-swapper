@@ -1,6 +1,5 @@
 package com.example.swapper;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -15,6 +14,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -43,8 +43,8 @@ public class ProposalPageController {
     private Button btnToggleLanguage;
     @FXML
     public Button addProduct;
-
-    private ArrayList<Product> offersForProduct = new ArrayList<>();
+    private List<Product> offersForProduct = new ArrayList<>();
+    private Account account = Account.getInstance();
 
     @FXML
     public void initialize() throws SQLException {
@@ -60,20 +60,20 @@ public class ProposalPageController {
         btnLogout.setText(resourceBundle.getString("logout"));
 
 
-        lbName.setText(Account.getCurrentUser().getNickName().toUpperCase(Locale.ROOT));
-        for (Product product : Account.getProductsOfLoggedUser()) {
+        lbName.setText(account.getCurrentUser().getNickName().toUpperCase(Locale.ROOT));
+        for (Product product : account.getProductsOfLoggedUser()) {
             cbUserItems.getItems().add(product.getName());
         }
     }
 
     public void toggleLanguage() throws IOException {
-        boolean hasEnglishSelected = Account.getCurrentUser().hasEnglishLanguageSelected();
+        boolean hasEnglishSelected = account.getCurrentUser().hasEnglishLanguageSelected();
         if (hasEnglishSelected) {
             Locale.setDefault(new Locale("sk", "SK"));
         } else {
             Locale.setDefault(new Locale("en", "EN"));
         }
-        Account.getCurrentUser().setHasEnglishLanguageSelected(!hasEnglishSelected);
+        account.getCurrentUser().setHasEnglishLanguageSelected(!hasEnglishSelected);
         SwitchScreen.changeScreen("views/ProposalPage.fxml");
     }
 
@@ -82,7 +82,7 @@ public class ProposalPageController {
         SwitchScreen.changeScreen("views/addProduct.fxml");
     }
 
-    public void redirectToMainPage(ActionEvent event) throws IOException {
+    public void redirectToMainPage() throws IOException {
         SwitchScreen.changeScreen("views/landingPage.fxml");
     }
 
@@ -107,20 +107,20 @@ public class ProposalPageController {
         }
 
         int offersIndex = lvUserItems.getSelectionModel().getSelectedIndex();
-        Account.setCurrentOffer(offersForProduct.get(offersIndex));
+        account.setCurrentOffer(offersForProduct.get(offersIndex));
 
         SwitchScreen.changeScreen("views/proposition.fxml");
     }
 
     public void productSelected() throws SQLException {
-        for (Product product : Account.getProductsOfLoggedUser()) {
+        for (Product product : account.getProductsOfLoggedUser()) {
             if (product.getName().equals(cbUserItems.getValue().toString())) {
-                Account.setCurrentProduct(product);
+                account.setCurrentProduct(product);
                 break;
             }
         }
 
-        ResultSet offers = ProductDbServices.getOffersForProduct(Account.getCurrentProduct().getId());
+        ResultSet offers = ProductDbServices.getOffersForProduct(account.getCurrentProduct().getId());
 
         lvUserItems.getItems().clear();
         if (offers == null) {
@@ -149,7 +149,7 @@ public class ProposalPageController {
     }
 
     public void logout() throws IOException {
-        Account.logout();
+        account.logout();
         SwitchScreen.changeScreen("views/login.fxml");
     }
 }

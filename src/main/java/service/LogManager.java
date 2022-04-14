@@ -1,47 +1,56 @@
 package service;
 
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Date;
+import java.util.logging.Level;
 import java.util.logging.SimpleFormatter;
 import java.util.logging.FileHandler;
 
 public class LogManager{
     private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(LogManager.class.getName());
-    FileHandler fileHandler;
+    static FileHandler fileHandler;
 
     public LogManager(){
-        try {
+        //TODO make sure only at startup of the app is the date logged
+        /*try {
             var date = new Date();
             //at init draw a divider
             FileWriter fileWriter = new FileWriter("src/main/resources/log.txt", true);
             fileWriter.append("\n==========" + date.toString() + "==========\n");
             fileWriter.close();
+        }catch (SecurityException | IOException e){
+            e.printStackTrace();
+        }*/
+    }
 
-            fileHandler = new FileHandler("src/main/resources/log.txt", true);
+    public static enum LEVEL{
+        severe,
+        warning,
+        info,
+        fine
+    }
+
+    public static void log(String error, LEVEL logLevel){
+        try {
+            fileHandler = new FileHandler("log.txt", true);
             log.addHandler(fileHandler);
 
             SimpleFormatter formatter = new SimpleFormatter();
             fileHandler.setFormatter(formatter);
-        }catch (SecurityException | IOException e){
+
+            if (logLevel == LEVEL.severe){
+                log.severe(error);
+            }else if(logLevel == LEVEL.warning){
+                log.warning(error);
+            }else if(logLevel == LEVEL.info){
+                log.info(error);
+            }else if(logLevel == LEVEL.fine){
+                log.fine(error);
+            }
+
+            fileHandler.close();
+        }catch (IOException | SecurityException e){
             e.printStackTrace();
         }
-    }
-
-    public static void severe(String error){
-        log.severe(error);
-    }
-
-    public static void warning(String error){
-        log.warning(error);
-    }
-
-    public static void info(String error){
-        log.info(error);
-    }
-
-    public static void fine(String error){
-        log.fine(error);
     }
 
     public static void disableConsoleLogger(){

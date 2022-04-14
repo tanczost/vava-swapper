@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import models.Account;
 import service.Auth;
+import service.LogManager;
 import service.db.UserDbServices;
 import service.navigation.SwitchScreen;
 
@@ -30,6 +31,7 @@ public class LoginController {
     private Button btnLogIn;
     @FXML
     private Button btnNoAccount;
+    private Account account = Account.getInstance();
 
     @FXML
     public void initialize() {
@@ -46,14 +48,13 @@ public class LoginController {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         if (!tfNickname.getText().isEmpty() && !pfPassword.getText().isEmpty()) {
             boolean success = Auth.login(tfNickname.getText(), pfPassword.getText());
-            System.out.println(Account.checkLogin());
 
             if (success) {
-                if(UserDbServices.isUserAdmin(Account.getLoggedUserId())){
+                if (UserDbServices.isUserAdmin(account.getLoggedUserId())) {
                     SwitchScreen.changeScreen("views/AdminPage.fxml");
                     return;
                 }
-                Account.loadProducts();
+                account.loadProducts();
                 SwitchScreen.changeScreen("views/landingPage.fxml");
                 System.out.println(tfNickname.getText() + " has succesfully logged in");
             } else {
@@ -72,5 +73,6 @@ public class LoginController {
 
     public void navigateToMainPage() throws IOException {
         SwitchScreen.changeScreen("views/landingPage.fxml");
+        LogManager.log("Changing to landing page.", LogManager.LEVEL.info);
     }
 }

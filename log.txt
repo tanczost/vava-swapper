@@ -1,0 +1,2 @@
+Apr 12, 2022 5:45:00 PM service.LogManager log
+INFO: Changing to landing page.

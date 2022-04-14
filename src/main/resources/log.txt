@@ -7,6 +7,7 @@ SEVERE: Test
 ==========Sat Apr 09 21:52:20 CEST 2022==========
 Apr 09, 2022 9:52:21 PM service.LogManager severe
 SEVERE: Test
+<<<<<<< HEAD
 
 ==========Tue Apr 12 16:50:52 CEST 2022==========
 Apr 12, 2022 4:50:54 PM service.LogManager severe
@@ -79,3 +80,7 @@ SEVERE: Test
 ==========Tue Apr 12 16:59:23 CEST 2022==========
 
 ==========Tue Apr 12 16:59:29 CEST 2022==========
+=======
+Apr 12, 2022 5:03:05 PM service.LogManager log
+INFO: Changing to landing page.
+>>>>>>> 0403b89da8862a47d99d7f9aa79155ba378100d9

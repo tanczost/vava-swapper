@@ -34,32 +34,34 @@ public class SelectPropositionController {
     public ComboBox cbUserItems;
     @FXML
     public Button btnBack;
+    private Account account = Account.getInstance();
 
     @FXML
     public void initialize() throws Exception {
+        //TODO add label for TOP products
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         btnTrade.setText(resourceBundle.getString("trade"));
         lbUserProductLabel.setText(resourceBundle.getString("yourItem"));
         btnBack.setText(resourceBundle.getString("back"));
 
 
-        lbProduct.setText(Account.getCurrentProduct().getName());
-        lbDescription.setText(Account.getCurrentProduct().getDescription());
+        lbProduct.setText(account.getCurrentProduct().getName());
+        lbDescription.setText(account.getCurrentProduct().getDescription());
 
-        InputStream is = FileHandler.getFile(Account.getCurrentProduct().getImgId());
+        InputStream is = FileHandler.getFile(account.getCurrentProduct().getImgId());
         ivProduct.setImage(new Image(is));
 
-        for (Product product : Account.getProductsOfLoggedUser()) {
+        for (Product product : account.getProductsOfLoggedUser()) {
             cbUserItems.getItems().add(product.getName());
         }
 
     }
 
-    public void trade() throws IOException, SQLException {
-        System.out.println(Account.getProductsOfLoggedUser().get(cbUserItems.getSelectionModel().getSelectedIndex()).getId());
-        ProductDbServices.insertOfferDb(Account.getCurrentProduct().getId(), Account.getProductsOfLoggedUser().get(cbUserItems.getSelectionModel().getSelectedIndex()).getId());
-        Account.setCurrentOffer(null);
-        Account.setCurrentProduct(null);
+
+    public void trade() throws IOException {
+        ProductDbServices.insertOfferDb(account.getCurrentProduct().getId(), account.getCurrentOffer().getId());
+        account.setCurrentOffer(null);
+        account.setCurrentProduct(null);
         SwitchScreen.changeScreen("views/landingPage.fxml");
 
     }
