@@ -10,12 +10,16 @@
         <Label layoutX="114.0" layoutY="175.0"/>
         <Label layoutX="288.0" layoutY="173.0" text="To"/>
         <Label layoutX="285.0" layoutY="244.0" text="CATEGORY"/>
-        <RadioButton fx:id="rbTop" layoutX="591.0" layoutY="354.0" mnemonicParsing="false" text="TOP">
+        <RadioButton layoutX="591.0" layoutY="354.0" mnemonicParsing="false" text="TOP" toggleGroup="$top">
+            <toggleGroup>
+                <ToggleGroup fx:id="top"/>
+            </toggleGroup>
+        </RadioButton>
+        <RadioButton layoutX="291.0" layoutY="314.0" mnemonicParsing="false" text="Shirt" toggleGroup="$category">
             <toggleGroup>
                 <ToggleGroup fx:id="category"/>
             </toggleGroup>
         </RadioButton>
-        <RadioButton layoutX="291.0" layoutY="314.0" mnemonicParsing="false" text="Shirt" toggleGroup="$category"/>
         <RadioButton layoutX="291.0" layoutY="354.0" mnemonicParsing="false" text="Pant" toggleGroup="$category"/>
         <RadioButton layoutX="291.0" layoutY="394.0" mnemonicParsing="false" text="Hoddy" toggleGroup="$category"/>
 

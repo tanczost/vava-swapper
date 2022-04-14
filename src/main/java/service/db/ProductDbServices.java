@@ -197,6 +197,7 @@ public class ProductDbServices extends PostgresConnection {
      * @return ResultSet - The list of products which met the criteria
      * @throws SQLException - On database connection issues.
      */
+    //TODO add parameter TOPPED
     public static ResultSet getFilteredProducts(Instant timeStampFrom, Instant timeStampTo, String category) throws SQLException {
         //TODO maybe return everything then?
         //dont query the database if no filters were set

@@ -35,18 +35,25 @@ public class PropositionController {
     public Button btnDecline;
     @FXML
     public Button btnBack;
+    @FXML
+    public Label lTop;
     private Account account = Account.getInstance();
 
 
     @FXML
     public void initialize() throws Exception {
-        //TODO add label for TOP product
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         btnTrade.setText(resourceBundle.getString("trade"));
         lbUserProduct.setText(account.getCurrentProduct().getName());
         lbUserProductLabel.setText(resourceBundle.getString("yourItem"));
         btnDecline.setText(resourceBundle.getString("decline"));
         btnBack.setText(resourceBundle.getString("back"));
+
+        //TODO add label for TOP product -- maybe its done
+        lTop.setText("");
+        if (account.getCurrentOffer().isTopped()) {
+            lTop.setText("TOP");
+        }
 
         lbProduct.setText(account.getCurrentOffer().getName());
         lbDescription.setText(account.getCurrentOffer().getDescription());
