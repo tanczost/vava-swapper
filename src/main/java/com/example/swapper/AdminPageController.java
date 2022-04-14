@@ -2,10 +2,12 @@ package com.example.swapper;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import models.Account;
 import models.Admin;
 import models.Product;
+import service.UIHelper;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
 
@@ -13,6 +15,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -21,50 +24,33 @@ public class AdminPageController {
     public ListView<String> lvAllProducts;
     @FXML
     public Button btnLogout;
-    private ArrayList<Product> allProducts = new ArrayList<>();
+    @FXML
+    public Label lbItems;
+    private List<Product> allProducts = new ArrayList<>();
 
     @FXML
     public void initialize() throws SQLException {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         btnLogout.setText(resourceBundle.getString("logout"));
+        lbItems.setText(resourceBundle.getString("allItems"));
         ResultSet result = ProductDbServices.getAllProduct();
-
-        mapResultSetToProducts(result, allProducts, lvAllProducts);
+        UIHelper.mapResultSetToProducts(result, allProducts, lvAllProducts);
     }
 
-    static void mapResultSetToProducts(ResultSet result, ArrayList<Product> allProducts, ListView<String> lvAllProducts) throws SQLException {
-        if (result == null) {
-            return;
-        }
-        while (result.next()) {
-            allProducts.add(new Product(
-                    result.getInt(1),
-                    result.getString(2),
-                    result.getString(3),
-                    result.getBoolean(4),
-                    result.getInt(5),
-                    result.getTimestamp(8)
-            ));
-        }
-
-        allProducts.forEach(e -> {
-            lvAllProducts.getItems().add(e.toString());
-        });
-    }
-
+    
     public void productSelected() throws IOException {
         if (lvAllProducts.getSelectionModel().isEmpty()) {
             return;
         }
 
         int offersIndex = lvAllProducts.getSelectionModel().getSelectedIndex();
-        Admin.setSelectedProduct(allProducts.get(offersIndex));
+        Admin.getInstance().setSelectedProduct(allProducts.get(offersIndex));
 
         SwitchScreen.changeScreen("views/adminDelete.fxml");
     }
 
     public void logout() throws IOException {
-        Account.logout();
+        Account.getInstance().logout();
         SwitchScreen.changeScreen("views/login.fxml");
     }
 

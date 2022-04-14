@@ -7,10 +7,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Account {
+    private static Account instance = null;
     private static User currentUser = null;
     private static ArrayList<Product> productsOfLoggedUser = new ArrayList<>();
     private static Product currentProduct = null;
     private static Product currentOffer = null;
+
+    public static Account getInstance() {
+        if (instance == null) {
+            instance = new Account();
+        }
+        return instance;
+    }
 
     public static void createAccount(int id, String nick, String firstName, String lastName, String email, String town, String street, String school) {
         if (currentUser == null) {

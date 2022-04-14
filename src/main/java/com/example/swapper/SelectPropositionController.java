@@ -33,6 +33,7 @@ public class SelectPropositionController {
     public ComboBox cbUserItems;
     @FXML
     public Button btnBack;
+    private Account account = Account.getInstance();
 
     @FXML
     public void initialize() throws Exception {
@@ -42,22 +43,22 @@ public class SelectPropositionController {
         btnBack.setText(resourceBundle.getString("back"));
 
 
-        lbProduct.setText(Account.getCurrentProduct().getName());
-        lbDescription.setText(Account.getCurrentProduct().getDescription());
+        lbProduct.setText(account.getCurrentProduct().getName());
+        lbDescription.setText(account.getCurrentProduct().getDescription());
 
-        InputStream is = FileHandler.getFile(Account.getCurrentProduct().getImgId());
+        InputStream is = FileHandler.getFile(account.getCurrentProduct().getImgId());
         ivProduct.setImage(new Image(is));
 
-        for (Product product : Account.getProductsOfLoggedUser()) {
+        for (Product product : account.getProductsOfLoggedUser()) {
             cbUserItems.getItems().add(product.getName());
         }
 
     }
 
     public void trade() throws IOException {
-        ProductDbServices.insertOfferDb(Account.getCurrentProduct().getId(), Account.getCurrentOffer().getId());
-        Account.setCurrentOffer(null);
-        Account.setCurrentProduct(null);
+        ProductDbServices.insertOfferDb(account.getCurrentProduct().getId(), account.getCurrentOffer().getId());
+        account.setCurrentOffer(null);
+        account.setCurrentProduct(null);
         SwitchScreen.changeScreen("views/landingPage.fxml");
 
     }

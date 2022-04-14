@@ -50,10 +50,11 @@ public class EditPersonalInfoController {
     private Button btnUpdate;
     @FXML
     public Button btnBack;
+    private Account account = Account.getInstance();
 
     @FXML
     public void initialize() {
-        User currentUser = Account.getCurrentUser();
+        User currentUser = account.getCurrentUser();
         tfFirstName.setText(currentUser.getFirstName());
         tfLastName.setText(currentUser.getLastName());
         tfNickName.setText(currentUser.getNickName());
@@ -92,7 +93,7 @@ public class EditPersonalInfoController {
                 );
 
                 if (success > 0) {
-                    Account.setCurrentUserDetails(tfNickName.getText(),
+                    account.setCurrentUserDetails(tfNickName.getText(),
                             tfFirstName.getText(), tfLastName.getText(),
                             tfEmail.getText(), tfTown.getText(),
                             tfStreet.getText(), tfSchool.getText());

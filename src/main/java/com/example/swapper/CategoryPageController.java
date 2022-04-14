@@ -12,6 +12,7 @@ import models.Category;
 import models.Filter;
 import models.Product;
 import service.ProductComparator;
+import service.UIHelper;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
 
@@ -20,6 +21,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class CategoryPageController {
@@ -37,9 +39,12 @@ public class CategoryPageController {
     private TextField tfSearch;
     @FXML
     private ListView lwCategoryItems;
+    private Account account = Account.getInstance();
+    private Category category = Category.getInstance();
+    private Filter filter = Filter.getInstance();
 
 
-    private ArrayList<Product> filteredProducts = new ArrayList<>();
+    private List<Product> filteredProducts = new ArrayList<>();
 
     @FXML
     public void backMain() throws IOException {
@@ -48,13 +53,13 @@ public class CategoryPageController {
 
     @FXML
     public void initialize() throws SQLException {
-        File file = new File("src/main/resources/com/example/swapper/views/images/" + Category.getNameOfCategory() + ".png");
+        File file = new File("src/main/resources/com/example/swapper/views/images/" + category.getNameOfCategory() + ".png");
         Image image = new Image(file.toURI().toString());
         categories.setImage(image);
 
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         lbSort.setText(resourceBundle.getString("sortByDate"));
-        if (Account.getCurrentUser() == null) {
+        if (account.getCurrentUser() == null) {
             btnLogin.setText(resourceBundle.getString("login"));
             btnLogin.setVisible(true);
             ivAvatar.setVisible(false);
@@ -63,31 +68,30 @@ public class CategoryPageController {
             btnAddProduct.setVisible(true);
         }
 
-        //if user searched by searchbar
-        if (Filter.getSearchInput() != null) {
-            ResultSet result = ProductDbServices.getProductsByName(Filter.getSearchInput());
-
-            AdminPageController.mapResultSetToProducts(result, filteredProducts, lwCategoryItems);
+        //user searched by searchbar
+        if (filter.getSearchInput() != null) {
+            ResultSet result = ProductDbServices.getProductsByName(filter.getSearchInput());
+            UIHelper.mapResultSetToProducts(result, filteredProducts, lwCategoryItems);
             System.out.println(filteredProducts);
 
         } //search by filter
-        if (Filter.getCategory() != null) {
-            ResultSet filteredProductsList = ProductDbServices.getFilteredProducts(Filter.getDateFrom(), Filter.getDateTo(), Filter.getCategory());
-            AdminPageController.mapResultSetToProducts(filteredProductsList, filteredProducts, lwCategoryItems);
-            Filter.resetFilterValues();
+        if (filter.getCategory() != null) {
+            ResultSet filteredProductsList = ProductDbServices.getFilteredProducts(filter.getDateFrom(), filter.getDateTo(), filter.getCategory());
+            UIHelper.mapResultSetToProducts(filteredProductsList, filteredProducts, lwCategoryItems);
+            filter.resetFilterValues();
         }
         //else - search by categories
         else {
-            ResultSet productsByCategory = ProductDbServices.getProductsByCategory(Category.getNameOfCategory());
-            AdminPageController.mapResultSetToProducts(productsByCategory, filteredProducts, lwCategoryItems);
+            ResultSet productsByCategory = ProductDbServices.getProductsByCategory(category.getNameOfCategory());
+            UIHelper.mapResultSetToProducts(productsByCategory, filteredProducts, lwCategoryItems);
         }
 
     }
 
     @FXML
     public void searchForProduct() throws IOException {
-        Filter.setSearchInput(tfSearch.getText());
-        Category.setNameOfCategory("");
+        filter.setSearchInput(tfSearch.getText());
+        category.setNameOfCategory("");
         SwitchScreen.changeScreen("views/categoryPage.fxml");
     }
 
@@ -101,7 +105,7 @@ public class CategoryPageController {
             return;
         }
         int offersIndex = lwCategoryItems.getSelectionModel().getSelectedIndex();
-        Account.setCurrentProduct(filteredProducts.get(offersIndex));
+        account.setCurrentProduct(filteredProducts.get(offersIndex));
         SwitchScreen.changeScreen("views/SelectProposition.fxml");
     }
 
@@ -117,6 +121,10 @@ public class CategoryPageController {
         SwitchScreen.changeScreen("views/login.fxml");
     }
 
+    public void redirectToProposalPage() throws IOException {
+        SwitchScreen.changeScreen("views/ProposalPage.fxml");
+    }
+
     public void setDateASC() {
         filteredProducts.sort(new ProductComparator());
         lwCategoryItems.getItems().clear();
@@ -128,4 +136,5 @@ public class CategoryPageController {
         lwCategoryItems.getItems().clear();
         filteredProducts.forEach(e -> lwCategoryItems.getItems().add(e.toString()));
     }
+
 }

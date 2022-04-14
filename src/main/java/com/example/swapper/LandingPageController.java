@@ -36,12 +36,14 @@ public class LandingPageController {
     @FXML
     private TextField tfSearch;
     private Product topProduct = null;
+    private Account account = Account.getInstance();
+    private Category category = Category.getInstance();
 
 
     @FXML
     public void changeScenario(MouseEvent event) throws IOException {
         ImageView Item = (ImageView) event.getSource();
-        Category.setNameOfCategory(Item.getId());
+        category.setNameOfCategory(Item.getId());
         SwitchScreen.changeScreen("views/categoryPage.fxml");
     }
 
@@ -50,7 +52,7 @@ public class LandingPageController {
     public void initialize() throws Exception {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         lbCategories.setText(resourceBundle.getString("category"));
-        if (Account.getCurrentUser() == null) {
+        if (account.getCurrentUser() == null) {
             btnLogin.setText(resourceBundle.getString("login"));
             btnLogin.setVisible(true);
             ivAvatar.setVisible(false);
@@ -79,8 +81,8 @@ public class LandingPageController {
 
     @FXML
     public void searchForProduct() throws IOException {
-        Filter.setSearchInput(tfSearch.getText());
-        Category.setNameOfCategory("");
+        Filter.getInstance().setSearchInput(tfSearch.getText());
+        category.setNameOfCategory("");
         SwitchScreen.changeScreen("views/categoryPage.fxml");
     }
 
@@ -103,8 +105,8 @@ public class LandingPageController {
     }
 
     public void topProductSelected() throws IOException {
-        if (Account.getCurrentUser() != null) {
-            Account.setCurrentProduct(topProduct);
+        if (account.getCurrentUser() != null) {
+            account.setCurrentProduct(topProduct);
             SwitchScreen.changeScreen("views/SelectProposition.fxml");
         }
     }

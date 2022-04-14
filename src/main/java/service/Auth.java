@@ -32,7 +32,7 @@ public class Auth {
 
         resultSet.next();
 
-        Account.createAccount(
+        Account.getInstance().createAccount(
                 resultSet.getInt(8),
                 resultSet.getString(1),
                 resultSet.getString(2),
