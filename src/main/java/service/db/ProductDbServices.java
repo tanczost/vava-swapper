@@ -263,7 +263,7 @@ public class ProductDbServices extends PostgresConnection {
         if (!account.checkLogin()) {
             return null;
         }
-
+        //TODO ERROR: syntax error at or near "JOIN" (Tanczi <3)
         PreparedStatement stmt = connection.prepareStatement(
                 "SELECT products.id," +
                         "name," +

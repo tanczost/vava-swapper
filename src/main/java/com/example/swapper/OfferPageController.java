@@ -5,9 +5,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import models.Account;
 import models.Product;
+import service.UIHelper;
+import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -40,11 +43,10 @@ public class OfferPageController {
     }
 
     public void allProposals() throws SQLException {
-        //TODO connect to BE
-        offersForProduct.clear();
-        offersForProduct.forEach(e -> {
-            lvOffers.getItems().add(e.toString());
-        });
+        //TODO connect to BE - BE error with JOIN :O
+        ResultSet result = ProductDbServices.getMyOffers();
+        UIHelper.mapResultSetToProducts(result, offersForProduct, lvOffers);
+        System.out.println(offersForProduct);
     }
 
     public void offerSelected() throws IOException {
