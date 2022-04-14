@@ -40,6 +40,7 @@ public class PropositionController {
 
     @FXML
     public void initialize() throws Exception {
+        //TODO add label for TOP product
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         btnTrade.setText(resourceBundle.getString("trade"));
         lbUserProduct.setText(account.getCurrentProduct().getName());

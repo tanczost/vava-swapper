@@ -37,6 +37,7 @@ public class SelectPropositionController {
 
     @FXML
     public void initialize() throws Exception {
+        //TODO add label for TOP products
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         btnTrade.setText(resourceBundle.getString("trade"));
         lbUserProductLabel.setText(resourceBundle.getString("yourItem"));
