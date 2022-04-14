@@ -39,6 +39,8 @@ public class AddProductController {
     private String imgName;
     private File file;
 
+
+    //TODO pridat Observer pattern(ked user prida item,notifikujeme admina)
     @FXML
     public void initialize() throws Exception {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
