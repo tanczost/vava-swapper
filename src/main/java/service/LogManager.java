@@ -1,16 +1,18 @@
 package service;
 
+import observer.Observer;
+
 import java.io.IOException;
-import java.util.logging.Level;
 import java.util.logging.SimpleFormatter;
 import java.util.logging.FileHandler;
 
-public class LogManager{
+public class LogManager extends Observer {
     private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(LogManager.class.getName());
     static FileHandler fileHandler;
+    private static LogManager instance  = null;
 
     public LogManager(){
-        //TODO make sure only at startup of the app is the date logged
+        //TODO make sure only at startup of the app is the date logged [Bence]
         /*try {
             var date = new Date();
             //at init draw a divider
@@ -22,14 +24,21 @@ public class LogManager{
         }*/
     }
 
-    public static enum LEVEL{
-        severe,
-        warning,
-        info,
-        fine
+    public static LogManager getInstance() {
+        if (instance == null) {
+            instance = new LogManager();
+        }
+        return instance;
     }
 
-    public static void log(String error, LEVEL logLevel){
+    @Override
+    public void update(String msg,LEVEL lvl) {
+        this.log(msg, lvl);
+    }
+
+
+
+    private void log(String error, LEVEL logLevel){
         try {
             fileHandler = new FileHandler("log.txt", true);
             log.addHandler(fileHandler);

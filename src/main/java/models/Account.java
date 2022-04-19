@@ -5,8 +5,7 @@ import service.db.ProductDbServices;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-public class Account {
+public class Account{
     private static Account instance = null;
     private static User currentUser = null;
     private static ArrayList<Product> productsOfLoggedUser = new ArrayList<>();
@@ -101,4 +100,5 @@ public class Account {
     public static void setCurrentOffer(Product currentOffer) {
         Account.currentOffer = currentOffer;
     }
+
 }

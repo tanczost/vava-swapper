@@ -12,6 +12,8 @@ import models.Account;
 import models.Category;
 import models.Filter;
 import models.Product;
+import observer.Observer;
+import observer.Subject;
 import service.FileHandler;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
@@ -22,7 +24,7 @@ import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
 
-public class LandingPageController {
+public class LandingPageController extends Subject {
     @FXML
     public ImageView ivAvatar;
     @FXML
@@ -50,6 +52,8 @@ public class LandingPageController {
 
     @FXML
     public void initialize() throws Exception {
+        this.attach(HelloApplication.getLogManager());
+        this.notifyObserver("You landed into landing page", Observer.LEVEL.info);
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         lbCategories.setText(resourceBundle.getString("category"));
         if (account.getCurrentUser() == null) {

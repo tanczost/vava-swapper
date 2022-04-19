@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 public class HelloApplication extends Application {
     public static Stage stage;
     //needed for initialization
-    private LogManager logManager = new LogManager();
+    private static LogManager logManager = LogManager.getInstance();
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -36,6 +36,10 @@ public class HelloApplication extends Application {
         Parent NextScene = FXMLLoader.load(getClass().getResource(fxml));
         NextScene.setStyle("-fx-font-family: 'serif'");
         stage.getScene().setRoot(NextScene);
+    }
+
+    public static LogManager getLogManager(){
+        return  logManager;
     }
 
     public static void main(String[] args) {

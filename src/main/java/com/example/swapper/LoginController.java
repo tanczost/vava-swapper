@@ -73,6 +73,5 @@ public class LoginController {
 
     public void navigateToMainPage() throws IOException {
         SwitchScreen.changeScreen("views/landingPage.fxml");
-        LogManager.log("Changing to landing page.", LogManager.LEVEL.info);
     }
 }
