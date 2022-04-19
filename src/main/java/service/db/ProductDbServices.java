@@ -91,7 +91,7 @@ public class ProductDbServices extends PostgresConnection {
         if (isResultEmpty(sqlReturnValues)) {
             return null;
         }
-         
+
         return sqlReturnValues;
     }
 
@@ -197,6 +197,7 @@ public class ProductDbServices extends PostgresConnection {
      * @return ResultSet - The list of products which met the criteria
      * @throws SQLException - On database connection issues.
      */
+    //TODO add parameter TOPPED
     public static ResultSet getFilteredProducts(Instant timeStampFrom, Instant timeStampTo, String category) throws SQLException {
         //TODO maybe return everything then?
         //dont query the database if no filters were set
@@ -259,10 +260,11 @@ public class ProductDbServices extends PostgresConnection {
     }
 
     public static ResultSet getMyOffers() throws SQLException {
-        if (!Account.checkLogin()) {
+        Account account = Account.getInstance();
+        if (!account.checkLogin()) {
             return null;
         }
-
+        //TODO ERROR: syntax error at or near "JOIN" (Tanczi <3)
         PreparedStatement stmt = connection.prepareStatement(
                 "SELECT products.id," +
                         "name," +
@@ -272,7 +274,7 @@ public class ProductDbServices extends PostgresConnection {
                         "proposal_id" +
                         "FROM products JOIN product_offers po on products.id = po.offer_id WHERE user_id = (?);");
 
-        stmt.setInt(1, Account.getCurrentUser().getId());
+        stmt.setInt(1, account.getCurrentUser().getId());
         ResultSet sqlReturnValues = stmt.executeQuery();
 
         if (isResultEmpty(sqlReturnValues)) {

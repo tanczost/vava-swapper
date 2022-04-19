@@ -30,24 +30,26 @@ public class OfferDetailController {
     public Button btnDecline;
     @FXML
     public Button btnBack;
+    private Account account = Account.getInstance();
 
     @FXML
     public void initialize() throws Exception {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
-        lbUserProduct.setText(Account.getCurrentOffer().getName());
+        lbUserProduct.setText(account.getCurrentOffer().getName());
         lbUserProductLabel.setText(resourceBundle.getString("yourItem"));
         btnDecline.setText(resourceBundle.getString("decline"));
         btnBack.setText(resourceBundle.getString("back"));
 
-        lbProduct.setText(Account.getCurrentOffer().getName());
-        lbDescription.setText(Account.getCurrentOffer().getDescription());
+        lbProduct.setText(account.getCurrentOffer().getName());
+        lbDescription.setText(account.getCurrentOffer().getDescription());
 
-        InputStream is = FileHandler.getFile(Account.getCurrentOffer().getImgId());
+        InputStream is = FileHandler.getFile(account.getCurrentOffer().getImgId());
         ivProduct.setImage(new Image(is));
 
     }
 
     public void cancelOffer() {
+        //TODO dorobit
     }
 
     public void redirectBack() throws IOException {

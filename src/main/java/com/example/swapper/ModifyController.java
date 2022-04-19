@@ -4,13 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import models.Account;
 import models.Product;
 import service.FileHandler;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.Image;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
@@ -27,14 +28,14 @@ public class ModifyController {
     private TextField tfDescription;
     @FXML
     private RadioButton rbTop;
-
     @FXML
     private ImageView imgView;
+    private Account account = Account.getInstance();
 
 
     @FXML
     public void initialize() throws Exception {
-        Product currentProduct = Account.getCurrentProduct();
+        Product currentProduct = account.getCurrentProduct();
         tfProductName.setText(currentProduct.getName());
         tfDescription.setText(currentProduct.getDescription());
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
@@ -49,7 +50,7 @@ public class ModifyController {
     @FXML
     private void updateProduct() throws SQLException, IOException {
 
-        int result = ProductDbServices.updateProduct(Account.getCurrentProduct().getId(), tfProductName.getText(), tfDescription.getText(), rbTop.isSelected());
+        int result = ProductDbServices.updateProduct(account.getCurrentProduct().getId(), tfProductName.getText(), tfDescription.getText(), rbTop.isSelected());
 
         if (result > 0) {
             SwitchScreen.changeScreen("views/ProposalPage.fxml");
@@ -57,7 +58,7 @@ public class ModifyController {
             System.out.println("Not  success do something");
         }
 
-        Account.loadProducts();
+        account.loadProducts();
     }
 
     @FXML

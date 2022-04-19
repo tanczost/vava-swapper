@@ -38,7 +38,7 @@ public class AdminDeleteController {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         btnBack.setText(resourceBundle.getString("back"));
         btnDelete.setText(resourceBundle.getString("delete"));
-        ResultSet result = ProductDbServices.getProductById(Admin.getSelectedProduct().getId());
+        ResultSet result = ProductDbServices.getProductById(Admin.getInstance().getSelectedProduct().getId());
 
 
         while (result.next()) {

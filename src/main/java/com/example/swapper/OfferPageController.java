@@ -5,12 +5,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import models.Account;
 import models.Product;
+import service.UIHelper;
+import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
 
 import java.io.IOException;
-import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -25,7 +26,6 @@ public class OfferPageController {
     public Button btnProposals;
     @FXML
     public ListView lvOffers;
-
     private ArrayList<Product> offersForProduct = new ArrayList<>();
 
     public void loadAddProductPage() throws IOException {
@@ -39,20 +39,14 @@ public class OfferPageController {
         btnOffers.setText(resourceBundle.getString("myOffers"));
         btnProposals.setText(resourceBundle.getString("myProposals"));
         addProduct.setText(resourceBundle.getString("addProduct"));
-
         allProposals();
     }
 
     public void allProposals() throws SQLException {
-        //TODO connect to BE
-        offersForProduct.clear();
-        Product product = new Product(5, "Sajt", "Szep", true, 5, new Timestamp(new Date(2012, 12, 12).getTime()));
-        offersForProduct.add(product);
-
-
-        offersForProduct.forEach(e -> {
-            lvOffers.getItems().add(e.toString());
-        });
+        //TODO connect to BE - BE error with JOIN :O
+        ResultSet result = ProductDbServices.getMyOffers();
+        UIHelper.mapResultSetToProducts(result, offersForProduct, lvOffers);
+        System.out.println(offersForProduct);
     }
 
     public void offerSelected() throws IOException {
@@ -62,7 +56,7 @@ public class OfferPageController {
 
         int offersIndex = lvOffers.getSelectionModel().getSelectedIndex();
         System.out.println(offersForProduct.get(offersIndex).toString());
-        Account.setCurrentOffer(offersForProduct.get(offersIndex));
+        Account.getInstance().setCurrentOffer(offersForProduct.get(offersIndex));
 
         SwitchScreen.changeScreen("views/OfferDetail.fxml");
     }

@@ -30,6 +30,9 @@ public class FilterController {
     private DatePicker dpTo;
     @FXML
     private ToggleGroup category;
+    @FXML
+    private ToggleGroup top;
+    private Filter filter = Filter.getInstance();
 
     @FXML
     public void initialize() throws SQLException {
@@ -43,21 +46,25 @@ public class FilterController {
     private void applyFilters() throws IOException {
         if (dpFrom.getValue() != null) {
             LocalDate localDateFrom = dpFrom.getValue();
-            Filter.setDateFrom(Instant.from(localDateFrom.atStartOfDay(ZoneId.systemDefault())));
+            filter.setDateFrom(Instant.from(localDateFrom.atStartOfDay(ZoneId.systemDefault())));
         }
 
         if (dpTo.getValue() != null) {
             LocalDate localDateTo = dpTo.getValue();
-            Filter.setDateTo(Instant.from(localDateTo.atStartOfDay(ZoneId.systemDefault())));
+            filter.setDateTo(Instant.from(localDateTo.atStartOfDay(ZoneId.systemDefault())));
         }
 
         if (category.getSelectedToggle() != null) {
             RadioButton selectedRadioButton = (RadioButton) category.getSelectedToggle();
-            Filter.setCategory(selectedRadioButton.getText());
+            filter.setCategory(selectedRadioButton.getText());
         }
-        //TODO filtrovat aj podla kategorie aj kategoria+top
+        //TODO prepojit na BE ked je kategoria a TOP
+        if (category.getSelectedToggle() != null && top.getSelectedToggle() != null) {
+            System.out.println(category.getSelectedToggle());
+            System.out.println(top.getSelectedToggle());
+        }
         RadioButton selectedRadioButton = (RadioButton) category.getSelectedToggle();
-        Category.setNameOfCategory(selectedRadioButton.getText().toLowerCase(Locale.ROOT));
+        Category.getInstance().setNameOfCategory(selectedRadioButton.getText().toLowerCase(Locale.ROOT));
         SwitchScreen.changeScreen("views/categoryPage.fxml");
     }
 
@@ -69,6 +76,7 @@ public class FilterController {
     public void resetFilter() {
         dpFrom.setValue(LocalDate.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault())));
         dpTo.setValue(LocalDate.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault())));
-        //TODO reset categorii(toggleGroup)
+        category.selectToggle(null);
+        top.selectToggle(null);
     }
 }

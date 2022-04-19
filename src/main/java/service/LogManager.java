@@ -31,7 +31,7 @@ public class LogManager{
 
     public static void log(String error, LEVEL logLevel){
         try {
-            fileHandler = new FileHandler("src/main/resources/log.txt", true);
+            fileHandler = new FileHandler("log.txt", true);
             log.addHandler(fileHandler);
 
             SimpleFormatter formatter = new SimpleFormatter();

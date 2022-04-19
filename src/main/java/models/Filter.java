@@ -3,10 +3,18 @@ package models;
 import java.time.Instant;
 
 public class Filter {
+    private static Filter instance = null;
     private static Instant dateFrom = null;
     private static Instant dateTo = null;
     private static String category = null;
     private static String searchInput = null;
+
+    public static Filter getInstance() {
+        if (instance == null) {
+            instance = new Filter();
+        }
+        return instance;
+    }
 
     public static Instant getDateFrom() {
         return dateFrom;

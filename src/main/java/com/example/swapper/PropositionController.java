@@ -35,29 +35,38 @@ public class PropositionController {
     public Button btnDecline;
     @FXML
     public Button btnBack;
+    @FXML
+    public Label lTop;
+    private Account account = Account.getInstance();
 
 
     @FXML
     public void initialize() throws Exception {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         btnTrade.setText(resourceBundle.getString("trade"));
-        lbUserProduct.setText(Account.getCurrentProduct().getName());
+        lbUserProduct.setText(account.getCurrentProduct().getName());
         lbUserProductLabel.setText(resourceBundle.getString("yourItem"));
         btnDecline.setText(resourceBundle.getString("decline"));
         btnBack.setText(resourceBundle.getString("back"));
 
-        lbProduct.setText(Account.getCurrentOffer().getName());
-        lbDescription.setText(Account.getCurrentOffer().getDescription());
+        //TODO add label for TOP product -- maybe its done
+        lTop.setText("");
+        if (account.getCurrentOffer().isTopped()) {
+            lTop.setText("TOP");
+        }
 
-        InputStream is = FileHandler.getFile(Account.getCurrentOffer().getImgId());
+        lbProduct.setText(account.getCurrentOffer().getName());
+        lbDescription.setText(account.getCurrentOffer().getDescription());
+
+        InputStream is = FileHandler.getFile(account.getCurrentOffer().getImgId());
         ivProduct.setImage(new Image(is));
 
     }
 
     public void trade() throws SQLException, IOException {
-        ProductDbServices.tradeProduct(Account.getCurrentProduct().getId(), Account.getCurrentOffer().getId());
-        Account.setCurrentOffer(null);
-        Account.setCurrentProduct(null);
+        ProductDbServices.tradeProduct(account.getCurrentProduct().getId(), account.getCurrentOffer().getId());
+        account.setCurrentOffer(null);
+        account.setCurrentProduct(null);
         SwitchScreen.changeScreen("views/landingPage.fxml");
     }
 
