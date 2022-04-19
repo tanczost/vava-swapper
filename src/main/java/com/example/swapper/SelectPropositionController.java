@@ -34,15 +34,20 @@ public class SelectPropositionController {
     public ComboBox cbUserItems;
     @FXML
     public Button btnBack;
+    @FXML
+    public Label lbTop;
     private Account account = Account.getInstance();
 
     @FXML
     public void initialize() throws Exception {
-        //TODO add label for TOP products
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         btnTrade.setText(resourceBundle.getString("trade"));
         lbUserProductLabel.setText(resourceBundle.getString("yourItem"));
         btnBack.setText(resourceBundle.getString("back"));
+
+        if (!account.getCurrentProduct().isTopped()) {
+            lbTop.setVisible(false);
+        }
 
 
         lbProduct.setText(account.getCurrentProduct().getName());

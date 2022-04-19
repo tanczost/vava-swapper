@@ -36,7 +36,7 @@ public class PropositionController {
     @FXML
     public Button btnBack;
     @FXML
-    public Label lTop;
+    public Label lbTop;
     private Account account = Account.getInstance();
 
 
@@ -49,10 +49,8 @@ public class PropositionController {
         btnDecline.setText(resourceBundle.getString("decline"));
         btnBack.setText(resourceBundle.getString("back"));
 
-        //TODO add label for TOP product -- maybe its done
-        lTop.setText("");
-        if (account.getCurrentOffer().isTopped()) {
-            lTop.setText("TOP");
+        if (!account.getCurrentOffer().isTopped()) {
+            lbTop.setVisible(false);
         }
 
         lbProduct.setText(account.getCurrentOffer().getName());
