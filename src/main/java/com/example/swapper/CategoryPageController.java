@@ -76,7 +76,8 @@ public class CategoryPageController {
             System.out.println(filteredProducts);
         } //search by filter
         else if (filter.getCategory() != null) {
-            ResultSet filteredProductsList = ProductDbServices.getFilteredProducts(filter.getDateFrom(), filter.getDateTo(), filter.getCategory());
+            //TODO added if top is checked
+            ResultSet filteredProductsList = ProductDbServices.getFilteredProducts(filter.getDateFrom(), filter.getDateTo(), filter.getCategory(),true);
             UIHelper.mapResultSetToProducts(filteredProductsList, filteredProducts, lwCategoryItems);
             filter.resetFilterValues();
         }

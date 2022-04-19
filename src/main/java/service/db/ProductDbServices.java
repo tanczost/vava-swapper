@@ -197,20 +197,27 @@ public class ProductDbServices extends PostgresConnection {
      * @return ResultSet - The list of products which met the criteria
      * @throws SQLException - On database connection issues.
      */
-    //TODO add parameter TOPPED
-    public static ResultSet getFilteredProducts(Instant timeStampFrom, Instant timeStampTo, String category) throws SQLException {
-        //TODO maybe return everything then?
-        //dont query the database if no filters were set
-        if (timeStampFrom == null && timeStampTo == null && category == null)
-            return null;
+    public static ResultSet getFilteredProducts(Instant timeStampFrom, Instant timeStampTo, String category, boolean topped) throws SQLException {
 
+
+        if (timeStampFrom == null && timeStampTo == null && category == null && topped == false){
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM products ORDER BY created_at DESC;");
+            ResultSet sqlReturnValues = stmt.executeQuery();
+
+            if (isResultEmpty(sqlReturnValues)) {
+                return null;
+            }
+
+            return sqlReturnValues;
+        }
+
+        String sql = "SELECT * FROM products WHERE ";
         java.util.Date dateFrom = null;
         java.util.Date dateTo = null;
         if (timeStampFrom != null)
             dateFrom = (java.util.Date) java.util.Date.from(timeStampFrom);
         if (timeStampTo != null)
             dateTo = (java.util.Date) java.util.Date.from(timeStampTo);
-        String sql = "SELECT * FROM products WHERE ";
 
         //Add the required specifiers
         if (timeStampFrom != null)
@@ -223,14 +230,18 @@ public class ProductDbServices extends PostgresConnection {
         if (category != null) {
             if (timeStampFrom != null || timeStampTo != null)
                 sql = sql.concat(" AND ");
-            if (!category.equals("TOP"))
-                sql = sql.concat("category='" + category + "'");
-            else
-                sql = sql.concat("topped=TRUE");
+            sql = sql.concat("category='" + category + "'");
         }
-        //TODO order by what?
-        //TODO maybe limit?
-        sql = sql.concat(" ORDER BY ID DESC");
+
+        if(topped){
+            if(category != null){
+                sql = sql.concat(" AND ");
+            }
+
+            sql = sql.concat("topped= TRUE");
+        }
+
+        sql = sql.concat(" ORDER BY created_at DESC");
 
         PreparedStatement stmt = connection.prepareStatement(sql);
 
@@ -244,19 +255,24 @@ public class ProductDbServices extends PostgresConnection {
             else
                 stmt.setDate(1, new java.sql.Date(dateTo.getTime()));
         }
-        //TODO bind the category not set it straight
-        /* if(category != null && !category.equals("TOP")){
-            //only bind category, if we are not searching for products with TOPPED set to TRUE
-            if(timeStampFrom != null && timeStampTo != null)
-                stmt.setString(3, category);
-            else if(timeStampFrom != null || timeStampTo != null)
-                stmt.setString(2, category);
-            else
-                stmt.setString(1, category);
-        } */
+//        //TODO bind the category not set it straight
+//        /* if(category != null && !category.equals("TOP")){
+//            //only bind category, if we are not searching for products with TOPPED set to TRUE
+//            if(timeStampFrom != null && timeStampTo != null)
+//                stmt.setString(3, category);
+//            else if(timeStampFrom != null || timeStampTo != null)
+//                stmt.setString(2, category);
+//            else
+//                stmt.setString(1, category);
+//        } */
 
 
-        return stmt.executeQuery();
+        ResultSet sqlReturnValues = stmt.executeQuery();
+
+        if (isResultEmpty(sqlReturnValues)) {
+            return null;
+        }
+        return sqlReturnValues;
     }
 
     public static ResultSet getMyOffers() throws SQLException {
