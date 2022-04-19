@@ -29,7 +29,6 @@ public abstract class PostgresConnection {
             connection = DriverManager.getConnection("jdbc:postgresql://" + url + ":" + port + "/" + databaseName, username, password);
             System.out.println("DB connected");
         } catch (SQLException | IllegalArgumentException ex) {
-            LogManager.severe("Cant connect");
             ex.printStackTrace(System.err);
         } finally {
             if (connection == null) {
