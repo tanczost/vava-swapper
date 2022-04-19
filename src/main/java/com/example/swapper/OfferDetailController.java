@@ -35,7 +35,7 @@ public class OfferDetailController {
     @FXML
     public void initialize() throws Exception {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
-        lbUserProduct.setText(account.getCurrentOffer().getName());
+        lbUserProduct.setText(account.getCurrentProduct().getName());
         lbUserProductLabel.setText(resourceBundle.getString("yourItem"));
         btnDecline.setText(resourceBundle.getString("decline"));
         btnBack.setText(resourceBundle.getString("back"));

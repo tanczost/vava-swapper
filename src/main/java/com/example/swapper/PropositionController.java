@@ -50,10 +50,10 @@ public class PropositionController {
         btnBack.setText(resourceBundle.getString("back"));
 
         //TODO add label for TOP product -- maybe its done
-        lTop.setText("");
-        if (account.getCurrentOffer().isTopped()) {
-            lTop.setText("TOP");
-        }
+//        lTop.setText("");
+//        if (account.getCurrentOffer().isTopped()) {
+//            lTop.setText("TOP");
+//        }
 
         lbProduct.setText(account.getCurrentOffer().getName());
         lbDescription.setText(account.getCurrentOffer().getDescription());

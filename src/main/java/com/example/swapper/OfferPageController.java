@@ -26,7 +26,8 @@ public class OfferPageController {
     public Button btnProposals;
     @FXML
     public ListView lvOffers;
-    private ArrayList<Product> offersForProduct = new ArrayList<>();
+    private ArrayList<Product> othersProducts = new ArrayList<>();
+    private ArrayList<Product> myProducts = new ArrayList<>();
 
     public void loadAddProductPage() throws IOException {
         SwitchScreen.changeScreen("views/addProduct.fxml");
@@ -39,14 +40,12 @@ public class OfferPageController {
         btnOffers.setText(resourceBundle.getString("myOffers"));
         btnProposals.setText(resourceBundle.getString("myProposals"));
         addProduct.setText(resourceBundle.getString("addProduct"));
-        allProposals();
+        allOffers();
     }
 
-    public void allProposals() throws SQLException {
-        //TODO connect to BE - BE error with JOIN :O
+    public void allOffers() throws SQLException {
         ResultSet result = ProductDbServices.getMyOffers();
-        UIHelper.mapResultSetToProducts(result, offersForProduct, lvOffers);
-        System.out.println(offersForProduct);
+        UIHelper.mapResultSetToProducts(result,myProducts, othersProducts, lvOffers);
     }
 
     public void offerSelected() throws IOException {
@@ -55,8 +54,9 @@ public class OfferPageController {
         }
 
         int offersIndex = lvOffers.getSelectionModel().getSelectedIndex();
-        System.out.println(offersForProduct.get(offersIndex).toString());
-        Account.getInstance().setCurrentOffer(offersForProduct.get(offersIndex));
+        System.out.println(othersProducts.get(offersIndex).toString());
+        Account.setCurrentProduct(myProducts.get(offersIndex));
+        Account.setCurrentOffer(othersProducts.get(offersIndex));
 
         SwitchScreen.changeScreen("views/OfferDetail.fxml");
     }
