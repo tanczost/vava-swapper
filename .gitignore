@@ -70,3 +70,4 @@ crashlytics.properties
 crashlytics-build.properties
 
 
+/dependency-reduced-pom.xml
