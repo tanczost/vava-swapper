@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import service.Auth;
+import service.common.Auth;
 import service.navigation.SwitchScreen;
 import service.validation.Validator;
 

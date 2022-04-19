@@ -1,4 +1,6 @@
-package service;
+package service.common;
+
+import service.db.PostgresConnection;
 
 import java.io.*;
 import java.sql.*;

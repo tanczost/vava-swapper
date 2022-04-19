@@ -1,4 +1,4 @@
-package service;
+package service.common;
 
 import models.Account;
 import org.apache.commons.codec.digest.DigestUtils;

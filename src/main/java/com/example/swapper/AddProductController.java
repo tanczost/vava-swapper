@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import models.Account;
-import service.FileHandler;
+import service.common.FileHandler;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
 

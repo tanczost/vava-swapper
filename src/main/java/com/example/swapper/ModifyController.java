@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import models.Account;
 import models.Product;
-import service.FileHandler;
+import service.common.FileHandler;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
 

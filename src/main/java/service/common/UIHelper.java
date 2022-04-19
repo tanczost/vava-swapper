@@ -1,4 +1,4 @@
-package service;
+package service.common;
 
 import javafx.scene.control.ListView;
 import models.Product;

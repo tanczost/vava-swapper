@@ -1,7 +1,6 @@
 package service.db;
 
 import models.Account;
-import service.PostgresConnection;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -255,17 +254,6 @@ public class ProductDbServices extends PostgresConnection {
             else
                 stmt.setDate(1, new java.sql.Date(dateTo.getTime()));
         }
-//        //TODO bind the category not set it straight
-//        /* if(category != null && !category.equals("TOP")){
-//            //only bind category, if we are not searching for products with TOPPED set to TRUE
-//            if(timeStampFrom != null && timeStampTo != null)
-//                stmt.setString(3, category);
-//            else if(timeStampFrom != null || timeStampTo != null)
-//                stmt.setString(2, category);
-//            else
-//                stmt.setString(1, category);
-//        } */
-
 
         ResultSet sqlReturnValues = stmt.executeQuery();
 
