@@ -14,6 +14,7 @@ import service.navigation.SwitchScreen;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class SelectPropositionController {
@@ -62,8 +63,10 @@ public class SelectPropositionController {
     }
 
 
-    public void trade() throws IOException {
-        ProductDbServices.insertOfferDb(account.getCurrentProduct().getId(), account.getCurrentOffer().getId());
+    public void trade() throws IOException, SQLException {
+        int index = cbUserItems.getSelectionModel().getSelectedIndex();
+        Product selected = account.getProductsOfLoggedUser().get(index);
+        ProductDbServices.insertOfferDb(account.getCurrentProduct().getId(), selected.getId());
         account.setCurrentOffer(null);
         account.setCurrentProduct(null);
         SwitchScreen.changeScreen("views/landingPage.fxml");

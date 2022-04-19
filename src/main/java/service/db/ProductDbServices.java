@@ -268,16 +268,20 @@ public class ProductDbServices extends PostgresConnection {
         if (!account.checkLogin()) {
             return null;
         }
-        //TODO ERROR: syntax error at or near "JOIN" (Tanczi <3)
         PreparedStatement stmt = connection.prepareStatement(
-                "SELECT products.id," +
+                "WITH my_items AS (SELECT products.id," +
                         "name," +
                         "description," +
                         "topped," +
                         "img_id," +
-                        "proposal_id" +
-                        "FROM products JOIN product_offers po on products.id = po.offer_id WHERE user_id = (?);");
+                        "user_id, " +
+                        "category, "+
+                        "created_at, " +
+                        "proposal_id " +
+                        "FROM products JOIN product_offers po on products.id = po.offer_id WHERE user_id = (?)) " +
+                        "SELECT * FROM my_items  JOIN products ON products.id = my_items.proposal_id;");
 
+        System.out.println(stmt);
         stmt.setInt(1, account.getCurrentUser().getId());
         ResultSet sqlReturnValues = stmt.executeQuery();
 
