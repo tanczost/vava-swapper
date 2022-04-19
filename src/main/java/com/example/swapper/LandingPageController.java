@@ -9,7 +9,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import models.Account;
-import models.Category;
 import models.Filter;
 import models.Product;
 import observer.Observer;
@@ -39,13 +38,13 @@ public class LandingPageController extends Subject {
     private TextField tfSearch;
     private Product topProduct = null;
     private Account account = Account.getInstance();
-    private Category category = Category.getInstance();
+    private Filter filter = Filter.getInstance();
 
 
     @FXML
     public void changeScenario(MouseEvent event) throws IOException {
         ImageView Item = (ImageView) event.getSource();
-        category.setNameOfCategory(Item.getId());
+        filter.setCategory(Item.getId());
         SwitchScreen.changeScreen("views/categoryPage.fxml");
     }
 
@@ -85,8 +84,8 @@ public class LandingPageController extends Subject {
 
     @FXML
     public void searchForProduct() throws IOException {
-        Filter.getInstance().setSearchInput(tfSearch.getText());
-        category.setNameOfCategory("");
+        filter.setSearchInput(tfSearch.getText());
+        filter.setCategory("");
         SwitchScreen.changeScreen("views/categoryPage.fxml");
     }
 

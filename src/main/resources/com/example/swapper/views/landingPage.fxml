@@ -92,11 +92,11 @@
                         <Image url="@images/Coat.png"/>
                     </image>
                 </ImageView>
-                <ImageView fx:id="Hoddy" fitHeight="88.0" fitWidth="268.0" layoutX="740.0" layoutY="67.0"
+                <ImageView fx:id="Hoody" fitHeight="88.0" fitWidth="268.0" layoutX="740.0" layoutY="67.0"
                            onMouseClicked="#changeScenario" pickOnBounds="true" preserveRatio="true"
                            style="-fx-border-color-fx-border-color: black;">
                     <image>
-                        <Image url="@images/Hoddy.png"/>
+                        <Image url="@images/Hoody.png"/>
                     </image>
                 </ImageView>
                 <ImageView fx:id="Boot" fitHeight="88.0" fitWidth="268.0" layoutX="740.0" layoutY="155.0"

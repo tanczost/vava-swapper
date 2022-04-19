@@ -8,7 +8,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import models.Account;
-import models.Category;
 import models.Filter;
 import models.Product;
 import service.common.ProductComparator;
@@ -40,7 +39,6 @@ public class CategoryPageController {
     @FXML
     private ListView lwCategoryItems;
     private Account account = Account.getInstance();
-    private Category category = Category.getInstance();
     private Filter filter = Filter.getInstance();
 
 
@@ -54,7 +52,7 @@ public class CategoryPageController {
     @FXML
     public void initialize() throws SQLException {
         lwCategoryItems.getItems().clear();
-        File file = new File("src/main/resources/com/example/swapper/views/images/" + category.getNameOfCategory() + ".png");
+        File file = new File("src/main/resources/com/example/swapper/views/images/" + filter.getCategory() + ".png");
         Image image = new Image(file.toURI().toString());
         categories.setImage(image);
 
@@ -73,26 +71,29 @@ public class CategoryPageController {
         if (filter.getSearchInput() != null) {
             ResultSet result = ProductDbServices.getProductsByName(filter.getSearchInput());
             UIHelper.mapResultSetToProducts(result, filteredProducts, lwCategoryItems);
-            System.out.println(filteredProducts);
-        } //search by filter
+        } //search by category
         else if (filter.getCategory() != null) {
-            //TODO added if top is checked
-            ResultSet filteredProductsList = ProductDbServices.getFilteredProducts(filter.getDateFrom(), filter.getDateTo(), filter.getCategory(),true);
+            if (filter.getDateFrom() != null){
+                ResultSet filteredProductsList = ProductDbServices.getFilteredProducts(filter.getDateFrom(), filter.getDateTo(), filter.getCategory(),filter.getIsTop());
+                UIHelper.mapResultSetToProducts(filteredProductsList, filteredProducts, lwCategoryItems);
+                filter.resetFilterValues();
+            } else {
+                ResultSet productsByCategory = ProductDbServices.getProductsByCategory(filter.getCategory());
+                UIHelper.mapResultSetToProducts(productsByCategory, filteredProducts, lwCategoryItems);
+            }
+        }
+        //else - search by TOP
+        else if (filter.getIsTop()) {
+            ResultSet filteredProductsList = ProductDbServices.getFilteredProducts(null, null, null,filter.getIsTop());
             UIHelper.mapResultSetToProducts(filteredProductsList, filteredProducts, lwCategoryItems);
             filter.resetFilterValues();
         }
-        //else - search by categories
-        else {
-            ResultSet productsByCategory = ProductDbServices.getProductsByCategory(category.getNameOfCategory());
-            UIHelper.mapResultSetToProducts(productsByCategory, filteredProducts, lwCategoryItems);
-        }
-
     }
 
     @FXML
     public void searchForProduct() throws IOException {
         filter.setSearchInput(tfSearch.getText());
-        category.setNameOfCategory("");
+        filter.setCategory("");
         SwitchScreen.changeScreen("views/categoryPage.fxml");
     }
 
