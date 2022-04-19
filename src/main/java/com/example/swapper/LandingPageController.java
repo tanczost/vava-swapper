@@ -14,7 +14,7 @@ import models.Filter;
 import models.Product;
 import observer.Observer;
 import observer.Subject;
-import service.FileHandler;
+import service.common.FileHandler;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
 

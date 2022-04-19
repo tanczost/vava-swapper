@@ -7,7 +7,7 @@ import javafx.scene.control.ListView;
 import models.Account;
 import models.Admin;
 import models.Product;
-import service.UIHelper;
+import service.common.UIHelper;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
 

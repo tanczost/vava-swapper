@@ -1,4 +1,4 @@
-package service;
+package service.common;
 
 import observer.Observer;
 

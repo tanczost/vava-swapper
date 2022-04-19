@@ -1,6 +1,6 @@
 package observer;
 
-import service.LogManager;
+import service.common.LogManager;
 
 public abstract class Subject {
 

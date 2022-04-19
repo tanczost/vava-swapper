@@ -11,8 +11,8 @@ import models.Account;
 import models.Category;
 import models.Filter;
 import models.Product;
-import service.ProductComparator;
-import service.UIHelper;
+import service.common.ProductComparator;
+import service.common.UIHelper;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
 

@@ -8,13 +8,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import models.Account;
 import models.Product;
-import service.FileHandler;
+import service.common.FileHandler;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class SelectPropositionController {

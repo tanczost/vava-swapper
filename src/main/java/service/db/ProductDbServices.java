@@ -1,7 +1,6 @@
 package service.db;
 
 import models.Account;
-import service.PostgresConnection;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

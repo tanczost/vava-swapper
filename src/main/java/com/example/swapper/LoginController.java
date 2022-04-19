@@ -5,8 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import models.Account;
-import service.Auth;
-import service.LogManager;
+import service.common.Auth;
 import service.db.UserDbServices;
 import service.navigation.SwitchScreen;
 
