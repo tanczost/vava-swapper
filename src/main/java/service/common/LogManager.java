@@ -13,19 +13,9 @@ public class LogManager extends Observer {
     static FileHandler fileHandler;
     private static LogManager instance  = null;
 
-    private String fileLocation = "log.txt";
+    private final String fileLocation = "log.txt";
 
     public LogManager(){
-        //TODO make sure only at startup of the app is the date logged [Bence]
-        /*try {
-            var date = new Date();
-            //at init draw a divider
-            FileWriter fileWriter = new FileWriter("src/main/resources/log.txt", true);
-            fileWriter.append("\n==========" + date.toString() + "==========\n");
-            fileWriter.close();
-        }catch (SecurityException | IOException e){
-            e.printStackTrace();
-        }*/
         insertDateToFile();
     }
 

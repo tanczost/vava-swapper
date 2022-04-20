@@ -36,7 +36,7 @@ public abstract class PostgresConnection {
         } catch (SQLException | IllegalArgumentException ex) {
             ex.printStackTrace(System.err);
 
-            HelloApplication.getLogManager().update("Failed to estabilish connection.", Observer.LEVEL.severe);
+            HelloApplication.getLogManager().update("Failed to establish connection.", Observer.LEVEL.severe);
         } finally {
             HelloApplication.getLogManager().update("Application is shutting down.", Observer.LEVEL.severe);
             if (connection == null) {

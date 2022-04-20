@@ -1,16 +1,23 @@
 package models;
 
+import com.example.swapper.HelloApplication;
+import observer.Observer;
+import observer.Subject;
 import service.db.ProductDbServices;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-public class Account{
+public class Account extends Subject {
     private static Account instance = null;
     private static User currentUser = null;
     private static ArrayList<Product> productsOfLoggedUser = new ArrayList<>();
     private static Product currentProduct = null;
     private static Product currentOffer = null;
+
+    private Account(){
+        this.attach(HelloApplication.getLogManager());
+    }
 
     public static Account getInstance() {
         if (instance == null) {
@@ -23,6 +30,7 @@ public class Account{
         if (currentUser == null) {
             currentUser = new User(id, nick, firstName, lastName, email, town, street, school);
         } else {
+            HelloApplication.getLogManager().update("Cant authenticate (log in) an allready authenticated user.", Observer.LEVEL.warning);
             System.out.println("User already logged in");
         }
     }
@@ -79,6 +87,7 @@ public class Account{
             ));
         }
         System.out.println("Products are successfully loaded into account");
+        HelloApplication.getLogManager().update("Products are successfully loaded into account.", Observer.LEVEL.info);
     }
 
     public static User getCurrentUser() {
