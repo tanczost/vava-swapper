@@ -1,3 +1,9 @@
+.label {
+    font-family: Serif;
+    -fx-font-size: 25px;
+    -fx-text-fill: #0011ff;
+}
+
 .button {
     font-family: Serif;
     -fx-font-size: 20px;
