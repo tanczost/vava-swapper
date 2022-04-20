@@ -52,7 +52,8 @@ public class LandingPageController extends Subject {
     @FXML
     public void initialize() throws Exception {
         this.attach(HelloApplication.getLogManager());
-        this.notifyObserver("You landed into landing page", Observer.LEVEL.info);
+        this.notifyObserver("Landing page loaded.", Observer.LEVEL.info);
+
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         lbCategories.setText(resourceBundle.getString("category"));
         if (account.getCurrentUser() == null) {

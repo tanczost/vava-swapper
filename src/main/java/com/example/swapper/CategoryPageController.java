@@ -10,6 +10,8 @@ import javafx.scene.image.ImageView;
 import models.Account;
 import models.Filter;
 import models.Product;
+import observer.Observer;
+import observer.Subject;
 import service.common.ProductComparator;
 import service.common.UIHelper;
 import service.db.ProductDbServices;
@@ -23,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CategoryPageController {
+public class CategoryPageController extends Subject {
     @FXML
     public Button btnLogin;
     @FXML
@@ -51,6 +53,9 @@ public class CategoryPageController {
 
     @FXML
     public void initialize() throws SQLException {
+        this.attach(HelloApplication.getLogManager());
+        this.notifyObserver("Categories page loaded.", Observer.LEVEL.info);
+
         lwCategoryItems.getItems().clear();
         File file = new File("src/main/resources/com/example/swapper/views/images/" + filter.getCategory() + ".png");
         Image image = new Image(file.toURI().toString());
@@ -131,12 +136,14 @@ public class CategoryPageController {
         filteredProducts.sort(new ProductComparator());
         lwCategoryItems.getItems().clear();
         filteredProducts.forEach(e -> lwCategoryItems.getItems().add(e.toString()));
+        this.notifyObserver("Sorting set to ASC order.", Observer.LEVEL.info);
     }
 
     public void setDateDESC() {
         filteredProducts.sort(new ProductComparator().reversed());
         lwCategoryItems.getItems().clear();
         filteredProducts.forEach(e -> lwCategoryItems.getItems().add(e.toString()));
+        this.notifyObserver("Sorting set to DESC order.", Observer.LEVEL.info);
     }
 
 }

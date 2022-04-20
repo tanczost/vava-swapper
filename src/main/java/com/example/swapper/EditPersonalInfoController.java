@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import models.Account;
 import models.User;
+import observer.Observer;
+import observer.Subject;
 import service.db.UserDbServices;
 import service.navigation.SwitchScreen;
 import service.validation.Validator;
@@ -13,7 +15,7 @@ import service.validation.Validator;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
-public class EditPersonalInfoController {
+public class EditPersonalInfoController extends Subject {
     @FXML
     private TextField tfFirstName;
     @FXML
@@ -54,6 +56,9 @@ public class EditPersonalInfoController {
 
     @FXML
     public void initialize() {
+        this.attach(HelloApplication.getLogManager());
+        this.notifyObserver("User personal settings page loaded.", Observer.LEVEL.info);
+
         User currentUser = account.getCurrentUser();
         tfFirstName.setText(currentUser.getFirstName());
         tfLastName.setText(currentUser.getLastName());
@@ -100,8 +105,12 @@ public class EditPersonalInfoController {
 
                     System.out.println("Successfully updated");
                     SwitchScreen.changeScreen("views/ProposalPage.fxml");
+
+                    this.notifyObserver("User updated its info.", Observer.LEVEL.info);
                 } else {
                     System.out.println("Update failed. :(");
+
+                    this.notifyObserver("User failed to update its info.", Observer.LEVEL.warning);
                 }
             }
         } else {

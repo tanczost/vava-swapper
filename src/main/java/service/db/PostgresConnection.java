@@ -4,7 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.example.swapper.HelloApplication;
 import io.github.cdimascio.dotenv.Dotenv;
+import javafx.geometry.Pos;
+import observer.Observer;
+import observer.Subject;
 
 public abstract class PostgresConnection {
     private static Dotenv dotenv = Dotenv.configure().ignoreIfMissing().ignoreIfMalformed().load();
@@ -30,7 +35,10 @@ public abstract class PostgresConnection {
             System.out.println("DB connected");
         } catch (SQLException | IllegalArgumentException ex) {
             ex.printStackTrace(System.err);
+
+            HelloApplication.getLogManager().update("Failed to estabilish connection.", Observer.LEVEL.severe);
         } finally {
+            HelloApplication.getLogManager().update("Application is shutting down.", Observer.LEVEL.severe);
             if (connection == null) {
                 System.exit(-1);
             }
