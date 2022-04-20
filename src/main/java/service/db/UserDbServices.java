@@ -40,7 +40,6 @@ public class UserDbServices extends PostgresConnection {
             ResultSet sqlReturnValues = stmt.executeQuery();
 
             if(isResultEmpty(sqlReturnValues)){
-                System.out.println("hah");
                 return null;
             }
             return sqlReturnValues;
@@ -89,7 +88,6 @@ public class UserDbServices extends PostgresConnection {
         ResultSet sqlReturnValues = stmt.executeQuery();
 
         if(isResultEmpty(sqlReturnValues)){
-            System.out.println("hah");
             return false;
         }
         sqlReturnValues.next();

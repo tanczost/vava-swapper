@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Instant;
+import java.util.Date;
 
 
 public class ProductDbServices extends PostgresConnection {
@@ -138,7 +139,6 @@ public class ProductDbServices extends PostgresConnection {
     }
 
     public static ResultSet getAllProduct() throws SQLException {
-        // LIKE %% return every product
         return getProductsByName("");
     }
 
@@ -211,12 +211,13 @@ public class ProductDbServices extends PostgresConnection {
         }
 
         String sql = "SELECT * FROM products WHERE ";
-        java.util.Date dateFrom = null;
-        java.util.Date dateTo = null;
+        Date dateFrom = null;
+        Date dateTo = null;
         if (timeStampFrom != null)
-            dateFrom = (java.util.Date) java.util.Date.from(timeStampFrom);
+
+            dateFrom = Date.from(timeStampFrom);
         if (timeStampTo != null)
-            dateTo = (java.util.Date) java.util.Date.from(timeStampTo);
+            dateTo = Date.from(timeStampTo);
 
         //Add the required specifiers
         if (timeStampFrom != null)

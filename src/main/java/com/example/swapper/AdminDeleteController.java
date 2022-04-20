@@ -61,15 +61,8 @@ public class AdminDeleteController {
     }
 
     public void deleteProduct() throws IOException, SQLException {
-        boolean result = ProductDbServices.deleteProduct(8);
-
-        if (result) {
-            SwitchScreen.changeScreen("views/AdminPage.fxml");
-            return;
-        }
-
-        System.out.println("Product can not be deleted. (Error)");
-
+        ProductDbServices.deleteProduct(currentProduct.getId());
+        SwitchScreen.changeScreen("views/AdminPage.fxml");
     }
 
     public void redirectBack() throws IOException {
