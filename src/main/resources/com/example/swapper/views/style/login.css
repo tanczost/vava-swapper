@@ -1,0 +1,39 @@
+.label {
+    font-family: Serif;
+    -fx-font-size: 25px;
+    -fx-text-fill: #0011ff;
+}
+
+.button {
+    font-family: Serif;
+    -fx-font-size: 20px;
+    -fx-background-color: #0011ff;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-border-radius: 20px;
+    -fx-border-width: 2px;
+    -fx-background-radius: 20px;
+
+}
+.text-field {
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+}
+
+.text-field:focused{
+    -fx-text-fill: #0011ff;
+    -fx-border-color: #0011ff;
+
+}
+
+.button:hover{
+    -fx-background-color: black;
+    -fx-text-fill: #0011ff;
+    -fx-border-color: #0011ff;
+}
+
+
+
