@@ -8,6 +8,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import models.Account;
 import models.Product;
+import observer.Observer;
+import observer.Subject;
 import service.common.FileHandler;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
@@ -17,7 +19,7 @@ import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class SelectPropositionController {
+public class SelectPropositionController extends Subject {
     @FXML
     public Button btnTrade;
     @FXML
@@ -40,6 +42,9 @@ public class SelectPropositionController {
 
     @FXML
     public void initialize() throws Exception {
+        this.attach(HelloApplication.getLogManager());
+        this.notifyObserver("Select proposition page loaded.", Observer.LEVEL.info);
+
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         btnTrade.setText(resourceBundle.getString("trade"));
         lbUserProductLabel.setText(resourceBundle.getString("yourItem"));
@@ -69,6 +74,8 @@ public class SelectPropositionController {
         ProductDbServices.insertOfferDb(account.getCurrentProduct().getId(), selected.getId());
         account.setCurrentOffer(null);
         account.setCurrentProduct(null);
+
+        this.notifyObserver("Trade done.", Observer.LEVEL.info);
         SwitchScreen.changeScreen("views/landingPage.fxml");
 
     }

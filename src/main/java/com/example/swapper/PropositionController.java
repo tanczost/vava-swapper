@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import models.Account;
+import observer.Observer;
+import observer.Subject;
 import service.common.FileHandler;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
@@ -16,7 +18,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
-public class PropositionController {
+public class PropositionController extends Subject {
     @FXML
     public ImageView ivProduct;
     @FXML
@@ -42,6 +44,9 @@ public class PropositionController {
 
     @FXML
     public void initialize() throws Exception {
+        this.attach(HelloApplication.getLogManager());
+        this.notifyObserver("Page for proposition loaded.", Observer.LEVEL.info);
+
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         btnTrade.setText(resourceBundle.getString("trade"));
         lbUserProduct.setText(account.getCurrentProduct().getName());
@@ -65,11 +70,13 @@ public class PropositionController {
         ProductDbServices.tradeProduct(account.getCurrentProduct().getId(), account.getCurrentOffer().getId());
         account.setCurrentOffer(null);
         account.setCurrentProduct(null);
+        this.notifyObserver("Trade finished.", Observer.LEVEL.info);
         SwitchScreen.changeScreen("views/landingPage.fxml");
     }
 
     public void declineProposal() throws SQLException, IOException {
         ProductDbServices.deleteProposal(account.getCurrentProduct().getId(), account.getCurrentOffer().getId());
+        this.notifyObserver("Proposal declined.", Observer.LEVEL.info);
         SwitchScreen.changeScreen("views/ProposalPage.fxml");
     }
 

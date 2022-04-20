@@ -56,6 +56,7 @@ public class OfferDetailController extends Subject {
     }
 
     public void cancelOffer() throws SQLException, IOException {
+        this.notifyObserver("Offer cancelled.", Observer.LEVEL.info);
         ProductDbServices.deleteOffer(account.getCurrentOffer().getId(), account.getCurrentProduct().getId());
         SwitchScreen.changeScreen("views/OfferPage.fxml");
     }

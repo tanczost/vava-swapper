@@ -1,10 +1,1 @@
 
-==========Wed Apr 20 13:28:27 CEST 2022==========
-Apr 20, 2022 1:28:27 PM service.common.LogManager log
-SEVERE: Failed to estabilish connection.
-
-==========Wed Apr 20 13:29:15 CEST 2022==========
-Apr 20, 2022 1:29:16 PM service.common.LogManager log
-SEVERE: Failed to estabilish connection.
-Apr 20, 2022 1:29:16 PM service.common.LogManager log
-SEVERE: Application is shutting down.

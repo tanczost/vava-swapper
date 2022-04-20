@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import models.Account;
 import models.Product;
+import observer.Observer;
+import observer.Subject;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
 
@@ -18,7 +20,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class ProposalPageController {
+public class ProposalPageController extends Subject {
     @FXML
     public Button btnOffers;
     @FXML
@@ -48,6 +50,9 @@ public class ProposalPageController {
 
     @FXML
     public void initialize() throws SQLException {
+        this.attach(HelloApplication.getLogManager());
+        this.notifyObserver("Page with proposals loaded.", Observer.LEVEL.info);
+
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         lbItems.setText(resourceBundle.getString("yourItems"));
         btnEditInfo.setText(resourceBundle.getString("editInfo"));
@@ -69,8 +74,10 @@ public class ProposalPageController {
     public void toggleLanguage() throws IOException {
         boolean hasEnglishSelected = account.getCurrentUser().hasEnglishLanguageSelected();
         if (hasEnglishSelected) {
+            this.notifyObserver("Changed to slovak language.", Observer.LEVEL.info);
             Locale.setDefault(new Locale("sk", "SK"));
         } else {
+            this.notifyObserver("Changed to english language.", Observer.LEVEL.info);
             Locale.setDefault(new Locale("en", "EN"));
         }
         account.getCurrentUser().setHasEnglishLanguageSelected(!hasEnglishSelected);
@@ -144,12 +151,11 @@ public class ProposalPageController {
         offersForProduct.forEach(e -> {
             lvUserItems.getItems().add(e.toString());
         });
-
-
     }
 
     public void logout() throws IOException {
         account.logout();
+        this.notifyObserver("User logged out.", Observer.LEVEL.info);
         SwitchScreen.changeScreen("views/login.fxml");
     }
 }
