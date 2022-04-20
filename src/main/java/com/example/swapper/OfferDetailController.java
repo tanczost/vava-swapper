@@ -7,10 +7,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import models.Account;
 import service.common.FileHandler;
+import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class OfferDetailController {
@@ -48,8 +50,9 @@ public class OfferDetailController {
 
     }
 
-    public void cancelOffer() {
-        //TODO dorobit
+    public void cancelOffer() throws SQLException, IOException {
+        ProductDbServices.deleteOffer(account.getCurrentOffer().getId(), account.getCurrentProduct().getId());
+        SwitchScreen.changeScreen("views/OfferPage.fxml");
     }
 
     public void redirectBack() throws IOException {

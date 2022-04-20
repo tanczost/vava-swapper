@@ -68,7 +68,9 @@ public class PropositionController {
         SwitchScreen.changeScreen("views/landingPage.fxml");
     }
 
-    public void declineProposal() {
+    public void declineProposal() throws SQLException, IOException {
+        ProductDbServices.deleteProposal(account.getCurrentProduct().getId(), account.getCurrentOffer().getId());
+        SwitchScreen.changeScreen("views/ProposalPage.fxml");
     }
 
     public void redirectBack() throws IOException {

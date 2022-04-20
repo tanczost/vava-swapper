@@ -300,4 +300,24 @@ public class ProductDbServices extends PostgresConnection {
         return stmt.execute();
 
     }
+
+    public static boolean deleteProposal(int proposalId, int offerId) throws SQLException {
+        PreparedStatement stmt = connection.prepareStatement(
+                "DELETE FROM product_offers WHERE proposal_id = (?) AND offer_id = (?)");
+
+        stmt.setInt(1, proposalId);
+        stmt.setInt(2, offerId);
+        return stmt.execute();
+
+    }
+
+    public static boolean deleteOffer(int proposalId, int offerId) throws SQLException {
+        PreparedStatement stmt = connection.prepareStatement(
+                "DELETE FROM product_offers WHERE proposal_id = (?) AND offer_id = (?)");
+
+        stmt.setInt(1, proposalId);
+        stmt.setInt(2, offerId);
+        return stmt.execute();
+
+    }
 }
