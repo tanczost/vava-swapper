@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import observer.Observer;
+import observer.Subject;
 import service.common.Auth;
 import service.navigation.SwitchScreen;
 import service.validation.Validator;
@@ -11,7 +13,7 @@ import service.validation.Validator;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
-public class RegisterController {
+public class RegisterController extends Subject {
     @FXML
     private TextField tfFirstName;
     @FXML
@@ -51,6 +53,9 @@ public class RegisterController {
 
     @FXML
     public void initialize() {
+        this.attach(HelloApplication.getLogManager());
+        this.notifyObserver("Register page loaded.", Observer.LEVEL.info);
+
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         lbFirstName.setText(resourceBundle.getString("firstname"));
         lbLastName.setText(resourceBundle.getString("lastname"));
@@ -81,9 +86,13 @@ public class RegisterController {
                         tfPassword.getText());
 
                 if (result) {
+                    this.notifyObserver("New user has registered.", Observer.LEVEL.info);
+
                     System.out.println("Successfully registered user");
                     SwitchScreen.changeScreen("views/login.fxml");
                 } else {
+                    this.notifyObserver("User registration failed.", Observer.LEVEL.warning);
+
                     System.out.println("Registration was aborted");
                 }
             }

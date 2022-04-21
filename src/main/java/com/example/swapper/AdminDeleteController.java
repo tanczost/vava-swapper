@@ -7,6 +7,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import models.Admin;
 import models.Product;
+import observer.Observer;
+import observer.Subject;
 import service.common.FileHandler;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
@@ -17,7 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class AdminDeleteController {
+public class AdminDeleteController extends Subject {
     @FXML
     public Label lbProductName;
     @FXML
@@ -35,6 +37,9 @@ public class AdminDeleteController {
 
     @FXML
     public void initialize() throws Exception {
+        this.attach(HelloApplication.getLogManager());
+        this.notifyObserver("Delete page for admins loaded.", Observer.LEVEL.info);
+
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         btnBack.setText(resourceBundle.getString("back"));
         btnDelete.setText(resourceBundle.getString("delete"));
@@ -61,8 +66,10 @@ public class AdminDeleteController {
     }
 
     public void deleteProduct() throws IOException, SQLException {
+        this.notifyObserver("Product was deleted.", Observer.LEVEL.info);
         ProductDbServices.deleteProduct(currentProduct.getId());
         SwitchScreen.changeScreen("views/AdminPage.fxml");
+
     }
 
     public void redirectBack() throws IOException {

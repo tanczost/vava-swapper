@@ -5,6 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import models.Account;
 import models.Product;
+import observer.Observer;
+import observer.Subject;
 import service.common.UIHelper;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
@@ -15,7 +17,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class OfferPageController {
+public class OfferPageController extends Subject {
     @FXML
     public Button addProduct;
     @FXML
@@ -35,6 +37,9 @@ public class OfferPageController {
 
     @FXML
     public void initialize() throws SQLException {
+        this.attach(HelloApplication.getLogManager());
+        this.notifyObserver("Offers page loaded.", Observer.LEVEL.info);
+
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         btnMainPage.setText(resourceBundle.getString("mainPage"));
         btnOffers.setText(resourceBundle.getString("myOffers"));

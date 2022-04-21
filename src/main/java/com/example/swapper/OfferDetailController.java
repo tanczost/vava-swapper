@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import models.Account;
+import observer.Observer;
+import observer.Subject;
 import service.common.FileHandler;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
@@ -15,7 +17,7 @@ import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class OfferDetailController {
+public class OfferDetailController extends Subject {
     @FXML
     public ImageView ivProduct;
     @FXML
@@ -36,6 +38,9 @@ public class OfferDetailController {
 
     @FXML
     public void initialize() throws Exception {
+        this.attach(HelloApplication.getLogManager());
+        this.notifyObserver("Page with the offers details loaded.", Observer.LEVEL.info);
+
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         lbUserProduct.setText(account.getCurrentProduct().getName());
         lbUserProductLabel.setText(resourceBundle.getString("yourItem"));
@@ -51,6 +56,7 @@ public class OfferDetailController {
     }
 
     public void cancelOffer() throws SQLException, IOException {
+        this.notifyObserver("Offer cancelled.", Observer.LEVEL.info);
         ProductDbServices.deleteOffer(account.getCurrentOffer().getId(), account.getCurrentProduct().getId());
         SwitchScreen.changeScreen("views/OfferPage.fxml");
     }

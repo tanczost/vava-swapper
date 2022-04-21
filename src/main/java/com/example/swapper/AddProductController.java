@@ -6,6 +6,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import models.Account;
+import observer.Observer;
+import observer.Subject;
 import service.common.FileHandler;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
@@ -14,7 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
-public class AddProductController {
+public class AddProductController extends Subject {
     @FXML
     public Button btnUploadImage;
     @FXML
@@ -42,6 +44,9 @@ public class AddProductController {
 
     @FXML
     public void initialize() throws Exception {
+        this.attach(HelloApplication.getLogManager());
+        this.notifyObserver("Add product page loaded.", Observer.LEVEL.info);
+
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         btnMainPage.setText(resourceBundle.getString("mainPage"));
         btnAdd.setText(resourceBundle.getString("add"));
@@ -69,6 +74,7 @@ public class AddProductController {
                 System.out.println("Img not choosed do something");
             }
             System.out.println(e);
+            this.notifyObserver(e.toString(), Observer.LEVEL.severe);
         }
 
         imgView.setImage(new Image("file://" + imgPath));
@@ -85,6 +91,7 @@ public class AddProductController {
             SwitchScreen.changeScreen("views/landingPage.fxml");
         } else {
             System.out.println("Not succes do something");
+            this.notifyObserver("Failed adding new product to database.", Observer.LEVEL.warning);
         }
     }
 

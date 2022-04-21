@@ -214,7 +214,6 @@ public class ProductDbServices extends PostgresConnection {
         Date dateFrom = null;
         Date dateTo = null;
         if (timeStampFrom != null)
-
             dateFrom = Date.from(timeStampFrom);
         if (timeStampTo != null)
             dateTo = Date.from(timeStampTo);
@@ -234,7 +233,7 @@ public class ProductDbServices extends PostgresConnection {
         }
 
         if(topped){
-            if(category != null){
+            if(category != null || timeStampTo != null || timeStampFrom != null){
                 sql = sql.concat(" AND ");
             }
 

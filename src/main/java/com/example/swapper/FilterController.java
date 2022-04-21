@@ -6,6 +6,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import models.Filter;
+import observer.Observer;
+import observer.Subject;
 import service.navigation.SwitchScreen;
 
 import java.io.IOException;
@@ -16,7 +18,7 @@ import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class FilterController {
+public class FilterController extends Subject {
     @FXML
     public Button btnBack;
     @FXML
@@ -35,6 +37,9 @@ public class FilterController {
 
     @FXML
     public void initialize() throws SQLException {
+        this.attach(HelloApplication.getLogManager());
+        this.notifyObserver("Filters for products page loaded.", Observer.LEVEL.info);
+
         resetFilter();
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         btnBack.setText(resourceBundle.getString("back"));
@@ -63,6 +68,8 @@ public class FilterController {
         }
 
         SwitchScreen.changeScreen("views/categoryPage.fxml");
+
+        this.notifyObserver("Filters were applied.", Observer.LEVEL.info);
     }
 
     @FXML
@@ -76,5 +83,7 @@ public class FilterController {
         dpTo.setValue(LocalDate.from(LocalDate.now().plusMonths(1)));
         category.selectToggle(null);
         top.selectToggle(null);
+
+        this.notifyObserver("Filters were cleared.", Observer.LEVEL.info);
     }
 }

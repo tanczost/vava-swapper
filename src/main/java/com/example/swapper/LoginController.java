@@ -6,6 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import models.Account;
+import observer.Observer;
+import observer.Subject;
 import service.common.Auth;
 import service.db.UserDbServices;
 import service.navigation.SwitchScreen;
@@ -14,7 +16,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class LoginController {
+public class LoginController extends Subject {
     @FXML
     public Button btnMainPage;
     @FXML
@@ -36,6 +38,9 @@ public class LoginController {
 
     @FXML
     public void initialize() {
+        this.attach(HelloApplication.getLogManager());
+        this.notifyObserver("Login page loaded.", Observer.LEVEL.info);
+
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         lbNickname.setText(resourceBundle.getString("nickname"));
         lbPassword.setText(resourceBundle.getString("password"));
@@ -52,6 +57,7 @@ public class LoginController {
 
             if (success) {
                 if (UserDbServices.isUserAdmin(account.getLoggedUserId())) {
+                    this.notifyObserver("Login attempt successful.", Observer.LEVEL.info);
                     SwitchScreen.changeScreen("views/AdminPage.fxml");
                     return;
                 }
@@ -59,6 +65,7 @@ public class LoginController {
                 SwitchScreen.changeScreen("views/landingPage.fxml");
                 System.out.println(tfNickname.getText() + " has succesfully logged in");
             } else {
+                this.notifyObserver("Login attempt failed.", Observer.LEVEL.warning);
                 lError.setText(resourceBundle.getString("badLogin"));
                 System.out.println("Bad login credentials from " + tfNickname.getText());
             }

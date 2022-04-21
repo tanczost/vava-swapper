@@ -2,7 +2,9 @@ package service.common;
 
 import observer.Observer;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 import java.util.logging.SimpleFormatter;
 import java.util.logging.FileHandler;
 
@@ -11,17 +13,10 @@ public class LogManager extends Observer {
     static FileHandler fileHandler;
     private static LogManager instance  = null;
 
+    private final String fileLocation = "log.txt";
+
     public LogManager(){
-        //TODO make sure only at startup of the app is the date logged [Bence]
-        /*try {
-            var date = new Date();
-            //at init draw a divider
-            FileWriter fileWriter = new FileWriter("src/main/resources/log.txt", true);
-            fileWriter.append("\n==========" + date.toString() + "==========\n");
-            fileWriter.close();
-        }catch (SecurityException | IOException e){
-            e.printStackTrace();
-        }*/
+        insertDateToFile();
     }
 
     public static LogManager getInstance() {
@@ -36,11 +31,21 @@ public class LogManager extends Observer {
         this.log(msg, lvl);
     }
 
-
+    private void insertDateToFile(){
+        try {
+            var date = new Date();
+            //at init draw a divider
+            FileWriter fileWriter = new FileWriter(fileLocation, true);
+            fileWriter.append("\n==========" + date.toString() + "==========\n");
+            fileWriter.close();
+        }catch (SecurityException | IOException e){
+            e.printStackTrace();
+        }
+    }
 
     private void log(String error, LEVEL logLevel){
         try {
-            fileHandler = new FileHandler("log.txt", true);
+            fileHandler = new FileHandler(this.fileLocation, true);
             log.addHandler(fileHandler);
 
             SimpleFormatter formatter = new SimpleFormatter();

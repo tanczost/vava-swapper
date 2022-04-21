@@ -7,6 +7,8 @@ import javafx.scene.control.ListView;
 import models.Account;
 import models.Admin;
 import models.Product;
+import observer.Observer;
+import observer.Subject;
 import service.common.UIHelper;
 import service.db.ProductDbServices;
 import service.navigation.SwitchScreen;
@@ -19,7 +21,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 
-public class AdminPageController {
+public class AdminPageController extends Subject {
     @FXML
     public ListView<String> lvAllProducts;
     @FXML
@@ -30,6 +32,9 @@ public class AdminPageController {
 
     @FXML
     public void initialize() throws SQLException {
+        this.attach(HelloApplication.getLogManager());
+        this.notifyObserver("Admin page loaded.", Observer.LEVEL.info);
+
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         btnLogout.setText(resourceBundle.getString("logout"));
         lbItems.setText(resourceBundle.getString("allItems"));
@@ -51,6 +56,7 @@ public class AdminPageController {
 
     public void logout() throws IOException {
         Account.getInstance().logout();
+        this.notifyObserver("User logged out.", Observer.LEVEL.info);
         SwitchScreen.changeScreen("views/login.fxml");
     }
 

@@ -1,5 +1,7 @@
 package service.common;
 
+import com.example.swapper.HelloApplication;
+import observer.Observer;
 import service.db.PostgresConnection;
 
 import java.io.*;
@@ -14,6 +16,7 @@ public class FileHandler {
      * */
     public static byte[] readImageToByteStream(String file,String fileName) throws Exception{
         if(file.length() == 0){
+            HelloApplication.getLogManager().update("No name provided for the file, which needs to be uploaded.", Observer.LEVEL.warning);
             throw new Exception("No name provided.");
         }
 
