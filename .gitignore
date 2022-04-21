@@ -1,6 +1,6 @@
 docker-compose.yml
 
-target/
+target/*
 
 target/classes/schema.sql
 
