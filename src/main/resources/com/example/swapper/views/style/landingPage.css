@@ -28,6 +28,7 @@
     -fx-border-color: #0011ff;
 
 }
+
 .button:hover{
     -fx-background-color: black;
     -fx-text-fill: #0011ff;
