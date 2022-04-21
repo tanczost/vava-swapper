@@ -1,6 +1,6 @@
 package models;
 
-import com.example.swapper.HelloApplication;
+import controllers.SwapperApplication;
 import observer.Observer;
 import observer.Subject;
 import service.db.ProductDbServices;
@@ -16,7 +16,7 @@ public class Account extends Subject {
     private static Product currentOffer = null;
 
     private Account(){
-        this.attach(HelloApplication.getLogManager());
+        this.attach(SwapperApplication.getLogManager());
     }
 
     public static Account getInstance() {
@@ -30,7 +30,7 @@ public class Account extends Subject {
         if (currentUser == null) {
             currentUser = new User(id, nick, firstName, lastName, email, town, street, school);
         } else {
-            HelloApplication.getLogManager().update("Cant authenticate (log in) an allready authenticated user.", Observer.LEVEL.warning);
+            SwapperApplication.getLogManager().update("Cant authenticate (log in) an allready authenticated user.", Observer.LEVEL.warning);
             System.out.println("User already logged in");
         }
     }
@@ -87,7 +87,7 @@ public class Account extends Subject {
             ));
         }
         System.out.println("Products are successfully loaded into account");
-        HelloApplication.getLogManager().update("Products are successfully loaded into account.", Observer.LEVEL.info);
+        SwapperApplication.getLogManager().update("Products are successfully loaded into account.", Observer.LEVEL.info);
     }
 
     public static User getCurrentUser() {

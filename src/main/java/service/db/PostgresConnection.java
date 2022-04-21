@@ -5,11 +5,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.example.swapper.HelloApplication;
+import controllers.SwapperApplication;
 import io.github.cdimascio.dotenv.Dotenv;
-import javafx.geometry.Pos;
 import observer.Observer;
-import observer.Subject;
 
 public abstract class PostgresConnection {
     private static Dotenv dotenv = Dotenv.configure().ignoreIfMissing().ignoreIfMalformed().load();
@@ -36,9 +34,9 @@ public abstract class PostgresConnection {
         } catch (SQLException | IllegalArgumentException ex) {
             ex.printStackTrace(System.err);
 
-            HelloApplication.getLogManager().update("Failed to establish connection.", Observer.LEVEL.severe);
+            SwapperApplication.getLogManager().update("Failed to establish connection.", Observer.LEVEL.severe);
         } finally {
-            HelloApplication.getLogManager().update("Application is shutting down.", Observer.LEVEL.severe);
+            SwapperApplication.getLogManager().update("Application is shutting down.", Observer.LEVEL.severe);
             if (connection == null) {
                 System.exit(-1);
             }

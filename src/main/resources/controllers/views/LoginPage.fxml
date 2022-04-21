@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="LoginController" prefHeight="576.0" prefWidth="1024.0" stylesheets="@style/login.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+     <children>
+         <AnchorPane layoutY="-3.0" prefHeight="148.0" prefWidth="1024.0" style="-fx-background-color: rgb(179,179,179);">
+         <children>
+            <ImageView fitHeight="124.0" fitWidth="281.0" layoutX="372.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/logo.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+         <Button fx:id="btnMainPage" layoutX="514.0" layoutY="477.0" minWidth="220.0" mnemonicParsing="false" onAction="#navigateToMainPage" />
+           <TextField fx:id="tfNickname" layoutX="378.0" layoutY="190.0" prefHeight="40.0" prefWidth="271.0" />
+           <Label fx:id="lbNickname" layoutX="376.0" layoutY="154.0" prefHeight="36.0" prefWidth="177.0" textFill="#0011ff">
+         <font>
+            <Font size="25.0" />
+         </font></Label>
+           <Label fx:id="lbPassword" layoutX="376.0" layoutY="235.0" prefHeight="36.0" prefWidth="177.0" textFill="#0011ff">
+         <font>
+            <Font size="25.0" />
+         </font></Label>
+           <Label fx:id="lError" alignment="CENTER" contentDisplay="CENTER" layoutX="263.0" layoutY="329.0" prefHeight="36.0" prefWidth="502.0" style="-fx-text-fill: red" textAlignment="CENTER" textFill="RED">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+           <PasswordField fx:id="pfPassword" layoutX="378.0" layoutY="271.0" prefHeight="40.0" prefWidth="271.0">
+               <effect>
+                   <Bloom />
+               </effect>
+           </PasswordField>
+           <Button fx:id="btnLogIn" layoutX="404.0" layoutY="374.0" minWidth="220.0" mnemonicParsing="false" onAction="#login" scaleShape="false" textAlignment="CENTER">
+                    </Button>
+           <Button fx:id="btnNoAccount" layoutX="294.0" layoutY="477.0" minWidth="220.0" mnemonicParsing="false" onAction="#register">
+               <cursor>
+                   <Cursor fx:constant="DEFAULT" />
+               </cursor>
+           </Button>
+      <Line endX="546.5999755859375" endY="-19.599990844726562" layoutX="474.0" layoutY="167.0" startX="-474.0" startY="-19.599990844726562" strokeWidth="5.0" />
+      <ImageView fitHeight="40.0" fitWidth="59.0" layoutX="332.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/login.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="59.0" layoutX="337.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/password.png" />
+         </image>
+      </ImageView>
+     </children>
+ </AnchorPane>

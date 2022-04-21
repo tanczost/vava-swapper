@@ -1,6 +1,6 @@
 package service.navigation;
 
-import com.example.swapper.HelloApplication;
+import controllers.SwapperApplication;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
@@ -17,7 +17,7 @@ public class SwitchScreen {
      */
     @FXML
     public static void changeScreen(String path) throws IOException {
-        HelloApplication main = new HelloApplication();
+        SwapperApplication main = new SwapperApplication();
         main.changeScene(path);
     }
 }
