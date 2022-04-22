@@ -93,25 +93,18 @@ public class AdminDeleteController extends Subject {
     public void centerImage() {
         Image img = ivImg.getImage();
         if (img != null) {
-            double w;
-            double h;
-
+            double w,h, reduce;
             double ratioX = ivImg.getFitWidth() / img.getWidth();
             double ratioY = ivImg.getFitHeight() / img.getHeight();
-
-            double reducCoeff;
             if(ratioX >= ratioY) {
-                reducCoeff = ratioY;
+                reduce = ratioY;
             } else {
-                reducCoeff = ratioX;
+                reduce = ratioX;
             }
-
-            w = img.getWidth() * reducCoeff;
-            h = img.getHeight() * reducCoeff;
-
+            w = img.getWidth() * reduce;
+            h = img.getHeight() * reduce;
             ivImg.setX((ivImg.getFitWidth() - w) / 2);
             ivImg.setY((ivImg.getFitHeight() - h) / 2);
-
         }
     }
 }
