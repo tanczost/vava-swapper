@@ -1,26 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="576.0" prefWidth="1024.0" stylesheets="@style/global.css" xmlns="http://javafx.com/javafx/16"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OfferDetailController">
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="576.0" prefWidth="1024.0" styleClass="anchor" stylesheets="@style/login.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OfferDetailController">
     <children>
-        <ImageView fx:id="ivProduct" fitHeight="160.0" fitWidth="420.0" layoutX="302.0" layoutY="106.0"
-                   pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@images/logo.png"/>
-            </image>
-        </ImageView>
-        <Label fx:id="lbProduct" layoutX="302.0" layoutY="57.0"/>
-        <Label fx:id="lbDescription" layoutX="302.0" layoutY="265.0"/>
-        <Label fx:id="lbTopBadge" layoutX="664.0" layoutY="118.0"/>
-        <Label fx:id="lbUserProductLabel" layoutX="302.0" layoutY="320.0"/>
-        <Label fx:id="lbUserProduct" layoutX="452.0" layoutY="320.0"/>
-        <Button layoutX="452.0" layoutY="447.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="128.0"
-                fx:id="btnDecline" onAction="#cancelOffer"/>
-        <Button layoutX="442.0" layoutY="510.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="148.0"
-                fx:id="btnBack" onAction="#redirectBack"/>
+      <AnchorPane layoutX="117.0" layoutY="29.0" prefHeight="119.0" prefWidth="796.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 22px; -fx-border-radius: 22px; -fx-border-width: 4px;">
+         <children>
+            <ImageView fitHeight="124.0" fitWidth="281.0" layoutX="258.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/logo.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+      <AnchorPane layoutX="119.0" layoutY="155.0" prefHeight="394.0" prefWidth="796.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-border-width: 4px;">
+         <children>
+              <Label fx:id="lbProduct" layoutX="166.0" layoutY="184.0" prefHeight="41.0" prefWidth="253.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-padding: 3px;" />
+              <Label fx:id="lbDescription" layoutX="166.0" layoutY="232.0" prefHeight="41.0" prefWidth="464.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-padding: 3px; -fx-border-width: 2px;" />
+              <Label fx:id="lbTopBadge" layoutX="436.0" layoutY="186.0" prefHeight="41.0" prefWidth="174.0" />
+              <Label fx:id="lbUserProductLabel" layoutX="170.0" layoutY="285.0" prefHeight="36.0" prefWidth="140.0" />
+              <Label fx:id="lbUserProduct" layoutX="311.0" layoutY="280.0" prefHeight="41.0" prefWidth="228.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-padding: 3px;" />
+              <Button fx:id="btnDecline" layoutX="404.0" layoutY="333.0" mnemonicParsing="false" onAction="#cancelOffer" onMouseEntered="#changeTrade" prefHeight="40.0" prefWidth="170.0" />
+              <Button fx:id="btnBack" layoutX="166.0" layoutY="333.0" mnemonicParsing="false" onAction="#redirectBack" prefHeight="40.0" prefWidth="170.0" />
+            <Pane layoutX="166.0" layoutY="7.0" prefHeight="175.0" prefWidth="464.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-border-width: 2px;">
+               <children>
+                    <ImageView fx:id="ivProduct" fitHeight="155.0" fitWidth="413.0" layoutX="26.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@images/logo.png" />
+                        </image>
+                    </ImageView>
+               </children></Pane>
+            <ImageView fitHeight="48.0" fitWidth="51.0" layoutX="342.0" layoutY="333.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/homeLogo.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="tradeIcon" fitHeight="48.0" fitWidth="51.0" layoutX="579.0" layoutY="333.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/btnDecline.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
     </children>
 </AnchorPane>
