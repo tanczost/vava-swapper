@@ -8,7 +8,7 @@
     font-family: Serif;
     -fx-font-size: 20px;
     -fx-background-color: #0011ff;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-border-color: black;
     -fx-border-radius: 20px;
     -fx-border-width: 2px;
@@ -22,14 +22,30 @@
     -fx-border-color: black;
     -fx-border-width: 2px;
 }
+.anchor{
+    -fx-background-image:url('../images/background.jpg');
+}
+.combo-box-base {
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-text-fill: black;
+    -fx-border-radius: 20px;
+
+}
+
+.combo-box-base:focused{
+    -fx-border-color: #0011ff;
+    -fx-text-fill: #0011ff;
+}
 
 .text-field:focused{
     -fx-text-fill: #0011ff;
     -fx-border-color: #0011ff;
 
 }
+
 .button:hover{
-    -fx-background-color: black;
+    -fx-background-color: white;
     -fx-text-fill: #0011ff;
     -fx-border-color: #0011ff;
 }

@@ -48,7 +48,7 @@
                 </Button>
             </children>
         </AnchorPane>
-        <AnchorPane layoutY="88.0" prefHeight="482.0" prefWidth="1024.0" style="-fx-background-color: white;">
+        <AnchorPane layoutY="88.0" prefHeight="482.0" prefWidth="1024.0" styleClass="anchor">
             <children>
                 <ImageView fx:id="Shirt" fitHeight="88.0" fitWidth="268.0" layoutX="18.0" layoutY="68.0" onMouseClicked="#changeScenario" pickOnBounds="true" preserveRatio="true" style="-fx-border-color-fx-border-color: black;">
                     <image>

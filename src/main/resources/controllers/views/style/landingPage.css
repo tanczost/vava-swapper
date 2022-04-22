@@ -4,6 +4,11 @@
     -fx-text-fill: #0011ff;
 }
 
+.anchor{
+    -fx-background-image:url('../images/background.jpg');
+}
+
+
 .button {
     font-family: Serif;
     -fx-font-size: 20px;
