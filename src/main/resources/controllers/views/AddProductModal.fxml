@@ -17,7 +17,7 @@
       <AnchorPane layoutX="119.0" layoutY="155.0" prefHeight="394.0" prefWidth="796.0" style="-fx-background-color: white; -fx-background-radius: 22px; -fx-border-color: black; -fx-border-width: 4px; -fx-border-radius: 20px;">
          <children>
               <TextField fx:id="tfProductName" layoutX="373.0" layoutY="59.0" prefHeight="39.0" prefWidth="171.0" promptText="Product name" />
-              <TextField fx:id="tfDescription" layoutX="373.0" layoutY="107.0" prefHeight="45.0" prefWidth="420.0" promptText="Description" />
+              <TextField fx:id="tfDescription" layoutX="373.0" layoutY="107.0" prefHeight="39.0" prefWidth="420.0" promptText="Description" />
               <ImageView fx:id="imgView" fitHeight="160.0" fitWidth="420.0" layoutX="14.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" styleClass="img">
                   <image>
                       <Image url="@images/imageview.png" />

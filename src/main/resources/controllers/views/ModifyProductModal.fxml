@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="576.0" prefWidth="1024.0" stylesheets="@style/global.css" xmlns="http://javafx.com/javafx/16"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifyController">
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="576.0" prefWidth="1024.0" styleClass="anchor" stylesheets="@style/login.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifyController">
     <children>
-        <TextField fx:id="tfProductName" layoutX="292.0" layoutY="47.0" prefHeight="39.0" prefWidth="171.0"
-                   promptText="Product name"/>
-        <ImageView fitHeight="160.0" fitWidth="420.0" layoutX="292.0" layoutY="96.0" pickOnBounds="true"
-                   preserveRatio="true" fx:id="imgView">
-            <image>
-                <Image url="@images/logo.png"/>
-            </image>
-        </ImageView>
-        <TextField fx:id="tfDescription" layoutX="292.0" layoutY="309.0" prefHeight="45.0" prefWidth="420.0"
-                   promptText="Description"/>
-        <RadioButton fx:id="rbTop" layoutX="664.0" layoutY="366.0" mnemonicParsing="false" text="TOP"/>
-        <Button fx:id="btnUpdate" layoutX="442.0" layoutY="447.0" mnemonicParsing="false" onAction="#updateProduct"
-                prefHeight="39.0" prefWidth="185.0"/>
-        <Button fx:id="btnProposalPage" layoutX="442.0" layoutY="501.0" mnemonicParsing="false"
-                onAction="#backToProposalPage"
-                prefHeight="39.0" prefWidth="185.0"/>
+      <AnchorPane layoutX="117.0" layoutY="29.0" prefHeight="119.0" prefWidth="796.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-border-width: 4px;">
+         <children>
+            <ImageView fitHeight="124.0" fitWidth="281.0" layoutX="258.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/logo.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+      <AnchorPane layoutX="119.0" layoutY="155.0" prefHeight="394.0" prefWidth="796.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-border-width: 4px;">
+         <children>
+              <TextField fx:id="tfProductName" layoutX="204.0" layoutY="187.0" prefHeight="39.0" prefWidth="171.0" promptText="Product name" />
+              <ImageView fx:id="imgView" fitHeight="160.0" fitWidth="420.0" layoutX="86.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                      <Image url="@images/logo.png" />
+                  </image>
+              </ImageView>
+              <TextField fx:id="tfDescription" layoutX="204.0" layoutY="243.0" prefHeight="39.0" prefWidth="420.0" promptText="Description" />
+              <RadioButton fx:id="rbTop" layoutX="395.0" layoutY="198.0" mnemonicParsing="false" text="TOP" />
+              <Button fx:id="btnUpdate" layoutX="439.0" layoutY="328.0" mnemonicParsing="false" onAction="#updateProduct" prefHeight="39.0" prefWidth="185.0" />
+              <Button fx:id="btnProposalPage" layoutX="197.0" layoutY="328.0" mnemonicParsing="false" onAction="#backToProposalPage" prefHeight="39.0" prefWidth="185.0" />
+         </children></AnchorPane>
     </children>
 </AnchorPane>
