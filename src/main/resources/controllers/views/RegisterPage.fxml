@@ -14,7 +14,7 @@
                </image>
             </ImageView>
          </children></AnchorPane>
-      <AnchorPane layoutX="196.0" layoutY="148.0" prefHeight="410.0" prefWidth="630.0" style="-fx-background-color: white; -fx-background-radius: 22px; -fx-border-color: black; -fx-border-width: 4px; -fx-border-radius: 20px;">
+      <AnchorPane layoutX="196.0" layoutY="148.0" prefHeight="420.0" prefWidth="630.0" style="-fx-background-color: white; -fx-background-radius: 22px; -fx-border-color: black; -fx-border-width: 4px; -fx-border-radius: 20px;">
          <children>
               <Label fx:id="lbFirstName" layoutX="67.0" layoutY="3.0" prefHeight="36.0" prefWidth="177.0">
         </Label>
