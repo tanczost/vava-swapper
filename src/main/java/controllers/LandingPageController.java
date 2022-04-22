@@ -1,6 +1,7 @@
 package controllers;
 
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -48,6 +49,20 @@ public class LandingPageController extends Subject {
         SwitchScreen.changeScreen("views/CategoryPage.fxml");
     }
 
+    @FXML
+    public void changeHighlight(MouseEvent event){
+        ImageView Item = (ImageView) event.getSource();
+        Image newImage = new Image(getClass().getResourceAsStream("views/images/"+Item.getId()+"_highlight.png"));
+        Image oldImage = new Image(getClass().getResourceAsStream("views/images/"+Item.getId()+".png"));
+        Item.setImage(newImage);
+        EventHandler<MouseEvent> highlight = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                Item.setImage(oldImage);
+            }
+        };
+        Item.setOnMouseExited(highlight);
+    }
 
     @FXML
     public void initialize() throws Exception {
