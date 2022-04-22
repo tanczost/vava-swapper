@@ -1,23 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="576.0" prefWidth="1024.0" stylesheets="@style/global.css" xmlns="http://javafx.com/javafx/16"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminDeleteController">
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="576.0" prefWidth="1024.0" styleClass="anchor" stylesheets="@style/login.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminDeleteController">
     <children>
-        <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="576.0" prefWidth="1024.0" stylesheets="@style/global.css">
+        <AnchorPane layoutX="119.0" layoutY="159.0" prefHeight="394.0" prefWidth="796.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-border-width: 4px;" stylesheets="@style/global.css">
             <children>
-                <Label fx:id="lbProductName" layoutX="291.0" layoutY="89.0"/>
-                <Label fx:id="lbDescription" layoutX="291.0" layoutY="305.0"/>
-                <Button fx:id="btnBack" layoutX="460.0" layoutY="477.0" mnemonicParsing="false" onAction="#redirectBack"
-                        prefHeight="39.0" prefWidth="84.0"/>
-                <Label fx:id="lbCategory" layoutX="291.0" layoutY="356.0" prefHeight="36.0" prefWidth="386.0"/>
+                <Label fx:id="lbProductName" layoutX="165.0" layoutY="235.0" prefHeight="36.0" prefWidth="254.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-padding: 3px;" />
+                <Label fx:id="lbDescription" layoutX="162.0" layoutY="283.0" prefHeight="42.0" prefWidth="464.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 20px; -fx-background-radius: 22px; -fx-padding: 3px;" textAlignment="CENTER" />
+                <Button fx:id="btnBack" layoutX="165.0" layoutY="341.0" mnemonicParsing="false" onAction="#redirectBack" prefHeight="40.0" prefWidth="170.0" />
+                <Label fx:id="lbCategory" layoutX="166.0" layoutY="190.0" prefHeight="36.0" prefWidth="214.0" style="-fx-background-color: white; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-border-color: black; -fx-border-width: 2px; -fx-padding: 3px;" />
+              <Button fx:id="btnDelete" layoutX="419.0" layoutY="341.0" mnemonicParsing="false" onAction="#deleteProduct" onMouseEntered="#changeOpen" prefHeight="40.0" prefWidth="170.0" />
+            <Pane layoutX="166.0" layoutY="7.0" prefHeight="175.0" prefWidth="464.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-border-width: 2px;">
+               <children>
+                    <ImageView fx:id="ivImg" fitHeight="155.0" fitWidth="413.0" layoutX="26.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <ImageView fitHeight="48.0" fitWidth="51.0" layoutX="337.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/homeLogo.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="deleteIcon" fitHeight="48.0" fitWidth="51.0" layoutX="593.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/btnDelete.png" />
+               </image>
+            </ImageView>
             </children>
         </AnchorPane>
-        <ImageView fx:id="ivImg" fitHeight="160.0" fitWidth="420.0" layoutX="301.0" layoutY="148.0" pickOnBounds="true"
-                   preserveRatio="true"/>
-        <Button fx:id="btnDelete" layoutX="451.0" layoutY="431.0" mnemonicParsing="false" onAction="#deleteProduct"
-                prefHeight="39.0" prefWidth="121.0"/>
+      <AnchorPane layoutX="117.0" layoutY="29.0" prefHeight="119.0" prefWidth="796.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-border-width: 4px;">
+         <children>
+            <ImageView fitHeight="124.0" fitWidth="281.0" layoutX="258.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/logo.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
     </children>
 </AnchorPane>

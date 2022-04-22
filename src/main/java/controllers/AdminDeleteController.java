@@ -1,10 +1,12 @@
 package controllers;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import models.Admin;
 import models.Product;
 import observer.Observer;
@@ -32,6 +34,8 @@ public class AdminDeleteController extends Subject {
     public Button btnDelete;
     @FXML
     public ImageView ivImg;
+    @FXML
+    public ImageView deleteIcon;
 
     private Product currentProduct;
 
@@ -60,7 +64,7 @@ public class AdminDeleteController extends Subject {
 
         InputStream is = FileHandler.getFile(currentProduct.getImgId());
         ivImg.setImage(new Image(is));
-
+        centerImage();
         lbProductName.setText(currentProduct.getName());
         lbDescription.setText(currentProduct.getDescription());
     }
@@ -74,5 +78,40 @@ public class AdminDeleteController extends Subject {
 
     public void redirectBack() throws IOException {
         SwitchScreen.changeScreen("views/AdminPage.fxml");
+    }
+
+    @FXML
+    public void changeOpen(MouseEvent event){
+        Button Item = (Button) event.getSource();
+        Image newImage = new Image(getClass().getResourceAsStream("views/images/"+Item.getId()+"_open.png"));
+        Image oldImage = new Image(getClass().getResourceAsStream("views/images/"+Item.getId()+".png"));
+        deleteIcon.setImage(newImage);
+        EventHandler<MouseEvent> highlight = e -> deleteIcon.setImage(oldImage);
+        Item.setOnMouseExited(highlight);
+    }
+
+    public void centerImage() {
+        Image img = ivImg.getImage();
+        if (img != null) {
+            double w;
+            double h;
+
+            double ratioX = ivImg.getFitWidth() / img.getWidth();
+            double ratioY = ivImg.getFitHeight() / img.getHeight();
+
+            double reducCoeff;
+            if(ratioX >= ratioY) {
+                reducCoeff = ratioY;
+            } else {
+                reducCoeff = ratioX;
+            }
+
+            w = img.getWidth() * reducCoeff;
+            h = img.getHeight() * reducCoeff;
+
+            ivImg.setX((ivImg.getFitWidth() - w) / 2);
+            ivImg.setY((ivImg.getFitHeight() - h) / 2);
+
+        }
     }
 }
