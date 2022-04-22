@@ -1,0 +1,126 @@
+.label {
+    font-family: Serif;
+    -fx-font-size: 25px;
+    -fx-text-fill: #0011ff;
+}
+.button {
+    font-family: Serif;
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-radius: 20px;
+    -fx-border-width: 2px;
+    -fx-background-radius: 20px;
+
+}
+
+.button:hover{
+    -fx-border-color: #0011ff;
+}
+
+#btnBack{
+    font-family: Serif;
+    -fx-font-size: 20px;
+    -fx-background-color: #0011ff;
+    -fx-text-fill: white;
+    -fx-border-color: black;
+    -fx-border-radius: 20px;
+    -fx-border-width: 2px;
+    -fx-background-radius: 20px;
+}
+
+#btnBack:hover{
+    -fx-background-color: white;
+    -fx-text-fill: #0011ff;
+    -fx-border-color: #0011ff;
+}
+.anchor{
+    -fx-background-image:url('../images/background.jpg');
+}
+
+.radio-button .radio {
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-background-color: white;
+    -fx-border-radius: 20px;
+    -fx-padding: 3px;
+}
+
+.radio-button{
+    -fx-border-radius: 20px;
+    -fx-border-color: black;
+    -fx-padding: 8px;
+    -fx-text-fill: black;
+    -fx-background-color: white;
+    -fx-background-radius: 20px;
+}
+.radio-button:focused{
+    -fx-text-fill: #0011ff;
+    -fx-border-color: #0011ff;
+}
+
+.text-field:focused{
+    -fx-border-color: #0011ff;
+    -fx-text-fill: #0011ff;
+}
+
+.date-picker{
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
+}
+.date-picker:focused{
+    -fx-border-color: #0011ff;
+    -fx-text-fill: #0011ff;
+}
+.date-picker > .text-field {
+    -fx-background-radius: 10 0 0 10;
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-border-radius: 10 0 0 10;
+}
+
+.date-picker > .text-field:focused{
+    -fx-border-color: #0011ff;
+    -fx-text-fill: #0011ff;
+}
+
+.date-picker > .arrow-button {
+    -fx-background-radius: 0 10 10 0;
+}
+
+#btnResetFilter{
+    font-family: Serif;
+    -fx-font-size: 20px;
+    -fx-background-color: red;
+    -fx-text-fill: white;
+    -fx-border-color: black;
+    -fx-border-radius: 20px;
+    -fx-border-width: 2px;
+    -fx-background-radius: 20px;
+}
+
+#btnResetFilter:hover{
+    -fx-background-color: white;
+    -fx-text-fill: red;
+    -fx-border-color: red;
+}
+
+#btnApplyFilter{
+    font-family: Serif;
+    -fx-font-size: 20px;
+    -fx-background-color: green;
+    -fx-text-fill: white;
+    -fx-border-color: black;
+    -fx-border-radius: 20px;
+    -fx-border-width: 2px;
+    -fx-background-radius: 20px;
+}
+
+#btnApplyFilter:hover{
+    -fx-background-color: white;
+    -fx-text-fill: green;
+    -fx-border-color: green;
+}

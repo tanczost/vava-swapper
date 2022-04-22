@@ -40,7 +40,7 @@
                     </image>
                 </ImageView>
                 <Label fx:id="lbName" alignment="CENTER" contentDisplay="CENTER" layoutX="92.0" layoutY="15.0" prefHeight="36.0" prefWidth="206.0" textAlignment="CENTER" />
-                <Button fx:id="btnEditInfo" layoutX="102.0" layoutY="79.0" mnemonicParsing="false" onAction="#redirectToEditPersonalInfo" prefHeight="39.0" prefWidth="184.0" />
+                <Button fx:id="btnEditInfo" alignment="CENTER" contentDisplay="CENTER" layoutX="90.0" layoutY="79.0" mnemonicParsing="false" onAction="#redirectToEditPersonalInfo" prefHeight="48.0" prefWidth="206.0" textAlignment="CENTER" />
                 <Button fx:id="btnLogout" layoutX="119.0" layoutY="381.0" mnemonicParsing="false" onAction="#logout" prefHeight="39.0" prefWidth="150.0" />
                 <Button fx:id="btnToggleLanguage" layoutX="106.0" layoutY="155.0" mnemonicParsing="false" onAction="#toggleLanguage" prefHeight="39.0" prefWidth="176.0" />
                 <ImageView fitHeight="58.0" fitWidth="82.0" layoutX="14.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">

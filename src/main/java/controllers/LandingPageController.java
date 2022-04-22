@@ -55,12 +55,7 @@ public class LandingPageController extends Subject {
         Image newImage = new Image(getClass().getResourceAsStream("views/images/"+Item.getId()+"_highlight.png"));
         Image oldImage = new Image(getClass().getResourceAsStream("views/images/"+Item.getId()+".png"));
         Item.setImage(newImage);
-        EventHandler<MouseEvent> highlight = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent e) {
-                Item.setImage(oldImage);
-            }
-        };
+        EventHandler<MouseEvent> highlight = e -> Item.setImage(oldImage);
         Item.setOnMouseExited(highlight);
     }
 

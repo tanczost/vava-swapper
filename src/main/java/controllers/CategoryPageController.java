@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -7,6 +8,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import models.Account;
 import models.Filter;
 import models.Product;
@@ -52,12 +54,22 @@ public class CategoryPageController extends Subject {
     }
 
     @FXML
+    public void changeHighlight(MouseEvent event){
+        ImageView Item = (ImageView) event.getSource();
+        Image newImage = new Image(getClass().getResourceAsStream("views/images/"+Item.getId()+"_highlight.png"));
+        Image oldImage = new Image(getClass().getResourceAsStream("views/images/"+Item.getId()+".png"));
+        Item.setImage(newImage);
+        EventHandler<MouseEvent> highlight = e -> Item.setImage(oldImage);
+        Item.setOnMouseExited(highlight);
+    }
+
+    @FXML
     public void initialize() throws SQLException {
         this.attach(SwapperApplication.getLogManager());
         this.notifyObserver("Categories page loaded.", Observer.LEVEL.info);
 
         lwCategoryItems.getItems().clear();
-        File file = new File("src/main/resources/com/example/swapper/views/images/" + filter.getCategory() + ".png");
+        File file = new File("src/main/resources/controllers/views/images/" + filter.getCategory() + ".png");
         Image image = new Image(file.toURI().toString());
         categories.setImage(image);
 

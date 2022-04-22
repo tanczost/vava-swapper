@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.ImageView;
 import models.Filter;
 import observer.Observer;
 import observer.Subject;
@@ -32,13 +33,14 @@ public class FilterController extends Subject {
     private ToggleGroup category;
     @FXML
     private ToggleGroup top;
+    private String categoryId;
     private Filter filter = Filter.getInstance();
 
     @FXML
     public void initialize() throws SQLException {
         this.attach(SwapperApplication.getLogManager());
         this.notifyObserver("Filters for products page loaded.", Observer.LEVEL.info);
-
+        categoryId = filter.getCategory();
         resetFilter();
         ResourceBundle resourceBundle = ResourceBundle.getBundle("resource_bundle");
         btnBack.setText(resourceBundle.getString("back"));
@@ -48,6 +50,7 @@ public class FilterController extends Subject {
 
     @FXML
     private void applyFilters() throws IOException {
+
         if (dpFrom.getValue() != null) {
             LocalDate localDateFrom = dpFrom.getValue();
             filter.setDateFrom(Instant.from(localDateFrom.atStartOfDay(ZoneId.systemDefault())));
@@ -73,6 +76,7 @@ public class FilterController extends Subject {
 
     @FXML
     private void backToCategory() throws IOException {
+        filter.setCategory(categoryId);
         SwitchScreen.changeScreen("views/CategoryPage.fxml");
     }
 
