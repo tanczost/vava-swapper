@@ -1,6 +1,7 @@
 package controllers;
 
 
+import com.example.swapper.SwapperApplication;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -52,7 +53,7 @@ public class LandingPageController extends Subject {
     @FXML
     public void changeHighlight(MouseEvent event){
         ImageView Item = (ImageView) event.getSource();
-        Image newImage = new Image(getClass().getResourceAsStream("views/images/"+Item.getId()+"_highlight.png"));
+        Image newImage = new Image(getClass().getResourceAsStream("images/" +Item.getId()+"_highlight.png"));
         Image oldImage = new Image(getClass().getResourceAsStream("views/images/"+Item.getId()+".png"));
         Item.setImage(newImage);
         EventHandler<MouseEvent> highlight = e -> Item.setImage(oldImage);

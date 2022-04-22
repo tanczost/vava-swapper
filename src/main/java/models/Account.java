@@ -1,6 +1,6 @@
 package models;
 
-import controllers.SwapperApplication;
+import com.example.swapper.SwapperApplication;
 import observer.Observer;
 import observer.Subject;
 import service.db.ProductDbServices;

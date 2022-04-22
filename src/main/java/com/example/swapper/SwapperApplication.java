@@ -1,4 +1,4 @@
-package controllers;
+package com.example.swapper;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

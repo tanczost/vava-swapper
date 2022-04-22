@@ -1,6 +1,6 @@
 package service.navigation;
 
-import controllers.SwapperApplication;
+import com.example.swapper.SwapperApplication;
 import javafx.fxml.FXML;
 
 import java.io.IOException;

@@ -5,17 +5,17 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import controllers.SwapperApplication;
+import com.example.swapper.SwapperApplication;
 import io.github.cdimascio.dotenv.Dotenv;
 import observer.Observer;
 
 public abstract class PostgresConnection {
     private static Dotenv dotenv = Dotenv.configure().ignoreIfMissing().ignoreIfMalformed().load();
-    private static String url = dotenv.get("DB_HOST");
-    private static int port = Integer.parseInt(dotenv.get("DB_PORT"));
-    private static String databaseName = dotenv.get("DB_NAME");
-    private static String username = dotenv.get("DB_USER");
-    private static String password = dotenv.get("DB_PASSWORD");
+    private static String url = "localhost"; //dotenv.get("DB_HOST");
+    private static int port = 5432; //Integer.parseInt(dotenv.get("DB_PORT"));
+    private static String databaseName = "postgres"; //dotenv.get("DB_NAME");
+    private static String username = "postgres"; //dotenv.get("DB_USER");
+    private static String password = "vava"; //dotenv.get("DB_PASSWORD");
     public static Connection connection = null;
 
     public static boolean isResultEmpty(ResultSet resultSet) throws SQLException {

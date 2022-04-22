@@ -1,4 +1,4 @@
-module controllers {
+module com.example.swapper {
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -13,6 +13,8 @@ module controllers {
     requires org.apache.commons.codec;
     requires java.desktop;
 
-    opens controllers to javafx.fxml;
+    opens com.example.swapper to javafx.fxml;
+    exports com.example.swapper;
     exports controllers;
+    opens controllers to javafx.fxml;
 }

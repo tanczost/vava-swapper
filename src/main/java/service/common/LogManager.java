@@ -13,7 +13,9 @@ public class LogManager extends Observer {
     static FileHandler fileHandler;
     private static LogManager instance  = null;
 
-    private final String fileLocation = "log.txt";
+
+
+    private static String fileLocation;
 
     public LogManager(){
         insertDateToFile();
@@ -21,6 +23,16 @@ public class LogManager extends Observer {
 
     public static LogManager getInstance() {
         if (instance == null) {
+            String operSys = System.getProperty("os.name").toLowerCase();
+            if (operSys.contains("win")) {
+                fileLocation = System.getenv("HOMEPATH") + "\\log.txt";
+            } else if (operSys.contains("nix") || operSys.contains("nux")
+                    || operSys.contains("aix")) {
+                fileLocation = System.getenv("HOME") + "/log.txt";
+            } else if (operSys.contains("mac")) {
+                fileLocation = System.getenv("HOME") + "/log.txt";
+            }
+            System.out.println(fileLocation);
             instance = new LogManager();
         }
         return instance;
