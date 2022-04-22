@@ -1,26 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="576.0" prefWidth="1024.0" stylesheets="@style/global.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PropositionController">
+<AnchorPane prefHeight="576.0" prefWidth="1024.0" styleClass="anchor" stylesheets="@style/login.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PropositionController">
     <children>
-        <ImageView fx:id="ivProduct" fitHeight="160.0" fitWidth="420.0" layoutX="302.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@images/logo.png" />
-            </image>
-        </ImageView>
-        <Button fx:id="btnTrade" layoutX="452.0" layoutY="390.0" mnemonicParsing="false" onAction="#trade" prefHeight="39.0" prefWidth="128.0" />
-        <Label fx:id="lbProduct" layoutX="302.0" layoutY="57.0" />
-        <Label fx:id="lbDescription" layoutX="302.0" layoutY="265.0" />
-        <Label fx:id="lbTopBadge" layoutX="664.0" layoutY="118.0" />
-        <Label fx:id="lbUserProductLabel" layoutX="302.0" layoutY="320.0" />
-        <Label fx:id="lbUserProduct" layoutX="452.0" layoutY="320.0" />
-        <Button fx:id="btnDecline" layoutX="452.0" layoutY="447.0" mnemonicParsing="false" onAction="#declineProposal" prefHeight="39.0" prefWidth="128.0" />
-        <Button fx:id="btnBack" layoutX="442.0" layoutY="510.0" mnemonicParsing="false" onAction="#redirectBack" prefHeight="39.0" prefWidth="148.0" />
-        <Label fx:id="lbTop" layoutX="299.0" layoutY="104.0" prefHeight="45.0" prefWidth="67.0" rotate="-45.0" text="TOP" textFill="RED" />
+      <AnchorPane layoutX="117.0" layoutY="29.0" prefHeight="119.0" prefWidth="796.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 20px; -fx-background-radius: 22px; -fx-border-width: 4px;">
+         <children>
+            <ImageView fitHeight="124.0" fitWidth="281.0" layoutX="258.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/logo.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+      <AnchorPane layoutX="119.0" layoutY="155.0" prefHeight="394.0" prefWidth="796.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 4px; -fx-border-radius: 20px; -fx-background-radius: 22px;">
+         <children>
+              <Button fx:id="btnTrade" layoutX="453.0" layoutY="332.0" mnemonicParsing="false" onAction="#trade" onMouseEntered="#changeTrade" prefHeight="40.0" prefWidth="140.0" />
+              <Label fx:id="lbProduct" layoutX="166.0" layoutY="184.0" prefHeight="36.0" prefWidth="253.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-border-width: 2px; -fx-padding: 3px;" />
+              <Label fx:id="lbDescription" layoutX="166.0" layoutY="232.0" prefHeight="46.0" prefWidth="464.0" style="-fx-background-color: white; -fx-border-color: black; -fx-padding: 3px; -fx-border-width: 2px; -fx-background-radius: 22px; -fx-border-radius: 20px;" />
+              <Label fx:id="lbTopBadge" layoutX="436.0" layoutY="186.0" prefHeight="36.0" prefWidth="174.0" />
+              <Label fx:id="lbUserProductLabel" layoutX="170.0" layoutY="285.0" prefHeight="36.0" prefWidth="140.0" />
+              <Label fx:id="lbUserProduct" layoutX="311.0" layoutY="280.0" prefHeight="46.0" prefWidth="228.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-padding: 3px; -fx-border-width: 2px;" />
+              <Button fx:id="btnDecline" layoutX="210.0" layoutY="332.0" mnemonicParsing="false" onAction="#declineProposal" onMouseEntered="#changeTrade" prefHeight="40.0" prefWidth="140.0" />
+              <Button fx:id="btnBack" layoutX="14.0" layoutY="332.0" mnemonicParsing="false" onAction="#redirectBack" prefHeight="39.0" prefWidth="140.0" />
+            <Pane layoutX="166.0" layoutY="7.0" prefHeight="175.0" prefWidth="464.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-background-radius: 22px; -fx-border-radius: 20px;">
+               <children>
+                    <ImageView fx:id="ivProduct" fitHeight="155.0" fitWidth="413.0" layoutX="26.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@images/logo.png" />
+                        </image>
+                    </ImageView>
+                    <Label fx:id="lbTop" alignment="CENTER" layoutX="6.0" layoutY="17.0" prefHeight="45.0" prefWidth="67.0" rotate="-42.0" text="TOP" textAlignment="CENTER" textFill="RED" />
+               </children></Pane>
+            <ImageView fx:id="tradeIcon" fitHeight="48.0" fitWidth="51.0" layoutX="379.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/btnTrade.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
     </children>
 </AnchorPane>

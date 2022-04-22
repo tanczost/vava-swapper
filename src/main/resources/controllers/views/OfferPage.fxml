@@ -37,7 +37,7 @@
               <Button fx:id="btnProposals" layoutX="117.0" layoutY="57.0" mnemonicParsing="false" onAction="#redirectToProposalPage" prefHeight="39.0" prefWidth="150.0" />
               <Label prefHeight="36.0" prefWidth="150.0" />
               <Button fx:id="btnOffers" defaultButton="true" layoutX="667.0" layoutY="57.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" />
-              <ListView fx:id="lvOffers" layoutX="59.0" layoutY="118.0" onMouseClicked="#offerSelected" prefHeight="307.0" prefWidth="822.0" style="-fx-border-color: black; -fx-border-width: 2px; -fx-background-radius: 22px; -fx-border-radius: 20px;" />
+              <ListView fx:id="lvOffers" layoutX="59.0" layoutY="118.0" onMouseClicked="#offerSelected" prefHeight="307.0" prefWidth="822.0" style="-fx-border-color: black; -fx-border-width: 2px; -fx-background-color: white;" />
          </children>
       </AnchorPane>
     </children>

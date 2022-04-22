@@ -71,7 +71,7 @@
          <children>
               <Button fx:id="btnProposals" defaultButton="true" layoutX="59.0" layoutY="20.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="150.0" />
               <Button fx:id="btnOffers" layoutX="388.0" layoutY="20.0" mnemonicParsing="false" onAction="#redirectToOfferPage" prefHeight="40.0" prefWidth="150.0" />
-              <ListView fx:id="lvUserItems" layoutX="41.0" layoutY="75.0" onMouseClicked="#offerSelected" prefHeight="357.0" prefWidth="506.0" style="-fx-border-color: black; -fx-border-radius: 20px; -fx-background-radius: 22px; -fx-border-width: 2px;" />
+              <ListView fx:id="lvUserItems" layoutX="41.0" layoutY="75.0" onMouseClicked="#offerSelected" prefHeight="357.0" prefWidth="506.0" style="-fx-border-color: black; -fx-border-width: 2px;" />
          </children></AnchorPane>
     </children>
 </AnchorPane>

@@ -18,15 +18,15 @@
       <AnchorPane layoutX="119.0" layoutY="155.0" prefHeight="394.0" prefWidth="796.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-border-width: 4px;">
          <children>
               <Button fx:id="btnTrade" layoutX="404.0" layoutY="333.0" mnemonicParsing="false" onAction="#trade" onMouseEntered="#changeTrade" prefHeight="40.0" prefWidth="170.0" />
-              <Label fx:id="lbProduct" layoutX="166.0" layoutY="184.0" prefHeight="36.0" prefWidth="253.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-border-width: 2px;" />
-              <Label fx:id="lbDescription" layoutX="166.0" layoutY="228.0" prefHeight="41.0" prefWidth="464.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-border-width: 2px;" />
+              <Label fx:id="lbProduct" layoutX="166.0" layoutY="184.0" prefHeight="41.0" prefWidth="253.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-border-width: 2px; -fx-padding: 3px;" />
+              <Label fx:id="lbDescription" layoutX="166.0" layoutY="232.0" prefHeight="41.0" prefWidth="464.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-border-width: 2px; -fx-padding: 3px;" />
               <Label fx:id="lbTopBadge" layoutX="436.0" layoutY="186.0" prefHeight="36.0" prefWidth="174.0" />
-              <Label fx:id="lbUserProductLabel" layoutX="166.0" layoutY="272.0" prefHeight="36.0" prefWidth="170.0" />
-              <ComboBox fx:id="cbUserItems" layoutX="353.0" layoutY="276.0" />
+              <Label fx:id="lbUserProductLabel" layoutX="166.0" layoutY="282.0" prefHeight="36.0" prefWidth="170.0" />
+              <ComboBox fx:id="cbUserItems" layoutX="353.0" layoutY="286.0" />
               <Button fx:id="btnBack" layoutX="166.0" layoutY="333.0" mnemonicParsing="false" onAction="#redirectBack" prefHeight="40.0" prefWidth="170.0" />
             <Pane layoutX="166.0" layoutY="7.0" prefHeight="175.0" prefWidth="464.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-border-width: 2px;">
                <children>
-                    <ImageView fx:id="ivProduct" fitHeight="119.0" fitWidth="293.0" layoutX="86.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                    <ImageView fx:id="ivProduct" fitHeight="155.0" fitWidth="413.0" layoutX="26.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                         <image>
                             <Image url="@images/logo.png" />
                         </image>

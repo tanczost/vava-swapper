@@ -11,7 +11,7 @@
                 <Label fx:id="lbProductName" layoutX="165.0" layoutY="235.0" prefHeight="36.0" prefWidth="254.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-padding: 3px;" />
                 <Label fx:id="lbDescription" layoutX="162.0" layoutY="283.0" prefHeight="42.0" prefWidth="464.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 20px; -fx-background-radius: 22px; -fx-padding: 3px;" textAlignment="CENTER" />
                 <Button fx:id="btnBack" layoutX="165.0" layoutY="341.0" mnemonicParsing="false" onAction="#redirectBack" prefHeight="40.0" prefWidth="170.0" />
-                <Label fx:id="lbCategory" layoutX="166.0" layoutY="190.0" prefHeight="36.0" prefWidth="214.0" style="-fx-background-color: white; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-border-color: black; -fx-border-width: 2px; -fx-padding: 3px;" />
+                <Label fx:id="lbCategory" layoutX="166.0" layoutY="187.0" prefHeight="36.0" prefWidth="214.0" style="-fx-background-color: white; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-border-color: black; -fx-border-width: 2px; -fx-padding: 3px;" />
               <Button fx:id="btnDelete" layoutX="419.0" layoutY="341.0" mnemonicParsing="false" onAction="#deleteProduct" onMouseEntered="#changeOpen" prefHeight="40.0" prefWidth="170.0" />
             <Pane layoutX="166.0" layoutY="7.0" prefHeight="175.0" prefWidth="464.0" style="-fx-background-color: white; -fx-border-color: black; -fx-background-radius: 22px; -fx-border-radius: 20px; -fx-border-width: 2px;">
                <children>
