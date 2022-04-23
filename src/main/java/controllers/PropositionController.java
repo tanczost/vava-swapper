@@ -92,8 +92,8 @@ public class PropositionController extends Subject {
     @FXML
     public void changeTrade(MouseEvent event){
         Button Item = (Button) event.getSource();
-        Image newImage = new Image(getClass().getResourceAsStream("views/images/"+Item.getId()+"_success.png"));
-        Image oldImage = new Image(getClass().getResourceAsStream("views/images/"+Item.getId()+".png"));
+        Image newImage = new Image(String.valueOf(SwapperApplication.class.getResource("views/images/"+Item.getId()+"_success.png")));
+        Image oldImage = new Image(String.valueOf(SwapperApplication.class.getResource("views/images/"+Item.getId()+".png")));
         tradeIcon.setImage(newImage);
         EventHandler<MouseEvent> highlight = e -> tradeIcon.setImage(oldImage);
         Item.setOnMouseExited(highlight);

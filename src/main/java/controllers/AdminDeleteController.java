@@ -84,8 +84,8 @@ public class AdminDeleteController extends Subject {
     @FXML
     public void changeOpen(MouseEvent event){
         Button Item = (Button) event.getSource();
-        Image newImage = new Image(getClass().getResourceAsStream("views/images/"+Item.getId()+"_open.png"));
-        Image oldImage = new Image(getClass().getResourceAsStream("views/images/"+Item.getId()+".png"));
+        Image newImage = new Image(String.valueOf(SwapperApplication.class.getResource("views/images/"+Item.getId()+"_open.png")));
+        Image oldImage = new Image(String.valueOf(SwapperApplication.class.getResource("views/images/"+Item.getId()+".png")));
         deleteIcon.setImage(newImage);
         EventHandler<MouseEvent> highlight = e -> deleteIcon.setImage(oldImage);
         Item.setOnMouseExited(highlight);
