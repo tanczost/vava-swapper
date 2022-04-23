@@ -21,7 +21,7 @@ public class SwapperApplication extends Application {
         PostgresConnection.initializePostgresqlDatabase();
         Locale.setDefault(new Locale("en", "EN"));
         stage = primaryStage;
-
+        System.out.println(SwapperApplication.class.getResource("views/LandingPage.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(SwapperApplication.class.getResource("views/LandingPage.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load(), 1024, 576);

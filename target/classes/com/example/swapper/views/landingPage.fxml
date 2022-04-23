@@ -4,20 +4,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="576.0" prefWidth="1024.0" stylesheets="@style/landingPage.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.swapper.LandingPageController">
+<AnchorPane prefHeight="576.0" prefWidth="1024.0" styleClass="anchor" stylesheets="@style/login.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LandingPageController">
     <children>
-        <AnchorPane prefHeight="94.0" prefWidth="1024.0" style="-fx-background-color: rgb(179,179,179);">
+        <AnchorPane layoutX="34.0" layoutY="14.0" prefHeight="94.0" prefWidth="956.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 20px; -fx-background-radius: 22px; -fx-border-width: 4px;">
             <children>
-                <ImageView fitHeight="75.0" fitWidth="206.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="75.0" fitWidth="206.0" layoutX="31.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/logo.png" />
                     </image>
                 </ImageView>
-                <TextField fx:id="tfSearch" alignment="CENTER" focusTraversable="false" layoutX="410.0" layoutY="32.0" prefHeight="29.0" prefWidth="206.0" promptText="Search for product" />
-                <Button fx:id="btnAddProduct" layoutX="760.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#loadAddProductPage" prefHeight="41.0" prefWidth="170.0" text="Add product" textAlignment="CENTER" visible="false">
+                <TextField fx:id="tfSearch" alignment="CENTER" focusTraversable="false" layoutX="375.0" layoutY="32.0" prefHeight="29.0" prefWidth="206.0" promptText="Search for product" />
+                <Button fx:id="btnAddProduct" layoutX="693.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#loadAddProductPage" prefHeight="46.0" prefWidth="170.0" text="Add product" textAlignment="CENTER" visible="false">
                     <opaqueInsets>
                         <Insets />
                     </opaqueInsets>
@@ -25,72 +24,76 @@
                         <Font size="17.0" />
                     </font>
                 </Button>
-                <ImageView fx:id="ivAvatar" fitHeight="58.0" fitWidth="63.0" layoutX="937.0" layoutY="15.0" onMouseClicked="#navigateToProposalPage" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="ivAvatar" fitHeight="58.0" fitWidth="63.0" layoutX="875.0" layoutY="17.0" onMouseClicked="#navigateToProposalPage" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/avatar.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="18.0" fitWidth="20.0" layoutX="417.0" layoutY="38.0" onMouseClicked="#searchForProduct" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="18.0" fitWidth="20.0" layoutX="382.0" layoutY="38.0" onMouseClicked="#searchForProduct" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/lupa.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="18.0" fitWidth="20.0" layoutX="589.0" layoutY="38.0" onMouseClicked="#clearSearch" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="18.0" fitWidth="20.0" layoutX="554.0" layoutY="38.0" onMouseClicked="#clearSearch" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/cancel.png" />
                     </image>
                 </ImageView>
-                <Line endX="903.7000122070312" endY="-1.0" layoutX="116.0" layoutY="86.0" startX="-113.99999237060547" startY="-1.0" strokeWidth="5.0" />
-                <Button fx:id="btnLogin" layoutX="760.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#redirectToLogin" prefHeight="46.0" prefWidth="170.0" style="-fx-background-color: rgb(179,179,179); -fx-border-color: rgb(0,0,200);" textFill="#0000c8" visible="false">
+                <Button fx:id="btnLogin" layoutX="693.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#redirectToLogin" prefHeight="46.0" prefWidth="170.0" textFill="#0000c8" visible="false">
                     <font>
                         <Font size="17.0" />
                     </font>
                 </Button>
             </children>
         </AnchorPane>
-        <AnchorPane layoutY="88.0" prefHeight="482.0" prefWidth="1024.0" style="-fx-background-color: white;">
+        <AnchorPane layoutX="34.0" layoutY="115.0" prefHeight="450.0" prefWidth="956.0" style="-fx-background-color: white; -fx-background-radius: 22px; -fx-border-color: black; -fx-border-radius: 20px; -fx-border-width: 4px;">
             <children>
-                <ImageView fx:id="Shirt" fitHeight="88.0" fitWidth="268.0" layoutX="18.0" layoutY="68.0" onMouseClicked="#changeScenario" pickOnBounds="true" preserveRatio="true" style="-fx-border-color-fx-border-color: black;">
+                <ImageView fx:id="Shirt" fitHeight="102.0" fitWidth="244.0" layoutX="51.0" layoutY="32.0" onMouseClicked="#changeScenario" onMouseEntered="#changeHighlight" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/Shirt.png" />
                     </image>
                 </ImageView>
-                <ImageView fx:id="Accessory" fitHeight="70.0" fitWidth="383.0" layoutX="18.0" layoutY="155.0" onMouseClicked="#changeScenario" pickOnBounds="true" preserveRatio="true" style="-fx-border-color-fx-border-color: black;">
+                <ImageView fx:id="Accessory" fitHeight="102.0" fitWidth="244.0" layoutX="51.0" layoutY="134.0" onMouseClicked="#changeScenario" onMouseEntered="#changeHighlight" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/Accessory.png" />
                     </image>
                 </ImageView>
-                <ImageView fx:id="Pant" fitHeight="88.0" fitWidth="268.0" layoutX="379.0" layoutY="68.0" onMouseClicked="#changeScenario" pickOnBounds="true" preserveRatio="true" style="-fx-border-color-fx-border-color: black;">
+                <ImageView fx:id="Pant" fitHeight="102.0" fitWidth="244.0" layoutX="383.0" layoutY="32.0" onMouseClicked="#changeScenario" onMouseEntered="#changeHighlight" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/Pant.png" />
                     </image>
                 </ImageView>
-                <ImageView fx:id="Coat" fitHeight="88.0" fitWidth="268.0" layoutX="379.0" layoutY="155.0" onMouseClicked="#changeScenario" pickOnBounds="true" preserveRatio="true" style="-fx-border-color-fx-border-color: black;">
+                <ImageView fx:id="Coat" fitHeight="102.0" fitWidth="244.0" layoutX="383.0" layoutY="134.0" onMouseClicked="#changeScenario" onMouseEntered="#changeHighlight" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/Coat.png" />
                     </image>
                 </ImageView>
-                <ImageView fx:id="Hoody" fitHeight="88.0" fitWidth="268.0" layoutX="740.0" layoutY="67.0" onMouseClicked="#changeScenario" pickOnBounds="true" preserveRatio="true" style="-fx-border-color-fx-border-color: black;">
+                <ImageView fx:id="Hoody" fitHeight="102.0" fitWidth="244.0" layoutX="697.0" layoutY="32.0" onMouseClicked="#changeScenario" onMouseEntered="#changeHighlight" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/Hoody.png" />
                     </image>
                 </ImageView>
-                <ImageView fx:id="Boot" fitHeight="88.0" fitWidth="268.0" layoutX="740.0" layoutY="155.0" onMouseClicked="#changeScenario" pickOnBounds="true" preserveRatio="true" style="-fx-border-color-fx-border-color: black;">
+                <ImageView fx:id="Boot" fitHeight="102.0" fitWidth="244.0" layoutX="697.0" layoutY="134.0" onMouseClicked="#changeScenario" onMouseEntered="#changeHighlight" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/Boot.png" />
                     </image>
                 </ImageView>
-                <AnchorPane layoutX="18.0" layoutY="270.0" prefHeight="206.0" prefWidth="990.0" style="-fx-background-color: rgb(179,179,179); -fx-border-color: black;">
+                <AnchorPane layoutX="23.0" layoutY="238.0" prefHeight="202.0" prefWidth="918.0" style="-fx-background-color: white; -fx-background-radius: 22px; -fx-border-color: black; -fx-border-radius: 20px; -fx-border-width: 3px;">
                     <children>
-                        <ImageView fx:id="ivTopProduct" fitHeight="190.0" fitWidth="300.0" layoutX="345.0" layoutY="8.0" onMouseClicked="#topProductSelected" />
+                        <ImageView fx:id="ivTopProduct" fitHeight="170.0" fitWidth="304.0" layoutX="295.0" layoutY="16.0" onMouseClicked="#topProductSelected" />
+                      <ImageView fitHeight="78.0" fitWidth="132.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@images/top.png" />
+                          </image>
+                      </ImageView>
+                  <ImageView fitHeight="78.0" fitWidth="132.0" layoutX="823.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/topLeft.png" />
+                     </image>
+                  </ImageView>
                     </children>
                 </AnchorPane>
-                <ImageView fitHeight="32.0" fitWidth="125.0" layoutX="18.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true" style="-fx-border-color-fx-border-color: black;">
-                    <image>
-                        <Image url="@images/top.png" />
-                    </image>
-                </ImageView>
-                <Label fx:id="lbCategories" layoutX="18.0" layoutY="21.0" />
+                <Label fx:id="lbCategories" layoutX="430.0" prefHeight="36.0" />
             </children>
         </AnchorPane>
     </children>
