@@ -1,4 +1,4 @@
-package service.navigation;
+package services.navigation;
 
 import com.example.swapper.SwapperApplication;
 import javafx.fxml.FXML;

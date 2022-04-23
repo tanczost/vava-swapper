@@ -8,9 +8,9 @@ import javafx.scene.control.TextField;
 import models.Account;
 import observer.Observer;
 import observer.Subject;
-import service.common.Auth;
-import service.db.UserDbServices;
-import service.navigation.SwitchScreen;
+import services.common.Auth;
+import services.db.UserDbServices;
+import services.navigation.SwitchScreen;
 
 import java.io.IOException;
 import java.sql.SQLException;

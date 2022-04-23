@@ -9,9 +9,9 @@ import models.Account;
 import models.User;
 import observer.Observer;
 import observer.Subject;
-import service.db.UserDbServices;
-import service.navigation.SwitchScreen;
-import service.validation.Validator;
+import services.db.UserDbServices;
+import services.navigation.SwitchScreen;
+import services.validation.Validator;
 
 import java.io.IOException;
 import java.util.ResourceBundle;

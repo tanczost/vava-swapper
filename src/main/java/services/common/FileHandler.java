@@ -1,8 +1,8 @@
-package service.common;
+package services.common;
 
 import com.example.swapper.SwapperApplication;
 import observer.Observer;
-import service.db.PostgresConnection;
+import services.db.PostgresConnection;
 
 import java.io.*;
 import java.sql.*;

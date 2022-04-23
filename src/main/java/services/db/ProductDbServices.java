@@ -1,4 +1,4 @@
-package service.db;
+package services.db;
 
 import models.Account;
 
@@ -127,8 +127,10 @@ public class ProductDbServices extends PostgresConnection {
 
     public static ResultSet getProductsByName(String name) throws SQLException {
         PreparedStatement stmt = connection.prepareStatement(
-                "SELECT *  FROM products WHERE name LIKE '%" + name + "%'");
+                "SELECT *  FROM products WHERE user_id != (?) AND name LIKE '%" + name + "%'");
 
+        int loggedId = Account.checkLogin() ? Account.getLoggedUserId() : -1;
+        stmt.setInt(1,loggedId);
         ResultSet sqlReturnValues = stmt.executeQuery();
 
         if (isResultEmpty(sqlReturnValues)) {
@@ -144,8 +146,10 @@ public class ProductDbServices extends PostgresConnection {
 
     public static ResultSet getProductsByCategory(String category) throws SQLException {
         PreparedStatement stmt = connection.prepareStatement(
-                "SELECT *  FROM products WHERE category LIKE '%" + category + "%'");
+                "SELECT *  FROM products WHERE user_id != (?) AND category LIKE '%" + category + "%'");
 
+        int loggedId = Account.checkLogin() ? Account.getLoggedUserId() : -1;
+        stmt.setInt(1,loggedId);
         ResultSet sqlReturnValues = stmt.executeQuery();
 
         if (isResultEmpty(sqlReturnValues)) {
@@ -157,8 +161,10 @@ public class ProductDbServices extends PostgresConnection {
 
     public static ResultSet getTopProduct() throws SQLException {
         PreparedStatement stmt = connection.prepareStatement("SELECT *" +
-                "FROM products WHERE topped = true ORDER BY created_at LIMIT 1");
+                "FROM products WHERE user_id != (?) AND topped = true ORDER BY created_at LIMIT 1");
 
+        int loggedId = Account.checkLogin() ? Account.getLoggedUserId() : -1;
+        stmt.setInt(1,loggedId);
         ResultSet sqlReturnValues = stmt.executeQuery();
 
         if (isResultEmpty(sqlReturnValues)) {
@@ -210,7 +216,7 @@ public class ProductDbServices extends PostgresConnection {
             return sqlReturnValues;
         }
 
-        String sql = "SELECT * FROM products WHERE ";
+        String sql = "SELECT * FROM products WHERE user_id != (?) AND ";
         Date dateFrom = null;
         Date dateTo = null;
         if (timeStampFrom != null)
@@ -243,16 +249,17 @@ public class ProductDbServices extends PostgresConnection {
         sql = sql.concat(" ORDER BY created_at DESC");
 
         PreparedStatement stmt = connection.prepareStatement(sql);
-
+        int loggedId = Account.checkLogin() ? Account.getLoggedUserId() : -1;
+        stmt.setInt(1,loggedId);
         //Bind the data in the correct order/spot
         if (timeStampFrom != null) {
-            stmt.setDate(1, new java.sql.Date(dateFrom.getTime()));
+            stmt.setDate(2, new java.sql.Date(dateFrom.getTime()));
         }
         if (timeStampTo != null) {
             if (timeStampFrom != null)
-                stmt.setDate(2, new java.sql.Date(dateTo.getTime()));
+                stmt.setDate(3, new java.sql.Date(dateTo.getTime()));
             else
-                stmt.setDate(1, new java.sql.Date(dateTo.getTime()));
+                stmt.setDate(2, new java.sql.Date(dateTo.getTime()));
         }
 
         ResultSet sqlReturnValues = stmt.executeQuery();

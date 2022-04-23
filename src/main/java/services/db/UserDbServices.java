@@ -1,4 +1,4 @@
-package service.db;
+package services.db;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

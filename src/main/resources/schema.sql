@@ -45,7 +45,8 @@ CREATE TABLE product_offers
     proposal_id int NOT NULL,
     offer_id    int NOT NULL,
     FOREIGN KEY (proposal_id) REFERENCES products (id),
-    FOREIGN KEY (offer_id) REFERENCES products (id)
+    FOREIGN KEY (offer_id) REFERENCES products (id),
+    UNIQUE (proposal_id, offer_id)
 );
 
 INSERT INTO public.users(id, nick, first_name, last_name, email, password, town, street, school, created_at)

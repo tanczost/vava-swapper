@@ -11,9 +11,9 @@ import models.Account;
 import models.Product;
 import observer.Observer;
 import observer.Subject;
-import service.common.FileHandler;
-import service.db.ProductDbServices;
-import service.navigation.SwitchScreen;
+import services.common.FileHandler;
+import services.db.ProductDbServices;
+import services.navigation.SwitchScreen;
 
 import java.io.IOException;
 import java.io.InputStream;

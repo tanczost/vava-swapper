@@ -5,8 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import service.common.LogManager;
-import service.db.PostgresConnection;
+import services.common.LogManager;
+import services.db.PostgresConnection;
 
 import java.io.IOException;
 import java.util.Locale;

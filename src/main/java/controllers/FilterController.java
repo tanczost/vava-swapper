@@ -9,7 +9,7 @@ import javafx.scene.control.ToggleGroup;
 import models.Filter;
 import observer.Observer;
 import observer.Subject;
-import service.navigation.SwitchScreen;
+import services.navigation.SwitchScreen;
 
 import java.io.IOException;
 import java.sql.SQLException;

@@ -15,10 +15,10 @@ import models.Filter;
 import models.Product;
 import observer.Observer;
 import observer.Subject;
-import service.common.ProductComparator;
-import service.common.UIHelper;
-import service.db.ProductDbServices;
-import service.navigation.SwitchScreen;
+import services.common.ProductComparator;
+import services.common.UIHelper;
+import services.db.ProductDbServices;
+import services.navigation.SwitchScreen;
 
 import java.io.File;
 import java.io.IOException;

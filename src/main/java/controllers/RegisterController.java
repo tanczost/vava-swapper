@@ -7,9 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import observer.Observer;
 import observer.Subject;
-import service.common.Auth;
-import service.navigation.SwitchScreen;
-import service.validation.Validator;
+import services.common.Auth;
+import services.navigation.SwitchScreen;
+import services.validation.Validator;
 
 import java.io.IOException;
 import java.util.ResourceBundle;

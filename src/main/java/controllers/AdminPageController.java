@@ -10,9 +10,9 @@ import models.Admin;
 import models.Product;
 import observer.Observer;
 import observer.Subject;
-import service.common.UIHelper;
-import service.db.ProductDbServices;
-import service.navigation.SwitchScreen;
+import services.common.UIHelper;
+import services.db.ProductDbServices;
+import services.navigation.SwitchScreen;
 
 import java.io.IOException;
 import java.sql.ResultSet;

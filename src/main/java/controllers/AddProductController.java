@@ -9,9 +9,9 @@ import javafx.stage.FileChooser;
 import models.Account;
 import observer.Observer;
 import observer.Subject;
-import service.common.FileHandler;
-import service.db.ProductDbServices;
-import service.navigation.SwitchScreen;
+import services.common.FileHandler;
+import services.db.ProductDbServices;
+import services.navigation.SwitchScreen;
 
 import java.io.File;
 import java.io.IOException;

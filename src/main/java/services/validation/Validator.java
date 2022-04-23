@@ -1,4 +1,4 @@
-package service.validation;
+package services.validation;
 
 import javafx.scene.control.Label;
 

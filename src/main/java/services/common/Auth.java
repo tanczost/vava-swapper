@@ -1,8 +1,8 @@
-package service.common;
+package services.common;
 
 import models.Account;
 import org.apache.commons.codec.digest.DigestUtils;
-import service.db.UserDbServices;
+import services.db.UserDbServices;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

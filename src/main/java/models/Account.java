@@ -3,7 +3,7 @@ package models;
 import com.example.swapper.SwapperApplication;
 import observer.Observer;
 import observer.Subject;
-import service.db.ProductDbServices;
+import services.db.ProductDbServices;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
