@@ -51,6 +51,7 @@ public class CategoryPageController extends Subject {
 
     @FXML
     public void backMain() throws IOException {
+        filter.resetFilterValues();
         SwitchScreen.changeScreen("views/LandingPage.fxml");
     }
 
