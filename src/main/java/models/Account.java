@@ -10,10 +10,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 public class Account extends Subject {
     private static Account instance = null;
-    private static User currentUser = null;
-    private static ArrayList<Product> productsOfLoggedUser = new ArrayList<>();
-    private static Product currentProduct = null;
-    private static Product currentOffer = null;
+    private  User currentUser = null;
+    private  ArrayList<Product> productsOfLoggedUser = new ArrayList<>();
+    private  Product currentProduct = null;
+    private  Product currentOffer = null;
 
     private Account(){
         this.attach(SwapperApplication.getLogManager());
@@ -26,7 +26,7 @@ public class Account extends Subject {
         return instance;
     }
 
-    public static void createAccount(int id, String nick, String firstName, String lastName, String email, String town, String street, String school) {
+    public  void createAccount(int id, String nick, String firstName, String lastName, String email, String town, String street, String school) {
         if (currentUser == null) {
             currentUser = new User(id, nick, firstName, lastName, email, town, street, school);
         } else {
@@ -34,24 +34,24 @@ public class Account extends Subject {
         }
     }
 
-    public static void logout() {
+    public  void logout() {
         currentUser = null;
         productsOfLoggedUser.clear();
         currentProduct = null;
         currentOffer = null;
     }
 
-    public static boolean checkLogin() {
+    public  boolean checkLogin() {
         return currentUser != null;
     }
 
-    public static int getLoggedUserId() {
+    public  int getLoggedUserId() {
         if (currentUser == null) return 1;  //return -1;
 
         return currentUser.getId();
     }
 
-    public static void setCurrentUserDetails(String nickName, String firstName, String lastName, String email, String town, String street, String school) {
+    public  void setCurrentUserDetails(String nickName, String firstName, String lastName, String email, String town, String street, String school) {
         currentUser.setNickName(nickName);
         currentUser.setFirstName(firstName);
         currentUser.setLastName(lastName);
@@ -62,12 +62,12 @@ public class Account extends Subject {
     }
 
 
-    public static ArrayList<Product> getProductsOfLoggedUser() throws SQLException {
+    public  ArrayList<Product> getProductsOfLoggedUser() throws SQLException {
         loadProducts();
         return productsOfLoggedUser;
     }
 
-    public static void loadProducts() throws SQLException {
+    public  void loadProducts() throws SQLException {
         ResultSet products = ProductDbServices.getUsersProposals(getLoggedUserId());
         productsOfLoggedUser.clear();
 
@@ -88,24 +88,24 @@ public class Account extends Subject {
         SwapperApplication.getLogManager().update("Products are successfully loaded into account.", Observer.LEVEL.info);
     }
 
-    public static User getCurrentUser() {
+    public  User getCurrentUser() {
         return currentUser;
     }
 
-    public static Product getCurrentProduct() {
+    public  Product getCurrentProduct() {
         return currentProduct;
     }
 
-    public static void setCurrentProduct(Product currentProduct) {
-        Account.currentProduct = currentProduct;
+    public  void setCurrentProduct(Product currentProduct) {
+        instance.currentProduct = currentProduct;
     }
 
-    public static Product getCurrentOffer() {
+    public  Product getCurrentOffer() {
         return currentOffer;
     }
 
-    public static void setCurrentOffer(Product currentOffer) {
-        Account.currentOffer = currentOffer;
+    public  void setCurrentOffer(Product currentOffer) {
+        instance.currentOffer = currentOffer;
     }
 
 }

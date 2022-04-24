@@ -70,7 +70,8 @@ public class CategoryPageController extends Subject {
         this.notifyObserver("Categories page loaded.", Observer.LEVEL.info);
 
         lwCategoryItems.getItems().clear();
-        File file = new File("src/main/resources/controllers/views/images/" + filter.getCategory() + ".png");
+        System.out.println(filter.getCategory());
+        File file = new File("src/main/resources/com/example/swapper/views/images/" + filter.getCategory() + ".png");
         Image image = new Image(file.toURI().toString());
         categories.setImage(image);
 

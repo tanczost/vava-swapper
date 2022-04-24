@@ -4,11 +4,11 @@ import java.time.Instant;
 
 public class Filter {
     private static Filter instance = null;
-    private static Instant dateFrom = null;
-    private static Instant dateTo = null;
-    private static String category = null;
-    private static String searchInput = null;
-    private static boolean isTop = false;
+    private  Instant dateFrom = null;
+    private  Instant dateTo = null;
+    private  String category = null;
+    private  String searchInput = null;
+    private  boolean isTop = false;
 
     public static Filter getInstance() {
         if (instance == null) {
@@ -17,46 +17,46 @@ public class Filter {
         return instance;
     }
 
-    public static Instant getDateFrom() {
+    public Instant getDateFrom() {
         return dateFrom;
     }
 
-    public static void setDateFrom(Instant dateFrom) {
-        Filter.dateFrom = dateFrom;
+    public void setDateFrom(Instant dateFrom) {
+        instance.dateFrom = dateFrom;
     }
 
-    public static Instant getDateTo() {
+    public Instant getDateTo() {
         return dateTo;
     }
 
-    public static void setDateTo(Instant dateTo) {
-        Filter.dateTo = dateTo;
+    public void setDateTo(Instant dateTo) {
+        instance.dateTo = dateTo;
     }
 
-    public static String getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public static void setCategory(String category) {
-        Filter.category = category;
+    public void setCategory(String category) {
+        instance.category = category;
     }
 
-    public static void setSearchInput(String searchInput) {
-        Filter.searchInput = searchInput;
+    public void setSearchInput(String searchInput) {
+        instance.searchInput = searchInput;
     }
 
-    public static String getSearchInput() {
-        return Filter.searchInput;
+    public String getSearchInput() {
+        return instance.searchInput;
     }
-    public static boolean getIsTop() {
+    public boolean getIsTop() {
         return isTop;
     }
 
-    public static void setIsTop(boolean isTop) {
-        Filter.isTop = isTop;
+    public void setIsTop(boolean isTop) {
+        instance.isTop = isTop;
     }
 
-    public static void resetFilterValues() {
+    public void resetFilterValues() {
         dateFrom = null;
         dateTo = null;
         category = null;

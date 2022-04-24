@@ -10,6 +10,7 @@ import java.util.Date;
 
 
 public class ProductDbServices extends PostgresConnection {
+
     public static int insertProductDb(String name, String description, boolean topped, int userId, int imgId, String category) {
         try {
             PreparedStatement stmt = connection.prepareStatement(
@@ -129,7 +130,7 @@ public class ProductDbServices extends PostgresConnection {
         PreparedStatement stmt = connection.prepareStatement(
                 "SELECT *  FROM products WHERE user_id != (?) AND name LIKE '%" + name + "%'");
 
-        int loggedId = Account.checkLogin() ? Account.getLoggedUserId() : -1;
+        int loggedId = Account.getInstance().checkLogin() ? Account.getInstance().getLoggedUserId() : -1;
         stmt.setInt(1,loggedId);
         ResultSet sqlReturnValues = stmt.executeQuery();
 
@@ -148,7 +149,7 @@ public class ProductDbServices extends PostgresConnection {
         PreparedStatement stmt = connection.prepareStatement(
                 "SELECT *  FROM products WHERE user_id != (?) AND category LIKE '%" + category + "%'");
 
-        int loggedId = Account.checkLogin() ? Account.getLoggedUserId() : -1;
+        int loggedId = Account.getInstance().checkLogin() ? Account.getInstance().getLoggedUserId() : -1;
         stmt.setInt(1,loggedId);
         ResultSet sqlReturnValues = stmt.executeQuery();
 
@@ -163,7 +164,7 @@ public class ProductDbServices extends PostgresConnection {
         PreparedStatement stmt = connection.prepareStatement("SELECT *" +
                 "FROM products WHERE user_id != (?) AND topped = true ORDER BY created_at LIMIT 1");
 
-        int loggedId = Account.checkLogin() ? Account.getLoggedUserId() : -1;
+        int loggedId = Account.getInstance().checkLogin() ? Account.getInstance().getLoggedUserId() : -1;
         stmt.setInt(1,loggedId);
         ResultSet sqlReturnValues = stmt.executeQuery();
 
@@ -249,7 +250,7 @@ public class ProductDbServices extends PostgresConnection {
         sql = sql.concat(" ORDER BY created_at DESC");
 
         PreparedStatement stmt = connection.prepareStatement(sql);
-        int loggedId = Account.checkLogin() ? Account.getLoggedUserId() : -1;
+        int loggedId = Account.getInstance().checkLogin() ? Account.getInstance().getLoggedUserId() : -1;
         stmt.setInt(1,loggedId);
         //Bind the data in the correct order/spot
         if (timeStampFrom != null) {

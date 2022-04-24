@@ -32,6 +32,7 @@ public class OfferPageController extends Subject {
     public ListView lvOffers;
     private List<Product> othersProducts = new ArrayList<>();
     private List<Product> myProducts = new ArrayList<>();
+    private Account account = Account.getInstance();
 
     public void loadAddProductPage() throws IOException {
         SwitchScreen.changeScreen("views/AddProductModal.fxml");
@@ -61,8 +62,8 @@ public class OfferPageController extends Subject {
         }
 
         int offersIndex = lvOffers.getSelectionModel().getSelectedIndex();
-        Account.setCurrentProduct(myProducts.get(offersIndex));
-        Account.setCurrentOffer(othersProducts.get(offersIndex));
+        account.setCurrentProduct(myProducts.get(offersIndex));
+        account.setCurrentOffer(othersProducts.get(offersIndex));
 
         SwitchScreen.changeScreen("views/OfferDetail.fxml");
     }
