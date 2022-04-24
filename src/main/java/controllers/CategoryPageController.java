@@ -57,8 +57,8 @@ public class CategoryPageController extends Subject {
     @FXML
     public void changeHighlight(MouseEvent event){
         ImageView Item = (ImageView) event.getSource();
-        Image newImage = new Image(getClass().getResourceAsStream("views/images/"+Item.getId()+"_highlight.png"));
-        Image oldImage = new Image(getClass().getResourceAsStream("views/images/"+Item.getId()+".png"));
+        Image newImage = new Image(String.valueOf(SwapperApplication.class.getResource("views/images/"+Item.getId()+"_highlight.png")));
+        Image oldImage = new Image(String.valueOf(SwapperApplication.class.getResource("views/images/"+Item.getId()+".png")));
         Item.setImage(newImage);
         EventHandler<MouseEvent> highlight = e -> Item.setImage(oldImage);
         Item.setOnMouseExited(highlight);
