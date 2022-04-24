@@ -112,6 +112,7 @@ public class CategoryPageController extends Subject {
     public void searchForProduct() throws IOException {
         filter.setSearchInput(tfSearch.getText());
         filter.setCategory("");
+        this.notifyObserver("User searched for product " + tfSearch.getText(), Observer.LEVEL.info);
         SwitchScreen.changeScreen("views/CategoryPage.fxml");
     }
 

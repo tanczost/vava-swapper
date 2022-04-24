@@ -24,10 +24,7 @@ public class UIHelper {
             ));
         }
 
-        allProducts.forEach(e -> {
-            System.out.println(e.toString());
-            lvAllProducts.getItems().add(e.toString());
-        });
+        allProducts.forEach(e -> {lvAllProducts.getItems().add(e.toString());});
     }
 
     public static void mapResultSetToProducts(ResultSet result, List<Product> myProducts,List<Product> othersProducts, ListView<String> lvAllProducts) throws SQLException {

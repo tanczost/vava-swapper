@@ -36,26 +36,19 @@ public class FileHandler {
     public static int uploadFile(byte[] file) throws SQLException {
         Connection con = PostgresConnection.initializePostgresqlDatabase();
         PreparedStatement query = null;
+        String sql = "INSERT INTO photos (data) VALUES (?)";
+        query = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        query.setBytes(1, file);
+        query.executeUpdate();
 
-        if(con == null)
-            System.out.println("Failed to connect to the database.");
+        ResultSet rs = query.getGeneratedKeys();
+        int generatedKey = 0;
+        if (rs.next()) {
+            generatedKey = rs.getInt(1);
+            return generatedKey;
+        }
 
-            String sql = "INSERT INTO photos (data) VALUES (?)";
-
-            query = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            query.setBytes(1, file);
-            System.out.println(file);
-            query.executeUpdate();
-
-            ResultSet rs = query.getGeneratedKeys();
-            int generatedKey = 0;
-            if (rs.next()) {
-                generatedKey = rs.getInt(1);
-                System.out.println(generatedKey);
-                return generatedKey;
-            }
-
-            return  0;
+        return  0;
     }
 
     /**
@@ -67,9 +60,6 @@ public class FileHandler {
     public static InputStream getFile(int id) throws Exception {
         Connection con = PostgresConnection.initializePostgresqlDatabase();
         PreparedStatement query = null;
-
-        if(con == null)
-            System.out.println("Failed to connect to the database.");
 
         String sql = "SELECT data FROM photos WHERE id=? ORDER BY id ASC LIMIT 1";
 

@@ -89,12 +89,10 @@ public class RegisterController extends Subject {
                 if (result) {
                     this.notifyObserver("New user has registered.", Observer.LEVEL.info);
 
-                    System.out.println("Successfully registered user");
                     SwitchScreen.changeScreen("views/LoginPage.fxml");
                 } else {
                     this.notifyObserver("User registration failed.", Observer.LEVEL.warning);
 
-                    System.out.println("Registration was aborted");
                 }
             }
         } else {

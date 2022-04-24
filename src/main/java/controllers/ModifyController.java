@@ -63,7 +63,6 @@ public class ModifyController extends Subject {
             SwitchScreen.changeScreen("views/ProposalPage.fxml");
         } else {
             this.notifyObserver("Failed to update product.", Observer.LEVEL.warning);
-            System.out.println("Not  success do something");
         }
 
         account.loadProducts();

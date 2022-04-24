@@ -32,7 +32,6 @@ public class LogManager extends Observer {
             } else if (operSys.contains("mac")) {
                 fileLocation = System.getenv("HOME") + "/log.txt";
             }
-            System.out.println(fileLocation);
             instance = new LogManager();
         }
         return instance;

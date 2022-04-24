@@ -3,17 +3,18 @@ package services.common;
 import models.Account;
 import org.apache.commons.codec.digest.DigestUtils;
 import services.db.UserDbServices;
+import services.validation.Validator;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Auth {
     public static boolean registration(String nick, String firstName, String lastName, String email, String town, String street, String school, String password) throws Exception {
-//        if (!Validator.validDbInputEmail(email) || !Validator.validDbInput(nick) || !Validator.validDbInput(firstName) ||
-//                !Validator.validDbInput(lastName) || !Validator.validDbInput(email) || !Validator.validDbInput(town) ||
-//                !Validator.validDbInput(street) || !Validator.validDbInput(school) || !Validator.validDbPassword(password)) {
-//            throw new Exception("Wrong input");
-//        }
+        if ( !Validator.validDbInput(nick) || !Validator.validDbInput(firstName) ||
+                !Validator.validDbInput(lastName) || !Validator.validDbInput(email) || !Validator.validDbInput(town) ||
+                !Validator.validDbInput(street) || !Validator.validDbInput(school) || !Validator.validDbPassword(password)) {
+            throw new Exception("Wrong input");
+        }
 
         String passwordHash = DigestUtils.sha256Hex(password);
         int result = UserDbServices.insertUserDb(nick, firstName, lastName, email, town, street, school, passwordHash);
@@ -26,7 +27,6 @@ public class Auth {
         ResultSet resultSet = UserDbServices.loginUserDb(nick, passwordHash);
 
         if (resultSet == null) {
-            System.out.println("No data");
             return false;
         }
 

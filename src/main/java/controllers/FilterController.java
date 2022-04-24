@@ -68,10 +68,8 @@ public class FilterController extends Subject {
         if (top.getSelectedToggle() != null) {
             filter.setIsTop(true);
         }
-
-        SwitchScreen.changeScreen("views/CategoryPage.fxml");
-
         this.notifyObserver("Filters were applied.", Observer.LEVEL.info);
+        SwitchScreen.changeScreen("views/CategoryPage.fxml");
     }
 
     @FXML
@@ -86,7 +84,6 @@ public class FilterController extends Subject {
         dpTo.setValue(LocalDate.from(LocalDate.now().plusMonths(1)));
         category.selectToggle(null);
         top.selectToggle(null);
-
         this.notifyObserver("Filters were cleared.", Observer.LEVEL.info);
     }
 }

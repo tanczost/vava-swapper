@@ -27,6 +27,8 @@ public class AddProductController extends Subject {
     @FXML
     public Label lbCategory;
     @FXML
+    public Label lMessage;
+    @FXML
     private TextField tfProductName;
     @FXML
     private TextField tfDescription;
@@ -58,6 +60,7 @@ public class AddProductController extends Subject {
         for (String category : categories) {
             cbCategory.getItems().add(category);
         }
+        cbCategory.getSelectionModel().selectFirst();
     }
 
     @FXML
@@ -72,26 +75,32 @@ public class AddProductController extends Subject {
 
         } catch (Exception e) {
             if (imgPath == null) {
-                System.out.println("Img not choosed do something");
+                this.notifyObserver("Img not choosed do something", Observer.LEVEL.warning);
             }
-            System.out.println(e);
+
             this.notifyObserver(e.toString(), Observer.LEVEL.severe);
         }
 
         imgView.setImage(new Image("file://" + imgPath));
+        this.notifyObserver("New image was added", Observer.LEVEL.info);
 
     }
 
     @FXML
     private void addProduct() throws Exception {
         int loggedUserId = Account.getInstance().getLoggedUserId();
+        if (imgPath == null || tfDescription.getText().isEmpty() || tfProductName.getText().isEmpty()) {
+            this.notifyObserver("Not all field are filled in", Observer.LEVEL.severe);
+            lMessage.setText("You have empty fields");
+            return;
+        }
         int newImageId = FileHandler.uploadFile(FileHandler.readImageToByteStream(imgPath, imgName));
         int result = ProductDbServices.insertProductDb(tfProductName.getText(), tfDescription.getText(), rbTop.isSelected(), loggedUserId, newImageId, cbCategory.getValue().toString());
 
         if (result > 0) {
+            this.notifyObserver("New product was added", Observer.LEVEL.info);
             SwitchScreen.changeScreen("views/LandingPage.fxml");
         } else {
-            System.out.println("Not succes do something");
             this.notifyObserver("Failed adding new product to database.", Observer.LEVEL.warning);
         }
     }

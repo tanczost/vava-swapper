@@ -63,11 +63,10 @@ public class LoginController extends Subject {
                 }
                 account.loadProducts();
                 SwitchScreen.changeScreen("views/LandingPage.fxml");
-                System.out.println(tfNickname.getText() + " has succesfully logged in");
             } else {
-                this.notifyObserver("Login attempt failed.", Observer.LEVEL.warning);
                 lError.setText(resourceBundle.getString("badLogin"));
-                System.out.println("Bad login credentials from " + tfNickname.getText());
+                this.notifyObserver("Bad credentials", Observer.LEVEL.severe);
+
             }
         } else {
             lError.setText(resourceBundle.getString("enterDetails"));

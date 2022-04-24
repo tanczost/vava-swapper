@@ -288,7 +288,6 @@ public class ProductDbServices extends PostgresConnection {
                         "FROM products JOIN product_offers po on products.id = po.offer_id WHERE user_id = (?)) " +
                         "SELECT * FROM my_items  JOIN products ON products.id = my_items.proposal_id;");
 
-        System.out.println(stmt);
         stmt.setInt(1, account.getCurrentUser().getId());
         ResultSet sqlReturnValues = stmt.executeQuery();
 

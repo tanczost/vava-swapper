@@ -31,7 +31,6 @@ public class Account extends Subject {
             currentUser = new User(id, nick, firstName, lastName, email, town, street, school);
         } else {
             SwapperApplication.getLogManager().update("Cant authenticate (log in) an allready authenticated user.", Observer.LEVEL.warning);
-            System.out.println("User already logged in");
         }
     }
 
@@ -86,7 +85,6 @@ public class Account extends Subject {
                     products.getTimestamp(8)
             ));
         }
-        System.out.println("Products are successfully loaded into account");
         SwapperApplication.getLogManager().update("Products are successfully loaded into account.", Observer.LEVEL.info);
     }
 

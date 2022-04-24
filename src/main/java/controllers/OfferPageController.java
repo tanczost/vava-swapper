@@ -61,7 +61,6 @@ public class OfferPageController extends Subject {
         }
 
         int offersIndex = lvOffers.getSelectionModel().getSelectedIndex();
-        System.out.println(othersProducts.get(offersIndex).toString());
         Account.setCurrentProduct(myProducts.get(offersIndex));
         Account.setCurrentOffer(othersProducts.get(offersIndex));
 

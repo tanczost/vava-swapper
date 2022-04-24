@@ -129,14 +129,11 @@ public class ProposalPageController extends Subject {
         }
 
         ResultSet offers = ProductDbServices.getOffersForProduct(account.getCurrentProduct().getId());
-
         lvUserItems.getItems().clear();
         if (offers == null) {
             return;
         }
-
         offersForProduct.clear();
-
 
         while (offers.next()) {
             offersForProduct.add(new Product(
@@ -148,10 +145,7 @@ public class ProposalPageController extends Subject {
                     offers.getTimestamp(7)
             ));
         }
-
-        offersForProduct.forEach(e -> {
-            lvUserItems.getItems().add(e.toString());
-        });
+        offersForProduct.forEach(e -> {lvUserItems.getItems().add(e.toString());});
     }
 
     public void logout() throws IOException {

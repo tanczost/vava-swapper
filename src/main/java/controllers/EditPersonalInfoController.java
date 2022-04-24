@@ -103,14 +103,9 @@ public class EditPersonalInfoController extends Subject {
                             tfFirstName.getText(), tfLastName.getText(),
                             tfEmail.getText(), tfTown.getText(),
                             tfStreet.getText(), tfSchool.getText());
-
-                    System.out.println("Successfully updated");
                     SwitchScreen.changeScreen("views/ProposalPage.fxml");
-
                     this.notifyObserver("User updated its info.", Observer.LEVEL.info);
                 } else {
-                    System.out.println("Update failed. :(");
-
                     this.notifyObserver("User failed to update its info.", Observer.LEVEL.warning);
                 }
             }
