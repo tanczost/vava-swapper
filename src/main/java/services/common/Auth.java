@@ -10,11 +10,6 @@ import java.sql.SQLException;
 
 public class Auth {
     public static boolean registration(String nick, String firstName, String lastName, String email, String town, String street, String school, String password) throws Exception {
-        if ( !Validator.validDbInput(nick) || !Validator.validDbInput(firstName) ||
-                !Validator.validDbInput(lastName) || !Validator.validDbInput(email) || !Validator.validDbInput(town) ||
-                !Validator.validDbInput(street) || !Validator.validDbInput(school) || !Validator.validDbPassword(password)) {
-            throw new Exception("Wrong input");
-        }
 
         String passwordHash = DigestUtils.sha256Hex(password);
         int result = UserDbServices.insertUserDb(nick, firstName, lastName, email, town, street, school, passwordHash);
