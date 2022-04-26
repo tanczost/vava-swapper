@@ -2,7 +2,7 @@
 
 ## Spustenie databázy
 
-V priečinku projektu spustit príkaz, ktorý pri prvom spustení vytvorý potrebbnú schému databázy
+V priečinku projektu spustit príkaz, ktorý pri prvom spustení vytvorý potrebnú schému databázy
 
 ```shell
 docker-compose up -d
